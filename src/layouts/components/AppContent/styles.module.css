@@ -1,0 +1,11 @@
+.contentContainer {
+  padding: 30px 0;
+  flex-grow: 1;
+}
+
+@media (max-width: 760px) {
+  .contentContainer {
+    padding: 10px 0;
+    margin-top: 10px;
+  }
+}

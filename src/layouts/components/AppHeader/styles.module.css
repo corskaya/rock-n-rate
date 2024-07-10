@@ -1,0 +1,164 @@
+.headerFix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #1d1d1d;
+  height: 58px;
+  border-bottom: 1px solid #2d3030;
+  padding-top: 1px;
+}
+
+.leftPart {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1.6vw;
+  width: 40vw;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+}
+
+.description {
+  color: #919191;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+
+.rightPart {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 40vw;
+  gap: 1vw;
+}
+
+.navContainerWeb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+}
+
+.navInputContainer {
+  padding: 4px 4px 4px 6px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #353535;
+  border-radius: 24px;
+  width: 240px;
+  height: 24px;
+}
+
+.navInputIcon {
+  font-size: 14px;
+  color: #829191;
+  margin: 0 4px;
+}
+
+.navInput {
+  background: none;
+  border: none;
+  color: #829191;
+  font-weight: bold;
+}
+
+.navInput:focus {
+  outline: none;
+}
+
+.navInput:focus::placeholder {
+  color: transparent;
+}
+
+.navLink {
+  font-size: 0.9em;
+  text-decoration: none;
+  margin: 0 3px;
+}
+
+.navLinkPrimary {
+  color: #f1ffff;
+}
+
+.navLinkPrimary:hover {
+  transition: 0.5s;
+  color: #829191;
+}
+
+.navLinkSecondary {
+  color: #829191;
+}
+
+.navLinkSecondary:hover {
+  transition: 0.5s;
+  color: #f1ffff;
+}
+
+.navLinkSelected {
+  color: #6ac045;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.navContainerMobile {
+  display: none;
+}
+
+.navIcon {
+  font-size: 28px;
+}
+
+@media (max-width: 1350px) {
+  .description {
+    display: none;
+  }
+}
+
+@media (max-width: 1020px) {
+  .navContainerWeb {
+    display: none;
+  }
+  .navInputContainer {
+    display: none;
+  }
+  .navContainerMobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+  }
+}
+
+@media (max-width: 760px) {
+  .headerContainer {
+    justify-content: space-between;
+    height: 38px;
+    padding: 0 10px;
+  }
+  .logo {
+    width: 150px;
+  }
+  .navIcon {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,12 @@
+version: '3'
+services:
+  rock-n-rate:
+    container_name: rock-n-rate
+    build:
+      context: ../
+      dockerfile: ./docker/dev.Dockerfile
+    image: rock-n-rate
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
