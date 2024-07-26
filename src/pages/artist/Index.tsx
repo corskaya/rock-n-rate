@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getAlbum, getSimilarAlbums } from "./slice";
+import { getArtist, getSimilarArtists } from "./slice";
 import Visuals from "./components/Visuals";
 import Info from "./components/Info";
 import Suggestions from "./components/Suggestions";
@@ -11,34 +11,34 @@ import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
 
-function Album() {
+function Artist() {
   const { id } = useParams();
-  const { albumPending, albumRejected, albumFulfilled, album, albumErrorMessage } =
-    useSelector((state: RootState) => state.album);
+  const { artistPending, artistRejected, artistFulfilled, artist, artistErrorMessage } =
+    useSelector((state: RootState) => state.artist);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getAlbum(id!));
-    dispatch(getSimilarAlbums(id!));
+    dispatch(getArtist(id!));
+    dispatch(getSimilarArtists(id!));
   }, [dispatch, id]);
 
   return (
     <div className={styles.container}>
-      {albumPending && <Loading size="large" />}
-      {albumFulfilled && album && (
+      {artistPending && <Loading size="large" />}
+      {artistFulfilled && artist && (
         <>
-          <MobileMainInfo album={album} />
-          <div className={styles.albumWebContainer}>
-            <Visuals album={album} />
-            <Info album={album} />
+          <MobileMainInfo artist={artist} />
+          <div className={styles.artistWebContainer}>
+            <Visuals artist={artist} />
+            <Info artist={artist} />
             <Suggestions />
           </div>
-          <MobileAbout album={album} />
+          <MobileAbout artist={artist} />
         </>
       )}
-      {albumRejected && <Message>{albumErrorMessage}</Message>}
+      {artistRejected && <Message>{artistErrorMessage}</Message>}
     </div>
   );
 }
 
-export default Album;
+export default Artist;

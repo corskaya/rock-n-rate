@@ -1,0 +1,70 @@
+.container {
+  position: fixed;
+  top: 130px;
+  right: -100px;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  width: 300px;
+  height: 64px;
+  z-index: 1998;
+  cursor: auto;
+}
+
+.success {
+  background-color: #6ac045;
+}
+
+.error {
+  background-color: #f04541;
+}
+
+.warning {
+  background-color: #deb318;
+}
+
+.info {
+  background-color: #0aad9e;
+}
+
+.icon {
+  font-size: 15px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+}
+
+.title {
+  position: absolute;
+  top: 11.4px;
+  left: 32px;
+  margin: 0;
+}
+
+.description {
+  position: absolute;
+  top: 36px;
+  left: 12px;
+  font-size: 14px;
+  margin: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closeBtn:hover {
+  color: #dbdbdb;
+}
+
+@media (max-width: 760px) {
+  .container {
+    top: 90%;
+    left: 50%;
+  }
+}

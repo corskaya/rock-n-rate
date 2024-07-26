@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { post } from "../../utils/network.ts";
+import { post } from "../../utils/network";
 import User from "../../types/user";
 import ToastStatus from "../../types/toast";
-import { LoginRequest, LoginResponse } from "./types.ts";
+import { LoginRequest, LoginResponse } from "./types";
 import { isAxiosError } from "axios";
 
 export type LoginState = {

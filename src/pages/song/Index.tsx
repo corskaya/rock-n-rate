@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { getAlbum, getSimilarAlbums } from "./slice";
+import { getSong, getSimilarSongs } from "./slice";
 import Visuals from "./components/Visuals";
 import Info from "./components/Info";
 import Suggestions from "./components/Suggestions";
@@ -11,34 +11,34 @@ import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
 
-function Album() {
+function Song() {
   const { id } = useParams();
-  const { albumPending, albumRejected, albumFulfilled, album, albumErrorMessage } =
-    useSelector((state: RootState) => state.album);
+  const { songPending, songRejected, songFulfilled, song, songErrorMessage } =
+    useSelector((state: RootState) => state.song);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getAlbum(id!));
-    dispatch(getSimilarAlbums(id!));
+    dispatch(getSong(id!));
+    dispatch(getSimilarSongs(id!));
   }, [dispatch, id]);
 
   return (
     <div className={styles.container}>
-      {albumPending && <Loading size="large" />}
-      {albumFulfilled && album && (
+      {songPending && <Loading size="large" />}
+      {songFulfilled && song && (
         <>
-          <MobileMainInfo album={album} />
-          <div className={styles.albumWebContainer}>
-            <Visuals album={album} />
-            <Info album={album} />
+          <MobileMainInfo song={song} />
+          <div className={styles.songWebContainer}>
+            <Visuals song={song} />
+            <Info song={song} />
             <Suggestions />
           </div>
-          <MobileAbout album={album} />
+          <MobileAbout song={song} />
         </>
       )}
-      {albumRejected && <Message>{albumErrorMessage}</Message>}
+      {songRejected && <Message>{songErrorMessage}</Message>}
     </div>
   );
 }
 
-export default Album;
+export default Song;

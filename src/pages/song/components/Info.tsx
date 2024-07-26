@@ -5,35 +5,35 @@ import { Label } from "../../../components";
 import RateModal from "./RateModal";
 import RatingsModal from "./RatingsModal";
 import { AppDispatch, RootState } from "../../../store";
-import Album from "../../../types/album";
+import Song from "../../../types/song";
 import { getRatings, setShowRateModal, setShowRatingsModal } from "../slice";
 import styles from "../styles.module.css";
 
 type Props = {
-  album: Album;
+  song: Song;
 };
 
-const Info: React.FC<Props> = ({ album }) => {
-  const showRateModal = useSelector((state: RootState) => state.album.showRateModal);
-  const showRatingsModal = useSelector((state: RootState) => state.album.showRatingsModal);
+const Info: React.FC<Props> = ({ song }) => {
+  const showRateModal = useSelector((state: RootState) => state.song.showRateModal);
+  const showRatingsModal = useSelector((state: RootState) => state.song.showRatingsModal);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleShowRatingsModal = () => {
-    dispatch(getRatings(album._id));
+    dispatch(getRatings(song._id));
     dispatch(setShowRatingsModal(true));
   };
 
   return (
     <div className={styles.infoContainer}>
       <div className={styles.mainInfoContainer}>
-        <h1 className={`${styles.albumName} ${styles.textShadow}`}>
-          {album.name}
+        <h1 className={`${styles.songName} ${styles.textShadow}`}>
+          {song.name}
         </h1>
         <h3 className={`${styles.foundationYear} ${styles.textShadow}`}>
-          {dayjs(album.releaseDate).format("YYYY")}
+          {dayjs(song.releaseDate).format("YYYY")}
         </h3>
         <h3 className={`${styles.genres} ${styles.textShadow}`}>
-          {album.genres.join(" / ")}
+          {song.genres.join(" / ")}
         </h3>
       </div>
       <div className={styles.ratingsContainer}>
@@ -48,7 +48,7 @@ const Info: React.FC<Props> = ({ album }) => {
             >
               <StarFilled className={styles.ratingIcon} />
               <div className={styles.ratingPoint}>
-                {album.rating !== 0 ? album.rating : "?"}
+                {song.rating !== 0 ? song.rating : "?"}
               </div>
               <div className={styles.ratingMax}>/ 10</div>
             </div>
@@ -65,23 +65,23 @@ const Info: React.FC<Props> = ({ album }) => {
             >
               <StarFilled className={styles.userRatingIcon} />
               <div className={styles.ratingPoint}>
-                {album.ratingOfRelevantUser ?? "?"}
+                {song.ratingOfRelevantUser ?? "?"}
               </div>
               <div className={styles.ratingMax}>/ 10</div>
             </div>
           </div>
         </div>
       </div>
-      <p className={styles.aboutTextWeb}>{album.about}</p>
+      <p className={styles.aboutTextWeb}>{song.about}</p>
       <RateModal
         show={showRateModal}
         onClose={() => dispatch(setShowRateModal(false))}
-        album={album}
+        song={song}
       />
       <RatingsModal
         show={showRatingsModal}
         onClose={() => dispatch(setShowRatingsModal(false))}
-        album={album}
+        song={song}
       />
     </div>
   );

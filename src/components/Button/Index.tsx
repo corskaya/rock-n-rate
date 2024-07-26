@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 type Props = {
   children: ReactNode;
   className?: string;
-  color?: 'success' | 'info'
+  color?: 'success' | 'info';
 } & React.ComponentPropsWithoutRef<'button'>;
 
 const Button: React.FC<Props> = ({ children, className, color = 'success', ...rest }) => {

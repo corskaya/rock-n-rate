@@ -1,0 +1,40 @@
+.selectContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.selectContainer select {
+  height: 40px;
+  color: #a0a0a0;
+  background-color: #282828;
+  border: none;
+  border-radius: 4px;
+  padding-left: 10px;
+  width: 130px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+}
+
+.arrowIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 11px 7px 0 0;
+}
+
+.icon {
+  color: #4b4b4b;
+  font-size: 11px;
+}
+
+.iconBottom {
+  margin-top: -2px;
+}

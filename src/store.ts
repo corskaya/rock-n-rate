@@ -4,11 +4,11 @@ import loginReducer, { setLoginStatus } from "./pages/login/slice";
 // import userReducer from "./pages/user/slice";
 // import homeReducer from "./pages/home/slice";
 // import artistsReducer from "./pages/artists/slice";
-// import artistReducer from "./pages/artist/slice";
+import artistReducer from "./pages/artist/slice";
 // import albumsReducer from "./pages/albums/slice";
 import albumReducer from "./pages/album/slice";
 // import songsReducer from "./pages/songs/slice";
-// import songReducer from "./pages/song/slice";
+import songReducer from "./pages/song/slice";
 import User from "./types/user";
 
 const store = configureStore({
@@ -18,11 +18,11 @@ const store = configureStore({
     // user: userReducer,
     // home: homeReducer,
     // artists: artistsReducer,
-    // artist: artistReducer,
+    artist: artistReducer,
     // albums: albumsReducer,
     album: albumReducer,
     // songs: songsReducer,
-    // song: songReducer,
+    song: songReducer,
   },
 });
 

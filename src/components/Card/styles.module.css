@@ -1,0 +1,94 @@
+.cardContainer {
+  width: 180px;
+  height: 270px;
+}
+
+.large {
+  width: 210px;
+  height: 320px;
+}
+
+.square {
+  width: 230px;
+  height: 230px;
+}
+
+.imageContainer {
+  position: relative;
+  border: 4px solid #fff;
+  border-radius: 4px;
+  transition: 0.4s ease;
+  width: 97%;
+  height: 97%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background-color: rgba(15, 15, 15, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding-top: 4px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.ratingContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ratingIcon {
+  font-size: 26px;
+  color: #6ac045;
+}
+
+.rating {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.genreContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.genre {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.detailsBtn {
+  width: 128px;
+  transform: translate(0%, 50%);
+  transition: 0.4s ease;
+}
+
+.cardContainer:hover .imageContainer {
+  cursor: pointer;
+  border-color: #6ac045;
+}
+
+.cardContainer:hover .overlay {
+  opacity: 1;
+}
+
+.cardContainer:hover .detailsBtn {
+  transform: translate(0%, 0%);
+}
