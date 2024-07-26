@@ -1,9 +1,9 @@
-// import AppHeader from './components/AppHeader/Index';
-import AppContent from './components/AppContent/Index.tsx';
-import AppFooter from './components/AppFooter/Index.tsx';
-import styles from './Layout.module.css';
-import { useLocation } from 'react-router-dom';
-// import { Toast } from '../components';
+import AppHeader from "./components/AppHeader/Index";
+import AppContent from "./components/AppContent/Index";
+import AppFooter from "./components/AppFooter/Index";
+import styles from "./Layout.module.css";
+import { useLocation } from "react-router-dom";
+// import { Toast } from "../components";
 
 function Layout() {
   const routesWithBackgroundImage = [
@@ -26,7 +26,7 @@ function Layout() {
       }
     >
       <div>
-        {/* <AppHeader /> */}
+        <AppHeader />
       </div>
       <div>
         <AppContent />

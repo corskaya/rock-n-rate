@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import styles from './styles.module.css';
+import { ReactNode } from "react";
+import styles from "./styles.module.css";
 
 type Props = {
   children: ReactNode;
@@ -10,9 +10,7 @@ type Props = {
 const Button: React.FC<Props> = ({ children, className, color = 'success', ...rest }) => {
   return (
     <button
-      className={`${styles.button} ${
-        color === 'info' ? styles.infoColor : ''
-      } ${className}`}
+      className={`${styles.button} ${color === 'info' ? styles.infoColor : ''} ${className}`}
       {...rest}
     >
       {children}

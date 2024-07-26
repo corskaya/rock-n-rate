@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import styles from './styles.module.css';
+import { ReactNode } from "react";
+import styles from "./styles.module.css";
 
 type Props = {
   children: ReactNode;
@@ -8,7 +8,10 @@ type Props = {
 
 const Label: React.FC<Props> = ({ children, className, ...rest }) => {
   return (
-    <label className={`${styles.label} ${className}`} {...rest}>
+    <label 
+      className={`${styles.label} ${className}`} 
+      {...rest}
+    >
       {children}
     </label>
   );

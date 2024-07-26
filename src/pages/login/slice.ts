@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { post } from "../../utils/network.ts";
-import IUser from "../../types/user";
+import User from "../../types/user";
 import ToastStatus from "../../types/toast";
 import { LoginRequest, LoginResponse } from "./types.ts";
 import { isAxiosError } from "axios";
@@ -9,11 +9,11 @@ export type LoginState = {
   loginPending: boolean;
   loginFulfilled: boolean;
   loginRejected: boolean;
-  user?: IUser;
+  user?: User;
   token?: string;
   errorMessage?: string;
   toastStatus: ToastStatus;
-}
+};
 
 const initialState: LoginState = {
   loginPending: false,
@@ -47,7 +47,7 @@ const loginReducer = createSlice({
   name: "loginReducer",
   initialState,
   reducers: {
-    setLoginStatus: (state, action: PayloadAction<{ user: IUser, token: string }>) => {
+    setLoginStatus: (state, action: PayloadAction<{ user: User, token: string }>) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
     },

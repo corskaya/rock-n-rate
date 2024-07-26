@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { Form, Label, Input, Button, Message, Loading } from '../../components';
-import { login } from './slice';
-import { LoginRequest } from './types';
-import { AppDispatch, RootState } from '../../store';
-import styles from './styles.module.css';
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Label, Input, Button, Message, Loading } from "../../components";
+import { login } from "./slice";
+import { LoginRequest } from "./types";
+import { AppDispatch, RootState } from "../../store";
+import styles from "./styles.module.css";
 
 function Login() {
   const { loginPending, loginRejected, errorMessage } = useSelector(

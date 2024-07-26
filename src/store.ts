@@ -1,15 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import loginReducer, { setLoginStatus } from "./pages/login/slice.ts";
-import User from "./types/user";
+import loginReducer, { setLoginStatus } from "./pages/login/slice";
 // import registerReducer from "./pages/register/slice";
 // import userReducer from "./pages/user/slice";
 // import homeReducer from "./pages/home/slice";
 // import artistsReducer from "./pages/artists/slice";
 // import artistReducer from "./pages/artist/slice";
 // import albumsReducer from "./pages/albums/slice";
-// import albumReducer from "./pages/album/slice";
+import albumReducer from "./pages/album/slice";
 // import songsReducer from "./pages/songs/slice";
 // import songReducer from "./pages/song/slice";
+import User from "./types/user";
 
 const store = configureStore({
   reducer: {
@@ -20,7 +20,7 @@ const store = configureStore({
     // artists: artistsReducer,
     // artist: artistReducer,
     // albums: albumsReducer,
-    // album: albumReducer,
+    album: albumReducer,
     // songs: songsReducer,
     // song: songReducer,
   },

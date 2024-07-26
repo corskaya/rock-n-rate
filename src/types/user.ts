@@ -8,7 +8,7 @@ type User = {
   about: string;
   createdAt: string;
   updatedAt: string;
-}
+};
 
 export enum UserRole {
   Admin = 'Admin',
