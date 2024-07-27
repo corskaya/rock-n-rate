@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { StarFilled } from "@ant-design/icons";
 import { setShowRatingsModal } from "../slice";
 import { Loading, Modal, Message } from "../../../components";
-import { Link } from "react-router-dom";
-import defaultProfilePicture from "../../../assets/default-profile-picture.png";
-import styles from "../styles.module.css";
-import React from "react";
-import Album from "../../../types/album";
 import { AppDispatch, RootState } from "../../../store";
+import defaultProfilePicture from "../../../assets/default-profile-picture.png";
+import Album from "../../../types/album";
+import styles from "../styles.module.css";
 
 type Props = {
   show: boolean;

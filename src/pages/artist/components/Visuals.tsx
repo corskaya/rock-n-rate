@@ -1,9 +1,9 @@
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button } from "../../../components";
-// import { setFilters as setAlbumFilters } from "../../albums/slice";
-// import { setFilters as setSongFilters } from "../../songs/slice";
+import { setFilters as setAlbumFilters } from "../../albums/slice";
+import { setFilters as setSongFilters } from "../../songs/slice";
 import { useNavigate } from "react-router-dom";
-// import { AppDispatch } from "../../../store";
+import { AppDispatch } from "../../../store";
 import Artist from "../../../types/artist";
 import styles from "../styles.module.css";
 
@@ -12,16 +12,16 @@ type Props = {
 };
 
 const Visuals: React.FC<Props> = ({ artist }) => {
-  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleViewAlbums = () => {
-    // dispatch(setAlbumFilters({ searchTerm: artist.name }));
+    dispatch(setAlbumFilters({ searchTerm: artist.name }));
     navigate("/albums");
   };
 
   const handleViewSongs = () => {
-    // dispatch(setSongFilters({ searchTerm: artist.name }));
+    dispatch(setSongFilters({ searchTerm: artist.name }));
     navigate("/songs");
   };
 

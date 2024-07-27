@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./slice";
 import { Loading, Message } from "../../components";
-import styles from "./styles.module.css";
+import { AppDispatch, RootState } from "../../store";
 import Settings from "./components/Settings";
 import Statistics from "./components/Statistics";
 import About from "./components/About";
 import Logout from "./components/Logout";
-import { AppDispatch, RootState } from "../../store";
+import styles from "./styles.module.css";
 
 function User() {
   const { 

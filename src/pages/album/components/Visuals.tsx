@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Button } from "../../../components";
-// import { setFilters } from "../../songs/slice";
+import { setFilters } from "../../songs/slice";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../../store";
 import Album from "../../../types/album";
