@@ -6,7 +6,7 @@ import {
   Login,
   Register,
   Albums,
-  // Artists,
+  Artists,
   // Songs,
   NotFound,
   Contact,
@@ -41,7 +41,7 @@ function Router() {
         <Route path='/register' element={<NotAuthRoute component={<Register />} />}/>
         <Route path='/forgot-password' element={<NotAuthRoute component={<ForgotPassword />} />} />
         <Route path='/albums' element={renderPage(<Albums />)} />
-        {/* <Route path='/artists' element={renderPage(<Artists />)} /> */}
+        <Route path='/artists' element={renderPage(<Artists />)} />
         {/* <Route path='/songs' element={renderPage(<Songs />)} /> */}
         <Route path='/contact' element={renderPage(<Contact />)} />
         {/* <Route path='/user/:username' element={renderPage(<User />)} /> */}

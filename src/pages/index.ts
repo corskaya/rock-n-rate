@@ -4,7 +4,7 @@ import React from "react";
 export const Login = React.lazy(() => import("./login/Index"));
 export const Register = React.lazy(() => import("./register/Index"));
 export const Albums = React.lazy(() => import("./albums/Index"));
-// export const Artists = React.lazy(() => import("./artists/Index"));
+export const Artists = React.lazy(() => import("./artists/Index"));
 // export const Songs = React.lazy(() => import("./songs/Index"));
 export const NotFound = React.lazy(() => import("./404/Index"));
 export const Contact = React.lazy(() => import("./contact/Index"));

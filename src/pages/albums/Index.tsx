@@ -6,7 +6,7 @@ import Paginate from "./components/Paginate";
 import styles from "./styles.module.css";
 import { RootState } from "../../store";
 
-function Albums() {
+const Albums: React.FC = () => {
   const {
     albumsPending,
     albumsRejected,

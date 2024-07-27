@@ -3,7 +3,7 @@ import loginReducer, { setLoginStatus } from "./pages/login/slice";
 import registerReducer from "./pages/register/slice";
 // import userReducer from "./pages/user/slice";
 // import homeReducer from "./pages/home/slice";
-// import artistsReducer from "./pages/artists/slice";
+import artistsReducer from "./pages/artists/slice";
 import artistReducer from "./pages/artist/slice";
 import albumsReducer from "./pages/albums/slice";
 import albumReducer from "./pages/album/slice";
@@ -17,7 +17,7 @@ const store = configureStore({
     register: registerReducer,
     // user: userReducer,
     // home: homeReducer,
-    // artists: artistsReducer,
+    artists: artistsReducer,
     artist: artistReducer,
     albums: albumsReducer,
     album: albumReducer,

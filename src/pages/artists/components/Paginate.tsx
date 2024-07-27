@@ -30,8 +30,8 @@ const PaginateButton: React.FC<PaginateButtonProps> = ({
 }
 
 const Paginate: React.FC = () => {
-  const pageCount = useSelector((state: RootState) => state.albums.pageCount);
-  const currentPage = useSelector((state: RootState) => state.albums.page);
+  const pageCount = useSelector((state: RootState) => state.artists.pageCount);
+  const currentPage = useSelector((state: RootState) => state.artists.page);
   const dispatch = useDispatch();
   const maxVisiblePages = 7;
   const startPage = Math.max(
