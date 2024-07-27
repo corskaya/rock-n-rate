@@ -7,7 +7,7 @@ import {
   Register,
   Albums,
   Artists,
-  // Songs,
+  Songs,
   NotFound,
   Contact,
   ForgotPassword,
@@ -20,7 +20,7 @@ import { Layout, AppContent } from "./layouts";
 import { Loading } from "./components/index";
 import { RootState } from "./store";
 
-function Router() {
+const Router: React.FC = () => {
   const token = useSelector((state: RootState) => state.login.token);
 
   const renderPage = (component: ReactNode) => (
@@ -38,14 +38,14 @@ function Router() {
       <Route path="/" element={<Layout />}>
         {/* <Route index element={renderPage(<Home />)} /> */}
         <Route path="/login" element={<NotAuthRoute component={<Login />} />} />
-        <Route path='/register' element={<NotAuthRoute component={<Register />} />}/>
-        <Route path='/forgot-password' element={<NotAuthRoute component={<ForgotPassword />} />} />
-        <Route path='/albums' element={renderPage(<Albums />)} />
-        <Route path='/artists' element={renderPage(<Artists />)} />
-        {/* <Route path='/songs' element={renderPage(<Songs />)} /> */}
-        <Route path='/contact' element={renderPage(<Contact />)} />
-        {/* <Route path='/user/:username' element={renderPage(<User />)} /> */}
-        <Route path='/artist/:id' element={renderPage(<Artist />)} />
+        <Route path="/register" element={<NotAuthRoute component={<Register />} />}/>
+        <Route path="/forgot-password" element={<NotAuthRoute component={<ForgotPassword />} />} />
+        <Route path="/albums" element={renderPage(<Albums />)} />
+        <Route path="/artists" element={renderPage(<Artists />)} />
+        <Route path="/songs" element={renderPage(<Songs />)} />
+        <Route path="/contact" element={renderPage(<Contact />)} />
+        {/* <Route path="/user/:username" element={renderPage(<User />)} /> */}
+        <Route path="/artist/:id" element={renderPage(<Artist />)} />
         <Route path="/album/:id" element={renderPage(<Album />)} />
         <Route path="/song/:id" element={renderPage(<Song />)} />
         <Route path="*" element={renderPage(<NotFound />)} />

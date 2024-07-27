@@ -11,7 +11,7 @@ import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
 
-function Artist() {
+const Artist: React.FC = () => {
   const { id } = useParams();
   const { artistPending, artistRejected, artistFulfilled, artist, artistErrorMessage } =
     useSelector((state: RootState) => state.artist);

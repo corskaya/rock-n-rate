@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function NotFound() {
+const NotFound: React.FC = () => {
   return (
     <div>
       <h2>Nothing to see here!</h2>

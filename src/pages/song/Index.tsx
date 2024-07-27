@@ -11,7 +11,7 @@ import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
 
-function Song() {
+const Song: React.FC = () => {
   const { id } = useParams();
   const { songPending, songRejected, songFulfilled, song, songErrorMessage } =
     useSelector((state: RootState) => state.song);

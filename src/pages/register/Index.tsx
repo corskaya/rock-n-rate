@@ -6,7 +6,7 @@ import { register } from "./slice";
 import { AppDispatch, RootState } from "../../store";
 import { RegisterRequest } from "./types";
 
-function Register() {
+const Register: React.FC = () => {
   const { registerPending, registerRejected, errorMessage } = useSelector((state: RootState) => state.register);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();

@@ -11,7 +11,7 @@ import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
 
-function Album() {
+const Album: React.FC = () => {
   const { id } = useParams();
   const { albumPending, albumRejected, albumFulfilled, album, albumErrorMessage } =
     useSelector((state: RootState) => state.album);

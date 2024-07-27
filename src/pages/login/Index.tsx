@@ -6,7 +6,7 @@ import { LoginRequest } from "./types";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
 
-function Login() {
+const Login: React.FC = () => {
   const { loginPending, loginRejected, errorMessage } = useSelector(
     (state: RootState) => state.login
   );

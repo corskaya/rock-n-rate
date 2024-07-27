@@ -61,7 +61,7 @@ const navIcons = [
   },
 ];
 
-function AppHeader() {
+const AppHeader: React.FC = () => {
   const location = useLocation();
   const token = useSelector((state: RootState) => state.login.token);
   const user = useSelector((state: RootState) => state.login.user);

@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { Toast } from "../components";
 import styles from "./Layout.module.css";
 
-function Layout() {
+const Layout: React.FC = () => {
   const routesWithBackgroundImage = [
     '',
     'login',
