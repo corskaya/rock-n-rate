@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import loginReducer, { setLoginStatus } from "./pages/login/slice";
 import registerReducer from "./pages/register/slice";
 // import userReducer from "./pages/user/slice";
-// import homeReducer from "./pages/home/slice";
+import homeReducer from "./pages/home/slice";
 import artistsReducer from "./pages/artists/slice";
 import artistReducer from "./pages/artist/slice";
 import albumsReducer from "./pages/albums/slice";
@@ -16,7 +16,7 @@ const store = configureStore({
     login: loginReducer,
     register: registerReducer,
     // user: userReducer,
-    // home: homeReducer,
+    home: homeReducer,
     artists: artistsReducer,
     artist: artistReducer,
     albums: albumsReducer,

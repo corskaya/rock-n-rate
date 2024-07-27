@@ -1,6 +1,6 @@
 import React from "react";
 
-// export const Home = React.lazy(() => import("./home/Index"));
+export const Home = React.lazy(() => import("./home/Index"));
 export const Login = React.lazy(() => import("./login/Index"));
 export const Register = React.lazy(() => import("./register/Index"));
 export const Albums = React.lazy(() => import("./albums/Index"));

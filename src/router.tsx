@@ -2,7 +2,7 @@ import { ReactNode, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
-  // Home,
+  Home,
   Login,
   Register,
   Albums,
@@ -36,7 +36,7 @@ const Router: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* <Route index element={renderPage(<Home />)} /> */}
+        <Route index element={renderPage(<Home />)} />
         <Route path="/login" element={<NotAuthRoute component={<Login />} />} />
         <Route path="/register" element={<NotAuthRoute component={<Register />} />}/>
         <Route path="/forgot-password" element={<NotAuthRoute component={<ForgotPassword />} />} />
