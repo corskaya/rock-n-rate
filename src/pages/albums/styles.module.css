@@ -1,0 +1,242 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #171717;
+}
+
+.formContainer {
+  width: 1000px;
+  display: flex;
+  gap: 20px;
+}
+
+.formAreaContainer {
+  padding: 50px 0;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background-color: #1d1d1d;
+  padding-bottom: 24px;
+}
+
+.listHeader {
+  margin: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #6ac045;
+}
+
+.labelLarge {
+  font-size: 22px;
+  color: #5a5a5a;
+}
+
+.labelSmall {
+  font-size: 14px;
+  font-weight: 600;
+  color: #5a5a5a;
+}
+
+.input {
+  width: 876px;
+  height: 40px;
+  margin-top: 12px;
+}
+
+.buttonContainer {
+  padding-top: 89px;
+}
+
+.button {
+  width: 100px;
+}
+
+.filterContainer {
+  margin-top: 16px;
+  width: 876px;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 2px;
+  gap: 20px;
+}
+
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.cardsContainer {
+  margin-top: 40px;
+  width: 1100px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 60px;
+  row-gap: 20px;
+  padding-bottom: 18px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardLabelLink {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+  margin-top: 3px;
+}
+
+.cardLabel {
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.cardLabelLink:hover > .cardLabel {
+  color: #919191;
+}
+
+.paginateContainer {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.paginateBtn {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #1d1d1d;
+  border: 1px solid #363636;
+  border-radius: 4px;
+  padding: 12px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.paginateBtnActive {
+  background-color: #5da93c;
+}
+
+.paginateBtn:hover {
+  background-color: #5da93c;
+}
+
+.paginateBtnNotClickable:hover {
+  cursor: default;
+  background-color: #1d1d1d;
+}
+
+.clearFiltersBtn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding-top: 30px;
+  color: #5da93c;
+  transition: 0.5s;
+}
+
+.clearFilterIcon {
+  font-size: 13px;
+}
+
+.clearFilterText {
+  font-size: 15px;
+}
+
+.clearFiltersBtn:hover {
+  cursor: pointer;
+  color: #f1ffff;
+}
+
+.mobileCardContainer {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .formContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .button {
+    margin-top: -32px;
+    margin-bottom: 36px;
+  }
+
+  .cardsContainer {
+    width: 920px;
+    column-gap: 24px;
+  }
+
+  .card {
+    width: 212px;
+    height: 212px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .formContainer {
+    display: none;
+  }
+
+  .cardsContainer {
+    width: 740px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 30px;
+  }
+
+  .card {
+    display: none;
+  }
+
+  .mobileCardContainer {
+    display: block;
+    width: 150px;
+    height: 150px;
+    border: 4px solid #fff;
+    border-radius: 4px;
+    transition: 0.5s;
+  }
+
+  .mobileCardContainer:hover {
+    border-color: #6ac045;
+    cursor: pointer;
+  }
+
+  .mobileCard {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .cardsContainer {
+    width: 90%;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(2, 158px);
+  }
+
+  .mobileCardContainer {
+    width: 150px;
+    height: 150px;
+  }
+}

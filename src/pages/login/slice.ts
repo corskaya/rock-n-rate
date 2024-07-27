@@ -4,6 +4,7 @@ import User from "../../types/user";
 import ToastStatus from "../../types/toast";
 import { LoginRequest, LoginResponse } from "./types";
 import { isAxiosError } from "axios";
+import { NavigateFunction } from "react-router-dom";
 
 export type LoginState = {
   loginPending: boolean;
@@ -51,14 +52,14 @@ const loginReducer = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
-    logout: (state, action) => {
+    logout: (state, action: PayloadAction<{ navigate: NavigateFunction }>) => {
       state.user = undefined;
       state.token = undefined;
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       action.payload.navigate("/");
     },
-    setToastStatus: (state, action) => {
+    setToastStatus: (state, action: PayloadAction<ToastStatus>) => {
       state.toastStatus = action.payload;
     },
   },

@@ -4,7 +4,7 @@ type Props = {
   className?: string;
   isControlled?: boolean;
   value?: string | number | readonly string[];
-} & React.ComponentPropsWithoutRef<'input'>;
+} & React.ComponentPropsWithoutRef<"input">;
 
 const Input: React.FC<Props> = ({ className, isControlled = false, value, ...rest }) => {
   return (

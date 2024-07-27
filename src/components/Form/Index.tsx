@@ -37,7 +37,7 @@ const Form: React.FC<Props> = ({ children, className, onFinish, ...rest }) => {
         if (child?.props?.name) {
           return React.cloneElement(child, {
             ...child.props,
-            value: formValues[child.props.name] || '',
+            value: formValues[child.props.name] || "",
             onChange: handleChange,
           });
         }

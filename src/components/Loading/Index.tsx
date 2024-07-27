@@ -3,10 +3,10 @@ import styles from "./styles.module.css";
 
 type Props = {
   className?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
 };
 
-const Loading: React.FC<Props> = ({ className, size = 'medium', ...rest }) => {
+const Loading: React.FC<Props> = ({ className, size = "medium", ...rest }) => {
 
   return (
     <LoadingOutlined

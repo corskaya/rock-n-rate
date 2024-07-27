@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 type Props = {
   children: ReactNode;
   className?: string;
-} & React.ComponentPropsWithoutRef<'label'>;
+} & React.ComponentPropsWithoutRef<"label">;
 
 const Label: React.FC<Props> = ({ children, className, ...rest }) => {
   return (

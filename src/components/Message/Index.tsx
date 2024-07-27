@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 type Props = {
   children: ReactNode;
   className?: string;
-} & React.ComponentPropsWithoutRef<'span'>;
+} & React.ComponentPropsWithoutRef<"span">;
 
 const Message: React.FC<Props> = ({ children, className, ...rest }) => {
   return (

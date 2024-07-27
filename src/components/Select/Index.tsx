@@ -8,7 +8,7 @@ type Props = {
     value: string | number;
   }[];
   value: string | number;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const Select: React.FC<Props> = ({ className, options = [], value, onChange }) => {
