@@ -11,7 +11,7 @@ import {
   NotFound,
   Contact,
   ForgotPassword,
-  // User,
+  User,
   Artist,
   Album,
   Song,
@@ -44,7 +44,7 @@ const Router: React.FC = () => {
         <Route path="/artists" element={renderPage(<Artists />)} />
         <Route path="/songs" element={renderPage(<Songs />)} />
         <Route path="/contact" element={renderPage(<Contact />)} />
-        {/* <Route path="/user/:username" element={renderPage(<User />)} /> */}
+        <Route path="/user/:username" element={renderPage(<User />)} />
         <Route path="/artist/:id" element={renderPage(<Artist />)} />
         <Route path="/album/:id" element={renderPage(<Album />)} />
         <Route path="/song/:id" element={renderPage(<Song />)} />

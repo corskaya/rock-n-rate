@@ -6,6 +6,8 @@ type User = {
   isPrivate: boolean;
   avatar: string;
   about: string;
+  ratingCount?: number;
+  commentCount?: number;
   createdAt: string;
   updatedAt: string;
 };

@@ -9,7 +9,7 @@ export const Songs = React.lazy(() => import("./songs/Index"));
 export const NotFound = React.lazy(() => import("./404/Index"));
 export const Contact = React.lazy(() => import("./contact/Index"));
 export const ForgotPassword = React.lazy(() => import("./forgotPassword/Index"));
-// export const User = React.lazy(() => import("./user/Index"));
+export const User = React.lazy(() => import("./user/Index"));
 export const Artist = React.lazy(() => import("./artist/Index"));
 export const Album = React.lazy(() => import("./album/Index"));
 export const Song = React.lazy(() => import("./song/Index"));
