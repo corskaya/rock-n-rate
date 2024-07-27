@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import {
   // Home,
   Login,
-  // Register,
+  Register,
   // Albums,
   // Artists,
   // Songs,
@@ -38,7 +38,7 @@ function Router() {
       <Route path="/" element={<Layout />}>
         {/* <Route index element={renderPage(<Home />)} /> */}
         <Route path="/login" element={<NotAuthRoute component={<Login />} />} />
-        {/* <Route path='/register' element={<NotAuthRoute component={<Register />} />}/> */}
+        <Route path='/register' element={<NotAuthRoute component={<Register />} />}/>
         {/* <Route path='/forgot-password' element={<NotAuthRoute component={<ForgotPassword />} />} /> */}
         {/* <Route path='/albums' element={renderPage(<Albums />)} /> */}
         {/* <Route path='/artists' element={renderPage(<Artists />)} /> */}

@@ -1,0 +1,48 @@
+.songCardContainer {
+  width: 356px;
+  height: 54px;
+  background-color: #282828;
+  border: 1px solid #444;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 4px;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.songCardContainer:hover {
+  background-color: #444;
+}
+
+.songCardImage {
+  width: 46px;
+  height: 46px;
+  border-radius: 4px;
+}
+
+.songCardInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  width: 75%;
+}
+
+.songCardName {
+  font-size: 18px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.songCardArtist {
+  font-size: 14px;
+  color: #cacaca;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

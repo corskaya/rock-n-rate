@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer, { setLoginStatus } from "./pages/login/slice";
-// import registerReducer from "./pages/register/slice";
+import registerReducer from "./pages/register/slice";
 // import userReducer from "./pages/user/slice";
 // import homeReducer from "./pages/home/slice";
 // import artistsReducer from "./pages/artists/slice";
@@ -14,7 +14,7 @@ import User from "./types/user";
 const store = configureStore({
   reducer: {
     login: loginReducer,
-    // register: registerReducer,
+    register: registerReducer,
     // user: userReducer,
     // home: homeReducer,
     // artists: artistsReducer,

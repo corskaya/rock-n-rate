@@ -18,7 +18,7 @@ const initialToastStatus: ToastStatus = {
 const Toast: React.FC = () => {
   const [generalToastStatus, setGeneralToastStatus] = useState<ToastStatus>(initialToastStatus);
   const loginToastStatus = useSelector((state: RootState) => state.login.toastStatus);
-  // const registerToastStatus = useSelector((state: RootState) => state.register.toastStatus);
+  const registerToastStatus = useSelector((state: RootState) => state.register.toastStatus);
   // const homeToastStatus = useSelector((state: RootState) => state.home.toastStatus);
   // const artistsToastStatus = useSelector((state: RootState) => state.artists.toastStatus);
   // const artistToastStatus = useSelector((state: RootState) => state.artist.toastStatus);
@@ -46,17 +46,17 @@ const Toast: React.FC = () => {
     }
   }, [loginToastStatus, dispatch]);
 
-  // // register
-  // useEffect(() => {
-  //   if (registerToastStatus.show) {
-  //     const showToast = async () => {
-  //       setGeneralToastStatus(registerToastStatus);
-  //       await delay();
-  //       closeToast();
-  //     };
-  //     showToast();
-  //   }
-  // }, [registerToastStatus, dispatch]);
+  // register
+  useEffect(() => {
+    if (registerToastStatus.show) {
+      const showToast = async () => {
+        setGeneralToastStatus(registerToastStatus);
+        await delay();
+        closeToast();
+      };
+      showToast();
+    }
+  }, [registerToastStatus, dispatch]);
 
   // // home
   // useEffect(() => {
