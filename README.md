@@ -1,6 +1,6 @@
 # Rock'n Rate
 
-Rock'n Rate is a sophisticated web application designed for music enthusiasts, providing a platform to rate and review artists, albums, and songs. This repository hosts the frontend of the application, built using React.
+Rock'n Rate is a sophisticated web application designed for rock music enthusiasts, providing a platform to rate and review artists, albums, and songs. This repository hosts the frontend of the application. The backend of the application can be found [here](https://github.com/corskaya/rock-n-rate-api).
 
 ## Live Demo
 
