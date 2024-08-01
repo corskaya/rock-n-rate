@@ -19,6 +19,13 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, artist }) => {
   const { ratingsPending, ratingsFulfilled, ratings, ratingsRejected, ratingsErrorMessage } = useSelector((state: RootState) => state.artist);
   const dispatch = useDispatch<AppDispatch>();
 
+  const handleLinkClick = (isPrivate: boolean, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (isPrivate) {
+      return e.preventDefault();
+    }
+    dispatch(setShowRatingsModal(false));
+  }
+
   return (
     <Modal
       show={show}
@@ -38,8 +45,8 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, artist }) => {
             <Link
               key={i}
               className={styles.modalRatingLink}
-              to={`/user/${rating.username}`}
-              onClick={() => dispatch(setShowRatingsModal(false))}
+              to={rating.isPrivate ? '#' : `/user/${rating.username}`}
+              onClick={(e) => handleLinkClick(rating.isPrivate, e)}
             >
               <div className={styles.modalRatingContainer}>
                 <div className={styles.modalRatingInfo}>
@@ -51,7 +58,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, artist }) => {
                     />
                   </div>
                   <div className={styles.modalRatingUsername}>
-                    {rating.username}
+                    {rating.isPrivate ? 'Private User' : rating.username}
                   </div>
                 </div>
                 <div className={styles.modalRatingRatingContainer}>
