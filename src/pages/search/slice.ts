@@ -1,9 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
-import { CommonResponse, CommonTopic } from "../../../types/common";
-import { get } from "../../../utils/network";
+import { CommonTopic } from "../../types/common";
+import { get } from "../../utils/network";
+import { SearchRequest, SearchResponse } from "./types";
 
-export type HeaderState = {
+export type SearchState = {
+  searchTerm: string;
   topicsPending: boolean;
   topicsFulfilled: boolean;
   topicsRejected: boolean;
@@ -11,7 +13,8 @@ export type HeaderState = {
   topics: CommonTopic[];
 };
 
-const initialState: HeaderState = {
+const initialState: SearchState = {
+  searchTerm: "",
   topicsPending: false,
   topicsFulfilled: false,
   topicsRejected: false,
@@ -20,9 +23,9 @@ const initialState: HeaderState = {
 
 export const getTopics = createAsyncThunk(
   "albums/getTopics",
-  async (searchTerm: string, thunkAPI) => {
+  async ({ searchTerm, limit }: SearchRequest, thunkAPI) => {
     try {
-      const { data, status } = await get("/quickSearch", { searchTerm });
+      const { data, status } = await get("/quickSearch", { searchTerm, limit });
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -39,18 +42,23 @@ export const getTopics = createAsyncThunk(
   }
 );
 
-const headerReducer = createSlice({
-  name: "headerReducer",
+const searchReducer = createSlice({
+  name: "searchReducer",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getTopics.pending, (state) => {
         state.topicsPending = true;
         state.topicsRejected = false;
+        state.topicsFulfilled = false;
         state.topics = [];
       })
-      .addCase(getTopics.fulfilled, (state, { payload }: { payload: CommonResponse }) => {
+      .addCase(getTopics.fulfilled, (state, { payload }: { payload: SearchResponse }) => {
         state.topicsPending = false;
         state.topicsRejected = false;
         state.topicsFulfilled = true;
@@ -65,4 +73,6 @@ const headerReducer = createSlice({
   },
 });
 
-export default headerReducer.reducer;
+export const { setSearchTerm } = searchReducer.actions;
+
+export default searchReducer.reducer;

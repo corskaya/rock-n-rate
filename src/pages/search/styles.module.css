@@ -1,0 +1,129 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputArea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #171717;
+  padding: 12px 0;
+  border-bottom: 1px solid #2d3030;
+}
+
+.inputContainer {
+  position: relative;
+  padding: 4px 4px 4px 6px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #353535;
+  border-radius: 24px;
+  width: calc(100% - 60px);
+  height: 28px;
+}
+
+.input {
+  background: none;
+  border: none;
+  color: #829191;
+  font-weight: bold;
+  width: calc(100% - 60px);
+  height: 24px;
+  font-size: 15px;
+  padding-bottom: 2px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputIcon {
+  font-size: 15px;
+  color: #829191;
+  margin: 0 6px;
+}
+
+.inputLoading {
+  position: absolute;
+  right: 2px;
+  top: 8px;
+  color: #55a334;
+}
+
+.searchResults {
+  width: 100%;
+}
+
+.searchResultErrorMessage {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  padding-top: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchResultNotFound {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  padding-top: 28px;
+}
+
+.searchResultLink {
+  text-decoration: none;
+}
+
+.searchResultContainer {
+  display: flex;
+  column-gap: 12px;
+  padding: 10px;
+  border-bottom: 1px solid #2d3030;
+}
+
+.searchResultContainer:hover {
+  background-color: #333;
+}
+
+.searchResultImage {
+  width: 44px;
+}
+
+.searchResultInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.searchResultTopicContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.searchResultName {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  width: calc(100vw - 124px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchResultType {
+  font-size: 13px;
+  color: #919191;
+  width: 40px;
+  text-align: end;
+}
+
+.searchResultYear {
+  font-size: 13px;
+  color: #919191;
+}
