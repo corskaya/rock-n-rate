@@ -1,5 +1,6 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   InboxOutlined,
   SearchOutlined,
@@ -7,10 +8,11 @@ import {
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import styles from "./styles.module.css";
 import logo from "../../../assets/logo.png";
-import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import Search from "./partials/Search";
+import styles from "./styles.module.css";
+import MobileSearch from "./partials/MobileSearch";
 
 const primaryNavLinks = [
   {
@@ -65,6 +67,7 @@ const AppHeader: React.FC = () => {
   const location = useLocation();
   const token = useSelector((state: RootState) => state.login.token);
   const user = useSelector((state: RootState) => state.login.user);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   return (
     <div className={styles.headerFix}>
@@ -78,10 +81,11 @@ const AppHeader: React.FC = () => {
           </h4>
         </div>
         <div className={styles.rightPart}>
-          <div className={styles.navInputContainer}>
-            <SearchOutlined className={styles.navInputIcon} />
-            <input className={styles.navInput} placeholder="Quick search" />
-          </div>
+          <Search />
+          <MobileSearch 
+            showMobileSearch={showMobileSearch}
+            setShowMobileSearch={setShowMobileSearch} 
+          />
           <nav className={styles.navContainerWeb}>
             {secondaryNavLinks.map((navLink) => (
               <Link
@@ -136,7 +140,10 @@ const AppHeader: React.FC = () => {
             )}
           </nav>
           <nav className={styles.navContainerMobile}>
-            <SearchOutlined className={`${styles.navIcon} ${styles.navLink}`} />
+            <SearchOutlined 
+              className={`${styles.navIcon} ${styles.navLink} ${showMobileSearch ? styles.navLinkSelected : ""}`}
+              onClick={() => setShowMobileSearch(!showMobileSearch)}
+            />
             {navIcons.map((navIcon) => (
               <Link
                 key={navIcon.path}
