@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
 import { debounce } from "lodash";
 import { AppDispatch, RootState } from "../../../../store";
-import { getTopics } from "../slice";
 import { Loading, Message } from "../../../../components";
+import { getTopics } from "../../../../pages/search/slice";
 import styles from "../styles.module.css";
+
+const RESULT_LIMIT = 5;
 
 const Search: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,14 +19,14 @@ const Search: React.FC = () => {
     topicsRejected,
     topics,
     errorMessage,
-  } = useSelector((state: RootState) => state.appHeader);
+  } = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch<AppDispatch>();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
     debounce((searchTerm: string) => {
       if (searchTerm.length >= 3) {
-        dispatch(getTopics(searchTerm));
+        dispatch(getTopics({ searchTerm, limit: RESULT_LIMIT }));
       }
     }, 500),
     [searchTerm, dispatch]
@@ -52,7 +54,7 @@ const Search: React.FC = () => {
   const handleLinkClick = () => {
     setIsFocused(false);
     setSearchTerm("");
-    const inputElement = document.querySelector(".topic-input") as HTMLInputElement;
+    const inputElement = document.querySelector(".search-input-web") as HTMLInputElement;
     if (inputElement) {
       inputElement.blur();
     }
@@ -62,7 +64,7 @@ const Search: React.FC = () => {
     <div className={styles.navInputContainer}>
       <SearchOutlined className={styles.navInputIcon} />
       <input
-        className={`${styles.navInput} topic-input`}
+        className={`${styles.navInput} search-input-web`}
         placeholder="Quick search"
         value={searchTerm}
         onChange={handleChange}
@@ -76,7 +78,7 @@ const Search: React.FC = () => {
           onMouseDown={(e) => e.preventDefault()}
         >
           {!topicsPending && topicsRejected && (
-            <Message>{errorMessage}</Message>
+            <Message className={styles.searchResultErrorMessage}>{errorMessage}</Message>
           )}
           {!topicsPending && topicsFulfilled && topics.length === 0 && (
             <div className={styles.searchResultNotFound}>No results found.</div>

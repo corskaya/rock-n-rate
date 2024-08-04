@@ -8,6 +8,7 @@ import {
   Albums,
   Artists,
   Songs,
+  Search,
   NotFound,
   Contact,
   ForgotPassword,
@@ -43,6 +44,7 @@ const Router: React.FC = () => {
         <Route path="/albums" element={renderPage(<Albums />)} />
         <Route path="/artists" element={renderPage(<Artists />)} />
         <Route path="/songs" element={renderPage(<Songs />)} />
+        <Route path="/search" element={renderPage(<Search />)} />
         <Route path="/contact" element={renderPage(<Contact />)} />
         <Route path="/user/:username" element={renderPage(<User />)} />
         <Route path="/artist/:id" element={renderPage(<Artist />)} />

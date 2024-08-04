@@ -2,10 +2,6 @@ export type ErrorPayload = {
   message: string;
 };
 
-export type CommonResponse = {
-  result: CommonTopic[];
-};
-
 export type CommonTopic = {
   _id: string;
   name: string;
