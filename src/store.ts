@@ -9,6 +9,7 @@ import albumsReducer from "./pages/albums/slice";
 import albumReducer from "./pages/album/slice";
 import songsReducer from "./pages/songs/slice";
 import songReducer from "./pages/song/slice";
+import headerReducer from "./layouts/components/AppHeader/slice";
 import User from "./types/user";
 
 const store = configureStore({
@@ -23,6 +24,7 @@ const store = configureStore({
     album: albumReducer,
     songs: songsReducer,
     song: songReducer,
+    appHeader: headerReducer,
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware({
