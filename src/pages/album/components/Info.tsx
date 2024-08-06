@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { StarFilled } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Label } from "../../../components";
+import { getRatings, setShowAboutModal, setShowRateModal, setShowRatingsModal } from "../slice";
+import { AppDispatch, RootState } from "../../../store";
 import RateModal from "./RateModal";
 import RatingsModal from "./RatingsModal";
-import { AppDispatch, RootState } from "../../../store";
 import Album from "../../../types/album";
-import { getRatings, setShowRateModal, setShowRatingsModal } from "../slice";
+import AboutModal from "./AboutModal";
 import styles from "../styles.module.css";
 
 type Props = {
@@ -16,11 +17,20 @@ type Props = {
 const Info: React.FC<Props> = ({ album }) => {
   const showRateModal = useSelector((state: RootState) => state.album.showRateModal);
   const showRatingsModal = useSelector((state: RootState) => state.album.showRatingsModal);
+  const showAboutModal = useSelector((state: RootState) => state.artist.showAboutModal);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleShowRatingsModal = () => {
+  const handleShowRatingsModal = (show: boolean) => {
     dispatch(getRatings(album._id));
-    dispatch(setShowRatingsModal(true));
+    dispatch(setShowRatingsModal(show));
+  };
+
+  const handleShowRateModal = (show: boolean) => {
+    dispatch(setShowRateModal(show));
+  };
+
+  const handleShowAboutModal = (show: boolean) => {
+    dispatch(setShowAboutModal(show));
   };
 
   return (
@@ -44,7 +54,7 @@ const Info: React.FC<Props> = ({ album }) => {
           <div>
             <div
               className={styles.ratingPointContainer}
-              onClick={handleShowRatingsModal}
+              onClick={() => handleShowRatingsModal(true)}
             >
               <StarFilled className={styles.ratingIcon} />
               <div className={styles.ratingPoint}>
@@ -61,7 +71,7 @@ const Info: React.FC<Props> = ({ album }) => {
           <div>
             <div
               className={styles.ratingPointContainer}
-              onClick={() => dispatch(setShowRateModal(true))}
+              onClick={() => handleShowRateModal(true)}
             >
               <StarFilled className={styles.userRatingIcon} />
               <div className={styles.ratingPoint}>
@@ -72,16 +82,26 @@ const Info: React.FC<Props> = ({ album }) => {
           </div>
         </div>
       </div>
-      <p className={styles.aboutTextWeb}>{album.about}</p>
+      <p 
+        className={styles.aboutTextWeb}
+        onClick={() => handleShowAboutModal(true)}
+      >
+        {album.about}
+      </p>
       <RateModal
         show={showRateModal}
-        onClose={() => dispatch(setShowRateModal(false))}
+        onClose={() => handleShowRateModal(false)}
         album={album}
       />
       <RatingsModal
         show={showRatingsModal}
-        onClose={() => dispatch(setShowRatingsModal(false))}
+        onClose={() => handleShowRatingsModal(false)}
         album={album}
+      />
+      <AboutModal
+        show={showAboutModal}
+        onClose={() => handleShowAboutModal(false)}
+        text={album.about || ""}
       />
     </div>
   );

@@ -6,8 +6,8 @@ type Props = {
   show: boolean;
   onClose: () => void;
   title: string;
-  titleSuffix: string;
-  centerBody: boolean;
+  titleSuffix?: string;
+  centerBody?: boolean;
   children: ReactNode;
 };
 

@@ -31,6 +31,7 @@ export type AlbumState = {
   removeRatingErrorMessage?: string;
   showRateModal: boolean;
   showRatingsModal: boolean;
+  showAboutModal: boolean;
   toastStatus: ToastStatus;
 };
 
@@ -54,6 +55,7 @@ const initialState: AlbumState = {
   removeRatingRejected: false,
   showRateModal: false,
   showRatingsModal: false,
+  showAboutModal: false,
   toastStatus: { show: false },
 };
 
@@ -172,6 +174,9 @@ const albumReducer = createSlice({
     setShowRatingsModal: (state, action: PayloadAction<boolean>) => {
       state.showRatingsModal = action.payload;
     },
+    setShowAboutModal: (state, action: PayloadAction<boolean>) => {
+      state.showAboutModal = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -265,6 +270,6 @@ const albumReducer = createSlice({
   },
 });
 
-export const { setShowRateModal, setShowRatingsModal } = albumReducer.actions;
+export const { setShowRateModal, setShowRatingsModal, setShowAboutModal } = albumReducer.actions;
 
 export default albumReducer.reducer;

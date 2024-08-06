@@ -135,6 +135,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
+  cursor: pointer;
+}
+
+.aboutModalText {
+  color: #dbdbdb;
+  font-size: 15px;
+  white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 22px;
+  margin: 0;
 }
 
 .suggestionsContainer {
