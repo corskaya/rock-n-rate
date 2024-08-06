@@ -41,8 +41,16 @@ const Search: React.FC = () => {
     dispatch(setSearchTerm(e.target.value));
   };
 
+  const handleLinkClick = () => {
+    dispatch(setSearchTerm(""));
+  }
+
   const handleClear = () => {
     dispatch(setSearchTerm(""));
+    const inputElement = document.querySelector(".search-input-mobile") as HTMLInputElement;
+    if (inputElement) {
+      inputElement.focus();
+    }
   }
 
   const formatType = (type: Topic) => {
@@ -55,7 +63,7 @@ const Search: React.FC = () => {
         <div className={styles.inputContainer}>
           <SearchOutlined className={styles.inputIcon} />
           <input
-            className={styles.input}
+            className={`${styles.input} search-input-mobile`}
             placeholder="Search"
             value={searchTerm}
             onChange={handleChange}
@@ -86,7 +94,7 @@ const Search: React.FC = () => {
                 key={topic._id}
                 className={styles.searchResultLink}
                 to={`/${topic.type}/${topic._id}`}
-                onClick={handleClear}
+                onClick={handleLinkClick}
               >
                 <div className={styles.searchResultContainer}>
                   <img
