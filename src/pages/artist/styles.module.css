@@ -124,12 +124,14 @@
 }
 
 .aboutTextWeb {
+  color: #dbdbdb;
   font-size: 15px;
   white-space: pre-wrap;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 14;
-  line-clamp: 14;
+  -webkit-line-clamp: 10;
+  line-clamp: 10;
+  line-height: 22px;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
