@@ -54,6 +54,14 @@
   color: #55a334;
 }
 
+.clearIcon {
+  position: absolute;
+  right: 11px;
+  top: 12px;
+  font-size: 13px;
+  color: #829191;
+}
+
 .searchResults {
   width: 100%;
 }
