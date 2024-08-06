@@ -31,6 +31,7 @@ export type ArtistState = {
   removeRatingErrorMessage?: string;
   showRateModal: boolean;
   showRatingsModal: boolean;
+  showAboutModal: boolean;
   toastStatus: ToastStatus;
 };
 
@@ -54,6 +55,7 @@ const initialState: ArtistState = {
   removeRatingRejected: false,
   showRateModal: false,
   showRatingsModal: false,
+  showAboutModal: false,
   toastStatus: { show: false },
 };
 
@@ -172,6 +174,9 @@ const artistReducer = createSlice({
     setShowRatingsModal: (state, action: PayloadAction<boolean>) => {
       state.showRatingsModal = action.payload;
     },
+    setShowAboutModal: (state, action: PayloadAction<boolean>) => {
+      state.showAboutModal = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -265,6 +270,6 @@ const artistReducer = createSlice({
   },
 });
 
-export const { setShowRateModal, setShowRatingsModal } = artistReducer.actions;
+export const { setShowRateModal, setShowRatingsModal, setShowAboutModal } = artistReducer.actions;
 
 export default artistReducer.reducer;

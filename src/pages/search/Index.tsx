@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { SearchOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { debounce } from "lodash";
 import { AppDispatch, RootState } from "../../store";
 import { getTopics, setSearchTerm } from "./slice";
@@ -41,9 +41,9 @@ const Search: React.FC = () => {
     dispatch(setSearchTerm(e.target.value));
   };
 
-  const handleLinkClick = () => {
+  const handleClear = () => {
     dispatch(setSearchTerm(""));
-  };
+  }
 
   const formatType = (type: Topic) => {
     return type.charAt(0).toUpperCase() + type.slice(1);
@@ -63,6 +63,12 @@ const Search: React.FC = () => {
           {topicsPending && (
             <Loading className={styles.inputLoading} size="small" />
           )}
+          {!topicsPending && searchTerm.length > 0 && (
+            <CloseOutlined
+              className={styles.clearIcon}
+              onClick={handleClear}
+            />
+          )}
         </div>
       </div>
       {searchTerm.length >= 3 && (
@@ -80,7 +86,7 @@ const Search: React.FC = () => {
                 key={topic._id}
                 className={styles.searchResultLink}
                 to={`/${topic.type}/${topic._id}`}
-                onClick={handleLinkClick}
+                onClick={handleClear}
               >
                 <div className={styles.searchResultContainer}>
                   <img
