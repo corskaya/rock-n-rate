@@ -6,7 +6,6 @@ import { debounce } from "lodash";
 import { AppDispatch, RootState } from "../../../../store";
 import { Loading, Message } from "../../../../components";
 import { getTopics } from "../../../../pages/search/slice";
-import { Topic } from "../../../../types/common";
 import styles from "../styles.module.css";
 
 const RESULT_LIMIT = 5;
@@ -61,10 +60,6 @@ const Search: React.FC = () => {
     }
   };
 
-  const formatType = (type: Topic) => {
-    return type.charAt(0).toUpperCase() + type.slice(1);
-  };
-
   return (
     <div className={styles.navInputContainer}>
       <SearchOutlined className={styles.navInputIcon} />
@@ -92,7 +87,7 @@ const Search: React.FC = () => {
             <Link
               key={topic._id}
               className={styles.searchResultLink}
-              to={`/${topic.type}/${topic._id}`}
+              to={`/${topic.type.toLowerCase()}/${topic._id}`}
               onClick={handleLinkClick}
             >
               <div className={styles.searchResultContainer}>
@@ -105,7 +100,7 @@ const Search: React.FC = () => {
                   <div className={styles.searchResultName}>{topic.name}</div>
                   <div className={styles.searchResultBottomInfoContainer}>
                     <div className={styles.searchResultYear}>{topic.year}</div>
-                    <div className={styles.searchResultTopic}>{formatType(topic.type)}</div>
+                    <div className={styles.searchResultTopic}>{topic.type}</div>
                   </div>
                 </div>
               </div>

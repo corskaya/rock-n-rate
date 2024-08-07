@@ -7,7 +7,6 @@ import { AppDispatch, RootState } from "../../store";
 import { getTopics, setSearchTerm } from "./slice";
 import { Loading, Message } from "../../components";
 import styles from "./styles.module.css";
-import { Topic } from "../../types/common";
 
 const Search: React.FC = () => {
   const {
@@ -53,10 +52,6 @@ const Search: React.FC = () => {
     }
   }
 
-  const formatType = (type: Topic) => {
-    return type.charAt(0).toUpperCase() + type.slice(1);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.inputArea}>
@@ -93,7 +88,7 @@ const Search: React.FC = () => {
               <Link
                 key={topic._id}
                 className={styles.searchResultLink}
-                to={`/${topic.type}/${topic._id}`}
+                to={`/${topic.type.toLowerCase()}/${topic._id}`}
                 onClick={handleLinkClick}
               >
                 <div className={styles.searchResultContainer}>
@@ -108,7 +103,7 @@ const Search: React.FC = () => {
                         {topic.name}
                       </div>
                       <div className={styles.searchResultType}>
-                        {formatType(topic.type)}
+                        {topic.type}
                       </div>
                     </div>
                     <div className={styles.searchResultYear}>{topic.year}</div>
