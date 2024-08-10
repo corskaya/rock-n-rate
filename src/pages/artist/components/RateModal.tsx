@@ -55,7 +55,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, artist }) => {
         setToastStatus({
           show: true,
           title: "Please login",
-          message: "You must authenticate to rate. Please login.",
+          message: "To rate an artist, please log in first.",
           type: "error",
         })
       );

@@ -9,6 +9,7 @@ import MobileMainInfo from "./components/MobileMainInfo";
 import MobileAbout from "./components/MobileAbout";
 import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
+import Comments from "./components/Comments";
 import styles from "./styles.module.css";
 
 const Song: React.FC = () => {
@@ -23,22 +24,27 @@ const Song: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <div className={styles.container}>
-      {songPending && <Loading size="large" />}
-      {songFulfilled && song && (
-        <>
-          <MobileMainInfo song={song} />
-          <div className={styles.songWebContainer}>
-            <Visuals song={song} />
-            <Info song={song} />
-            <Suggestions />
-          </div>
-          <MobileAbout song={song} />
-        </>
-      )}
-      {songRejected && <Message>{songErrorMessage}</Message>}
+    <div className={styles.background}>
+      <div className={styles.container}>
+        {songPending && <Loading size="large" />}
+        {songFulfilled && song && (
+          <>
+            <MobileMainInfo song={song} />
+            <div className={styles.songWebContainer}>
+              <Visuals song={song} />
+              <Info song={song} />
+              <Suggestions />
+            </div>
+            <MobileAbout song={song} />
+            <div className={styles.songWebReviewContainer}>
+              <Comments />
+            </div>
+          </>
+        )}
+        {songRejected && <Message>{songErrorMessage}</Message>}
+      </div>
     </div>
   );
-}
+};
 
 export default Song;

@@ -19,12 +19,12 @@ const Toast: React.FC = () => {
   const [generalToastStatus, setGeneralToastStatus] = useState<ToastStatus>(initialToastStatus);
   const loginToastStatus = useSelector((state: RootState) => state.login.toastStatus);
   const registerToastStatus = useSelector((state: RootState) => state.register.toastStatus);
-  // const homeToastStatus = useSelector((state: RootState) => state.home.toastStatus);
-  // const artistsToastStatus = useSelector((state: RootState) => state.artists.toastStatus);
-  // const artistToastStatus = useSelector((state: RootState) => state.artist.toastStatus);
-  // const albumsToastStatus = useSelector((state: RootState) => state.albums.toastStatus);
+  const homeToastStatus = useSelector((state: RootState) => state.home.toastStatus);
+  const artistsToastStatus = useSelector((state: RootState) => state.artists.toastStatus);
+  const artistToastStatus = useSelector((state: RootState) => state.artist.toastStatus);
+  const albumsToastStatus = useSelector((state: RootState) => state.albums.toastStatus);
   const albumToastStatus = useSelector((state: RootState) => state.album.toastStatus);
-  // const songsToastStatus = useSelector((state: RootState) => state.songs.toastStatus);
+  const songsToastStatus = useSelector((state: RootState) => state.songs.toastStatus);
   const songToastStatus = useSelector((state: RootState) => state.song.toastStatus);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -58,53 +58,53 @@ const Toast: React.FC = () => {
     }
   }, [registerToastStatus, dispatch]);
 
-  // // home
-  // useEffect(() => {
-  //   if (homeToastStatus.show) {
-  //     const showToast = async () => {
-  //       setGeneralToastStatus(homeToastStatus);
-  //       await delay();
-  //       closeToast();
-  //     };
-  //     showToast();
-  //   }
-  // }, [homeToastStatus, dispatch]);
+  // home
+  useEffect(() => {
+    if (homeToastStatus.show) {
+      const showToast = async () => {
+        setGeneralToastStatus(homeToastStatus);
+        await delay();
+        closeToast();
+      };
+      showToast();
+    }
+  }, [homeToastStatus, dispatch]);
 
-  // // artists
-  // useEffect(() => {
-  //   if (artistsToastStatus.show) {
-  //     const showToast = async () => {
-  //       setGeneralToastStatus(artistsToastStatus);
-  //       await delay();
-  //       closeToast();
-  //     };
-  //     showToast();
-  //   }
-  // }, [artistsToastStatus, dispatch]);
+  // artists
+  useEffect(() => {
+    if (artistsToastStatus.show) {
+      const showToast = async () => {
+        setGeneralToastStatus(artistsToastStatus);
+        await delay();
+        closeToast();
+      };
+      showToast();
+    }
+  }, [artistsToastStatus, dispatch]);
 
-  // // artist
-  // useEffect(() => {
-  //   if (artistToastStatus.show) {
-  //     const showToast = async () => {
-  //       setGeneralToastStatus(artistToastStatus);
-  //       await delay();
-  //       closeToast();
-  //     };
-  //     showToast();
-  //   }
-  // }, [artistToastStatus, dispatch]);
+  // artist
+  useEffect(() => {
+    if (artistToastStatus.show) {
+      const showToast = async () => {
+        setGeneralToastStatus(artistToastStatus);
+        await delay();
+        closeToast();
+      };
+      showToast();
+    }
+  }, [artistToastStatus, dispatch]);
 
-  // // albums
-  // useEffect(() => {
-  //   if (albumsToastStatus.show) {
-  //     const showToast = async () => {
-  //       setGeneralToastStatus(albumsToastStatus);
-  //       await delay();
-  //       closeToast();
-  //     };
-  //     showToast();
-  //   }
-  // }, [albumsToastStatus, dispatch]);
+  // albums
+  useEffect(() => {
+    if (albumsToastStatus.show) {
+      const showToast = async () => {
+        setGeneralToastStatus(albumsToastStatus);
+        await delay();
+        closeToast();
+      };
+      showToast();
+    }
+  }, [albumsToastStatus, dispatch]);
 
   // album
   useEffect(() => {
@@ -118,17 +118,17 @@ const Toast: React.FC = () => {
     }
   }, [albumToastStatus, dispatch]);
 
-  // // songs
-  // useEffect(() => {
-  //   if (songsToastStatus.show) {
-  //     const showToast = async () => {
-  //       setGeneralToastStatus(songsToastStatus);
-  //       await delay();
-  //       closeToast();
-  //     };
-  //     showToast();
-  //   }
-  // }, [songsToastStatus, dispatch]);
+  // songs
+  useEffect(() => {
+    if (songsToastStatus.show) {
+      const showToast = async () => {
+        setGeneralToastStatus(songsToastStatus);
+        await delay();
+        closeToast();
+      };
+      showToast();
+    }
+  }, [songsToastStatus, dispatch]);
 
   // song
   useEffect(() => {

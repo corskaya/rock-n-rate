@@ -11,7 +11,7 @@ export type CommonTopic = {
 };
 
 export enum Topic {
-  Artist = 'artist',
-  Album = 'album',
-  Song = 'song,'
+  Artist = "Artist",
+  Album = "Album",
+  Song = "Song"
 }

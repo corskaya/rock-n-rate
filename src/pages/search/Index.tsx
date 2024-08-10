@@ -7,7 +7,6 @@ import { AppDispatch, RootState } from "../../store";
 import { getTopics, setSearchTerm } from "./slice";
 import { Loading, Message } from "../../components";
 import styles from "./styles.module.css";
-import { Topic } from "../../types/common";
 
 const Search: React.FC = () => {
   const {
@@ -41,13 +40,17 @@ const Search: React.FC = () => {
     dispatch(setSearchTerm(e.target.value));
   };
 
-  const handleClear = () => {
+  const handleLinkClick = () => {
     dispatch(setSearchTerm(""));
   }
 
-  const formatType = (type: Topic) => {
-    return type.charAt(0).toUpperCase() + type.slice(1);
-  };
+  const handleClear = () => {
+    dispatch(setSearchTerm(""));
+    const inputElement = document.querySelector(".search-input-mobile") as HTMLInputElement;
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -55,7 +58,7 @@ const Search: React.FC = () => {
         <div className={styles.inputContainer}>
           <SearchOutlined className={styles.inputIcon} />
           <input
-            className={styles.input}
+            className={`${styles.input} search-input-mobile`}
             placeholder="Search"
             value={searchTerm}
             onChange={handleChange}
@@ -85,8 +88,8 @@ const Search: React.FC = () => {
               <Link
                 key={topic._id}
                 className={styles.searchResultLink}
-                to={`/${topic.type}/${topic._id}`}
-                onClick={handleClear}
+                to={`/${topic.type.toLowerCase()}/${topic._id}`}
+                onClick={handleLinkClick}
               >
                 <div className={styles.searchResultContainer}>
                   <img
@@ -100,7 +103,7 @@ const Search: React.FC = () => {
                         {topic.name}
                       </div>
                       <div className={styles.searchResultType}>
-                        {formatType(topic.type)}
+                        {topic.type}
                       </div>
                     </div>
                     <div className={styles.searchResultYear}>{topic.year}</div>

@@ -9,12 +9,18 @@ import MobileMainInfo from "./components/MobileMainInfo";
 import MobileAbout from "./components/MobileAbout";
 import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
+import Comments from "./components/Comments";
 import styles from "./styles.module.css";
 
 const Album: React.FC = () => {
   const { id } = useParams();
-  const { albumPending, albumRejected, albumFulfilled, album, albumErrorMessage } =
-    useSelector((state: RootState) => state.album);
+  const {
+    albumPending,
+    albumRejected,
+    albumFulfilled,
+    album,
+    albumErrorMessage,
+  } = useSelector((state: RootState) => state.album);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -23,22 +29,27 @@ const Album: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <div className={styles.container}>
-      {albumPending && <Loading size="large" />}
-      {albumFulfilled && album && (
-        <>
-          <MobileMainInfo album={album} />
-          <div className={styles.albumWebContainer}>
-            <Visuals album={album} />
-            <Info album={album} />
-            <Suggestions />
-          </div>
-          <MobileAbout album={album} />
-        </>
-      )}
-      {albumRejected && <Message>{albumErrorMessage}</Message>}
+    <div className={styles.background}>
+      <div className={styles.container}>
+        {albumPending && <Loading size="large" />}
+        {albumFulfilled && album && (
+          <>
+            <MobileMainInfo album={album} />
+            <div className={styles.albumWebContainer}>
+              <Visuals album={album} />
+              <Info album={album} />
+              <Suggestions />
+            </div>
+            <MobileAbout album={album} />
+            <div className={styles.albumWebReviewContainer}>
+              <Comments />
+            </div>
+          </>
+        )}
+        {albumRejected && <Message>{albumErrorMessage}</Message>}
+      </div>
     </div>
   );
-}
+};
 
 export default Album;
