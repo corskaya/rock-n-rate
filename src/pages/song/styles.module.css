@@ -641,8 +641,13 @@
   }
 
   .aboutTextWeb {
-    -webkit-line-clamp: 10;
-    line-clamp: 10;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
+
+  .songWebReviewContainer {
+    width: 720px;
+    display: block;
   }
 }
 
@@ -713,8 +718,8 @@
     white-space: pre-wrap;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 15;
-    line-clamp: 15;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
     line-height: 24px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -723,5 +728,9 @@
 
   .rateModalContent {
     width: 86%;
+  }
+
+  .songWebReviewContainer {
+    width: 90%;
   }
 }
