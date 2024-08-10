@@ -9,12 +9,18 @@ import MobileMainInfo from "./components/MobileMainInfo";
 import MobileAbout from "./components/MobileAbout";
 import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
+import Comments from "./components/Comments";
 import styles from "./styles.module.css";
 
 const Artist: React.FC = () => {
   const { id } = useParams();
-  const { artistPending, artistRejected, artistFulfilled, artist, artistErrorMessage } =
-    useSelector((state: RootState) => state.artist);
+  const {
+    artistPending,
+    artistRejected,
+    artistFulfilled,
+    artist,
+    artistErrorMessage,
+  } = useSelector((state: RootState) => state.artist);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -23,22 +29,27 @@ const Artist: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <div className={styles.container}>
-      {artistPending && <Loading size="large" />}
-      {artistFulfilled && artist && (
-        <>
-          <MobileMainInfo artist={artist} />
-          <div className={styles.artistWebContainer}>
-            <Visuals artist={artist} />
-            <Info artist={artist} />
-            <Suggestions />
-          </div>
-          <MobileAbout artist={artist} />
-        </>
-      )}
-      {artistRejected && <Message>{artistErrorMessage}</Message>}
+    <div className={styles.background}>
+      <div className={styles.container}>
+        {artistPending && <Loading size="large" />}
+        {artistFulfilled && artist && (
+          <>
+            <MobileMainInfo artist={artist} />
+            <div className={styles.artistWebContainer}>
+              <Visuals artist={artist} />
+              <Info artist={artist} />
+              <Suggestions />
+            </div>
+            <MobileAbout artist={artist} />
+            <div className={styles.artistWebReviewContainer}>
+              <Comments />
+            </div>
+          </>
+        )}
+        {artistRejected && <Message>{artistErrorMessage}</Message>}
+      </div>
     </div>
   );
-}
+};
 
 export default Artist;

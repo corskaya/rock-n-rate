@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { get, post, del } from "../../utils/network";
+import { isAxiosError } from "axios";
+import { get, post, del, patch } from "../../utils/network";
+import { CommentRequest, CommentsResponse } from "./types";
 import Song from "../../types/song";
 import Rating from "../../types/rating";
 import ToastStatus from "../../types/toast";
-import { isAxiosError } from "axios";
+import Comment from "../../types/comment";
 
 export type SongState = {
   songPending: boolean;
@@ -19,7 +21,7 @@ export type SongState = {
   ratingsPending: boolean;
   ratingsFulfilled: boolean;
   ratingsRejected: boolean;
-  ratings?: Rating[];
+  ratings: Rating[];
   ratingsErrorMessage?: string;
   rateSongPending: boolean;
   rateSongFulfilled: boolean;
@@ -29,6 +31,16 @@ export type SongState = {
   removeRatingFulfilled: boolean;
   removeRatingRejected: boolean;
   removeRatingErrorMessage?: string;
+  commentsPending: boolean;
+  commentsFulfilled: boolean;
+  commentsRejected: boolean;
+  comments: Comment[];
+  commentsErrorMessage?: string;
+  commentSongPending: boolean;
+  commentSongFulfilled: boolean;
+  commentSongRejected: boolean;
+  commentSongErrorMessage?: string;
+  removeCommentPending: boolean;
   showRateModal: boolean;
   showRatingsModal: boolean;
   showAboutModal: boolean;
@@ -53,6 +65,14 @@ const initialState: SongState = {
   removeRatingPending: false,
   removeRatingFulfilled: false,
   removeRatingRejected: false,
+  commentsPending: false,
+  commentsFulfilled: false,
+  commentsRejected: false,
+  comments: [],
+  commentSongPending: false,
+  commentSongFulfilled: false,
+  commentSongRejected: false,
+  removeCommentPending: false,
   showRateModal: false,
   showRatingsModal: false,
   showAboutModal: false,
@@ -164,6 +184,111 @@ export const removeRating = createAsyncThunk(
   }
 );
 
+export const getComments = createAsyncThunk(
+  "songs/getComments",
+  async (id: string, thunkAPI) => {
+    try {
+      const { data, status } = await get(`/comment/song/${id}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const commentSong = createAsyncThunk(
+  "songs/commentSong",
+  async (body: CommentRequest, thunkAPI) => {
+    try {
+      const { data, status } = await post("/comment", body);
+
+      if (status !== 201) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const likeComment = createAsyncThunk(
+  "songs/likeComment",
+  async (commentId: string, thunkAPI) => {
+    try {
+      const { data, status } = await patch(`/comment/like/${commentId}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const unlikeComment = createAsyncThunk(
+  "songs/unlikeComment",
+  async (commentId: string, thunkAPI) => {
+    try {
+      const { data, status } = await patch(`/comment/unlike/${commentId}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const removeComment = createAsyncThunk(
+  "songs/removeComment",
+  async (commentId: string, thunkAPI) => {
+    try {
+      const { data, status } = await del(`/comment/${commentId}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
 const songReducer = createSlice({
   name: "songReducer",
   initialState,
@@ -177,6 +302,12 @@ const songReducer = createSlice({
     setShowAboutModal: (state, action: PayloadAction<boolean>) => {
       state.showAboutModal = action.payload;
     },
+    setToastStatus: (state, action: PayloadAction<ToastStatus>) => {
+      state.toastStatus = action.payload;
+    },
+    setComments: (state, action: PayloadAction<Comment[]>) => {
+      state.comments = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -266,10 +397,86 @@ const songReducer = createSlice({
         state.removeRatingPending = false;
         state.removeRatingRejected = true;
         state.removeRatingErrorMessage = payload.message;
+      })
+      .addCase(getComments.pending, (state) => {
+        state.commentsPending = true;
+        state.commentsRejected = false;
+        state.commentsFulfilled = false;
+        state.comments = [];
+      })
+      .addCase(getComments.fulfilled, (state, { payload }: { payload: CommentsResponse }) => {
+        state.commentsPending = false;
+        state.commentsRejected = false;
+        state.commentsFulfilled = true;
+        state.comments = payload.comments;
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(getComments.rejected, (state, { payload }: { payload: any }) => {
+        state.commentsPending = false;
+        state.commentsRejected = true;
+        state.commentsErrorMessage = payload.message;
+      })
+      .addCase(commentSong.pending, (state) => {
+        state.commentSongPending = true;
+        state.commentSongRejected = false;
+        state.commentSongFulfilled = false;
+      })
+      .addCase(commentSong.fulfilled, (state, { payload }: { payload: Comment }) => {
+        state.commentSongPending = false;
+        state.commentSongRejected = false;
+        state.commentSongFulfilled = true;
+        state.comments = [
+          payload,
+          ...state.comments
+        ];
+        state.toastStatus = {
+          show: true,
+          title: "Successful",
+          message: "Comment has been added successfully.",
+          type: "success",
+        };
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(commentSong.rejected, (state, { payload }: { payload: any }) => {
+        state.commentSongPending = false;
+        state.commentSongRejected = true;
+        state.commentSongErrorMessage = payload.message;
+      })
+      .addCase(removeComment.pending, (state) => {
+        state.removeCommentPending = true;
+      })
+      .addCase(removeComment.fulfilled, (state, { payload }: { payload: Comment }) => {
+        state.removeCommentPending = false;
+        const commentsCopy = [...state.comments];
+        state.comments = commentsCopy.filter((comment) => {
+          return comment._id !== payload._id;
+        });
+        state.toastStatus = {
+          show: true,
+          title: "Successful",
+          message: "Comment has been removed successfully.",
+          type: "success",
+        };
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(removeComment.rejected, (state, { payload }: { payload: any }) => {
+        state.removeCommentPending = false;
+        state.toastStatus = {
+          show: true,
+          title: "Error",
+          message: payload.message,
+          type: "error",
+        };
       });
   },
 });
 
-export const { setShowRateModal, setShowRatingsModal, setShowAboutModal } = songReducer.actions;
+export const {
+  setShowRateModal,
+  setShowRatingsModal,
+  setShowAboutModal,
+  setToastStatus, 
+  setComments,
+} = songReducer.actions;
 
 export default songReducer.reducer;
