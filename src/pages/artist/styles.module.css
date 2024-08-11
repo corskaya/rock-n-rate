@@ -319,6 +319,7 @@
 }
 
 .rateModalBtnActive {
+  color: #1f1f1f;
   background-color: #f5c518;
   transition: 0.5s;
   cursor: pointer;
