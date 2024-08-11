@@ -104,7 +104,7 @@ const Filter: React.FC = () => {
               value={filters.year}
               options={[
                 { label: "All", value: "All" },
-                { label: "2020-2023", value: "2020-2023" },
+                { label: "2020-2024", value: "2020-2024" },
                 { label: "2010-2019", value: "2010-2019" },
                 { label: "2000-2009", value: "2000-2009" },
                 { label: "1990-1999", value: "1990-1999" },

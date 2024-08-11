@@ -7,22 +7,23 @@ import styles from "./Layout.module.css";
 
 const Layout: React.FC = () => {
   const routesWithBackgroundImage = [
-    '',
-    'login',
-    'register',
-    'artist',
-    'album',
-    'song',
+    "",
+    "login",
+    "register",
+    "artist",
+    "album",
+    "song",
+    "about",
   ];
   const { pathname } = useLocation();
-  const pageName = pathname.split('/')[1];
+  const pageName = pathname.split("/")[1];
 
   return (
     <div
       className={
         routesWithBackgroundImage.includes(pageName)
           ? styles.layoutContainer
-          : ''
+          : ""
       }
     >
       <div>

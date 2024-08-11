@@ -5,10 +5,10 @@ const AppFooter: React.FC = () => {
   return (
     <div className={styles.footerFix}>
       <div className={styles.footerContainer}>
-        <div>Rock'n Rate © - 2023</div>
+        <div>Rock'n Rate © - 2024</div>
         <div className={styles.separator}>-</div>
-        <Link className={styles.footerLink} to='/contact'>
-          Contact
+        <Link className={styles.footerLink} to='/about'>
+          About
         </Link>
       </div>
     </div>
