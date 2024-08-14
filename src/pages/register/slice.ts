@@ -3,7 +3,6 @@ import { post } from "../../utils/network";
 import ToastStatus from "../../types/toast";
 import { isAxiosError } from "axios";
 import { RegisterRequest } from "./types";
-import { NavigateFunction } from "react-router-dom";
 
 export type RegisterState = {
   registerPending: boolean;
@@ -22,7 +21,7 @@ const initialState: RegisterState = {
 
 export const register = createAsyncThunk(
   "registerReducer/register",
-  async ({ body, navigate }: { body: RegisterRequest, navigate: NavigateFunction }, thunkAPI) => {
+  async (body: RegisterRequest, thunkAPI) => {
     try {
       const { data, status } = await post("/user/register", body);
 
@@ -30,7 +29,6 @@ export const register = createAsyncThunk(
         return thunkAPI.rejectWithValue(data);
       }
 
-      navigate("/login");
       return data;
     } catch (e) {
       if (isAxiosError(e)) {
@@ -56,12 +54,6 @@ const registerReducer = createSlice({
         state.registerPending = false;
         state.registerRejected = false;
         state.registerFulfilled = true;
-        state.toastStatus = {
-          show: true,
-          title: "Successful",
-          message: "Account registered. Please login.",
-          type: "info",
-        };
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .addCase(register.rejected, (state, { payload }: { payload: any }) => {

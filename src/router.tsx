@@ -5,6 +5,7 @@ import {
   Home,
   Login,
   Register,
+  Activation,
   Albums,
   Artists,
   Songs,
@@ -40,6 +41,7 @@ const Router: React.FC = () => {
         <Route index element={renderPage(<Home />)} />
         <Route path="/login" element={<NotAuthRoute component={<Login />} />} />
         <Route path="/register" element={<NotAuthRoute component={<Register />} />}/>
+        <Route path="/activation" element={<NotAuthRoute component={<Activation />} />}/>
         <Route path="/forgot-password" element={<NotAuthRoute component={<ForgotPassword />} />} />
         <Route path="/albums" element={renderPage(<Albums />)} />
         <Route path="/artists" element={renderPage(<Artists />)} />

@@ -1,5 +1,5 @@
 .background {
-  height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
   background: linear-gradient(to bottom, transparent, #1d1d1d 85%, #1d1d1d);
 }
 
@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0 120px;
+  padding: 40px 0;
   background: transparent;
 }
 

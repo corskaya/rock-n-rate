@@ -56,7 +56,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, album }) => {
           show: true,
           title: "Please login",
           message: "To rate an album, please log in first.",
-          type: "error",
+          type: "info",
         })
       );
       dispatch(setShowRateModal(false));

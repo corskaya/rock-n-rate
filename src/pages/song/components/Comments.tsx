@@ -50,7 +50,7 @@ const Comments: React.FC = () => {
           show: true,
           title: "Please login",
           message: "To leave a comment, please log in first.",
-          type: "error",
+          type: "info",
         })
       );
       navigate("/login");
@@ -73,7 +73,7 @@ const Comments: React.FC = () => {
           show: true,
           title: "Please login",
           message: "To like a comment, please log in first.",
-          type: "error",
+          type: "info",
         })
       );
       navigate("/login");
