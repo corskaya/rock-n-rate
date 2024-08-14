@@ -1,23 +1,24 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./styles.module.css";
 import { Form, Label, Input, Button, Message, Loading } from "../../components";
 import { register } from "./slice";
 import { AppDispatch, RootState } from "../../store";
 import { RegisterRequest } from "./types";
+import { CheckCircleFilled } from "@ant-design/icons";
+import styles from "./styles.module.css";
 
 const Register: React.FC = () => {
-  const { registerPending, registerRejected, errorMessage } = useSelector((state: RootState) => state.register);
+  const { registerPending, registerFulfilled, registerRejected, errorMessage } = useSelector((state: RootState) => state.register);
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
 
   const handleSubmit = (values: RegisterRequest) => {
-    dispatch(register({ body: values, navigate }));
+    dispatch(register(values));
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.innerContainer}>
+      {!registerFulfilled && (
+        <div className={styles.innerContainer}>
         <Form 
           className={styles.formContainer} 
           onFinish={(values) => handleSubmit(values as RegisterRequest)}
@@ -29,7 +30,7 @@ const Register: React.FC = () => {
               <Input name="username" className={styles.formInput} />
             </div>
             <div className={styles.formFieldContainer}>
-              <Label>E-Mail (no confirmation needed):</Label>
+              <Label>E-Mail:</Label>
               <Input name="email" className={styles.formInput} />
             </div>
             <div className={styles.formFieldContainer}>
@@ -64,6 +65,18 @@ const Register: React.FC = () => {
           </div>
         </Form>
       </div>
+      )}
+      {registerFulfilled && (
+        <div className={styles.emailSentContainer}>
+          <div className={styles.emailSentHeader}>
+            <CheckCircleFilled className={styles.emailSentIcon} />
+            <span className={styles.emailSentHeading}>Verify Your Email Address</span>
+          </div>
+          <p className={styles.emailSentText}>
+            We've sent a verification link to your email. Please check your inbox and click the link to activate your account.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
