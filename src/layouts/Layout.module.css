@@ -1,17 +1,41 @@
-.layoutContainer {
+.backgroundImage {
   display: flex;
   flex-direction: column;
   height: 100vh;
   position: relative;
 }
 
-.layoutContainer::before {
+.backgroundImage::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  background-image: url("../assets/background-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  filter: blur(16px);
+  -webkit-filter: blur(16px);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.backgroundGradient {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
+.backgroundGradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 100px);
   background-image: url("../assets/background-image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
