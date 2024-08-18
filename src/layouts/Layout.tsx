@@ -7,14 +7,18 @@ import styles from "./Layout.module.css";
 
 const Layout: React.FC = () => {
   const routesWithBackgroundImage = [
-    "",
     "login",
     "register",
+  ];
+
+  const routesWithBackgroundGradient = [
+    "",
     "artist",
     "album",
     "song",
-    "about",
+    "about"
   ];
+
   const { pathname } = useLocation();
   const pageName = pathname.split("/")[1];
 
@@ -22,8 +26,10 @@ const Layout: React.FC = () => {
     <div
       className={
         routesWithBackgroundImage.includes(pageName)
-          ? styles.layoutContainer
-          : ""
+          ? styles.backgroundImage
+          : routesWithBackgroundGradient.includes(pageName)
+            ? styles.backgroundGradient
+            : ""
       }
     >
       <div>

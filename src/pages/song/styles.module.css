@@ -1,5 +1,5 @@
 .background {
-  min-height: calc(100vh - 120px);
+  height: calc(100vh - 120px);
   background: linear-gradient(to bottom, transparent, #1d1d1d 85%, #1d1d1d);
 }
 
@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  padding: 40px 0 120px;
   background: transparent;
 }
 
@@ -653,6 +653,10 @@
 }
 
 @media (max-width: 760px) {
+  .container {
+    padding-bottom: 40px;
+  }
+
   .mobileMainInfoContainer {
     display: block;
     width: 90%;
