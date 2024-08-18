@@ -40,13 +40,6 @@ const Filter: React.FC = () => {
     // eslint-disable-next-line
   }, [dispatch, page]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(setFilters(defaultFilters));
-    };
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <Form onFinish={onSearch} className={styles.formContainer}>
       <div className={styles.formAreaContainer}>

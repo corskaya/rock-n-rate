@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles.module.css";
 import { goToPage } from "../slice";
@@ -42,12 +41,6 @@ const Paginate: React.FC = () => {
     { length: Math.min(pageCount, maxVisiblePages) },
     (_, index) => startPage + index
   );
-
-  useEffect(() => {
-    return () => {
-      dispatch(goToPage(1));
-    };
-  }, [dispatch]);
 
   return (
     <>
