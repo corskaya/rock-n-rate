@@ -9,6 +9,8 @@ const Layout: React.FC = () => {
   const routesWithBackgroundImage = [
     "login",
     "register",
+    "forgot-password",
+    "reset-password",
   ];
 
   const routesWithBackgroundGradient = [
@@ -16,7 +18,7 @@ const Layout: React.FC = () => {
     "artist",
     "album",
     "song",
-    "about"
+    "about",
   ];
 
   const { pathname } = useLocation();
