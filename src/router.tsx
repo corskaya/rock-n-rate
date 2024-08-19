@@ -13,6 +13,7 @@ import {
   NotFound,
   About,
   ForgotPassword,
+  ResetPassword,
   User,
   Artist,
   Album,
@@ -43,6 +44,7 @@ const Router: React.FC = () => {
         <Route path="/register" element={<NotAuthRoute component={<Register />} />}/>
         <Route path="/activation" element={<NotAuthRoute component={<Activation />} />}/>
         <Route path="/forgot-password" element={<NotAuthRoute component={<ForgotPassword />} />} />
+        <Route path="/reset-password/:token" element={<NotAuthRoute component={<ResetPassword />} />} />
         <Route path="/albums" element={renderPage(<Albums />)} />
         <Route path="/artists" element={renderPage(<Artists />)} />
         <Route path="/songs" element={renderPage(<Songs />)} />

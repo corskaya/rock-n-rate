@@ -1,0 +1,145 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.innerContainer {
+  width: 1152px;
+}
+
+.formContainer {
+  width: 562px;
+}
+
+.formLabel {
+  font-size: 1.65em;
+  font-weight: 500;
+  color: #6ac045;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+.explanation {
+  margin: 0 0 28px;
+  padding: 0;
+  font-size: 0.95em;
+  letter-spacing: -0.02em;
+  line-height: 21px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.formFieldContainer {
+  margin-bottom: 24px;
+}
+
+.formInput {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.errorMessageContainer {
+  display: flex;
+  justify-content: right;
+}
+
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+}
+
+.formFooterLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 4.2px;
+}
+
+.formFooterLink {
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: #6ac045;
+}
+
+.formFooterLink:hover {
+  transition: 0.5s;
+  color: #85dd72;
+}
+
+.emailSentContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.emailSentHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  width: 380px;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+  box-sizing: border-box;
+}
+
+.emailSentIcon {
+  font-size: 24px;
+  color: #6ac045;
+  padding-bottom: 1px;
+}
+
+.emailSentHeading {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.emailSentText {
+  margin: 8px 0;
+  max-width: 500px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+@media (max-width: 1200px) {
+  .innerContainer {
+    padding-left: 126px;
+  }
+  .formContainer {
+    width: 460px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .innerContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-left: 0;
+  }
+  .formContainer {
+    width: 90%;
+  }
+}
+
+@media (max-width: 760px) {
+  .formLabel {
+    text-align: center;
+  }
+
+  .emailSentHeader {
+    max-width: 90%;
+  }
+
+  .emailSentHeading {
+    font-size: 20px;
+  }
+
+  .emailSentText {
+    max-width: 90%;
+  }
+}

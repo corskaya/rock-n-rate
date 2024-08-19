@@ -20,6 +20,7 @@ const Toast: React.FC = () => {
   const loginToastStatus = useSelector((state: RootState) => state.login.toastStatus);
   const registerToastStatus = useSelector((state: RootState) => state.register.toastStatus);
   const activationToastStatus = useSelector((state: RootState) => state.activation.toastStatus);
+  const resetPasswordToastStatus = useSelector((state: RootState) => state.resetPassword.toastStatus);
   const homeToastStatus = useSelector((state: RootState) => state.home.toastStatus);
   const artistsToastStatus = useSelector((state: RootState) => state.artists.toastStatus);
   const artistToastStatus = useSelector((state: RootState) => state.artist.toastStatus);
@@ -70,6 +71,18 @@ const Toast: React.FC = () => {
       showToast();
     }
   }, [activationToastStatus, dispatch]);
+
+  // resetPassword
+  useEffect(() => {
+    if (resetPasswordToastStatus.show) {
+      const showToast = async () => {
+        setGeneralToastStatus(resetPasswordToastStatus);
+        await delay();
+        closeToast();
+      };
+      showToast();
+    }
+  }, [resetPasswordToastStatus, dispatch]);
 
   // home
   useEffect(() => {

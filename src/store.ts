@@ -2,6 +2,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import loginReducer, { setLoginStatus } from "./pages/login/slice";
 import registerReducer from "./pages/register/slice";
 import activationReducer from "./pages/activation/slice";
+import forgotPasswordReducer from "./pages/forgotPassword/slice";
+import resetPasswordReducer from "./pages/resetPassword/slice";
 import userReducer from "./pages/user/slice";
 import homeReducer from "./pages/home/slice";
 import artistsReducer from "./pages/artists/slice";
@@ -18,6 +20,8 @@ const store = configureStore({
     login: loginReducer,
     register: registerReducer,
     activation: activationReducer,
+    forgotPassword: forgotPasswordReducer,
+    resetPassword: resetPasswordReducer,
     user: userReducer,
     home: homeReducer,
     artists: artistsReducer,
