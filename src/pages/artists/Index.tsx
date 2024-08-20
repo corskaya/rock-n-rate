@@ -6,8 +6,8 @@ import { setShowFilterModal } from "./slice";
 import Filter from "./components/Filter";
 import List from "./components/List";
 import Paginate from "./components/Paginate";
-import styles from "./styles.module.css";
 import FilterModal from "./components/FilterModal";
+import styles from "./styles.module.css";
 
 const Artists: React.FC = () => {
   const {

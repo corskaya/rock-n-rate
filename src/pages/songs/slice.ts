@@ -16,6 +16,8 @@ export type SongsState = {
   pageCount: number;
   page: number;
   filters: SongFilter;
+  isFiltered: boolean;
+  showFilterModal: boolean;
   toastStatus: ToastStatus;
 };
 
@@ -34,6 +36,8 @@ const initialState: SongsState = {
     year: "All",
     orderBy: "Latest",
   },
+  isFiltered: false,
+  showFilterModal: false,
   toastStatus: { show: false },
 };
 
@@ -68,6 +72,12 @@ const songsReducer = createSlice({
     goToPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
+    setShowFilterModal: (state, action: PayloadAction<boolean>) => {
+      state.showFilterModal = action.payload;
+    },
+    setIsFiltered: (state, action: PayloadAction<boolean>) => {
+      state.isFiltered = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -95,6 +105,6 @@ const songsReducer = createSlice({
   },
 });
 
-export const { setFilters, goToPage } = songsReducer.actions;
+export const { setFilters, goToPage, setShowFilterModal, setIsFiltered } = songsReducer.actions;
 
 export default songsReducer.reducer;

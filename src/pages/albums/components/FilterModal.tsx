@@ -1,18 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CloseOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Label, Select } from "../../../components";
-import { setFilters, getSongs, goToPage, setIsFiltered } from "../slice";
+import { getAlbums, goToPage, setFilters, setIsFiltered, setShowFilterModal } from "../slice";
+import { Button, Form, Input, Label, Modal, Select } from "../../../components";
 import { AppDispatch, RootState } from "../../../store";
-import { SongFilter } from "../types";
-import genres from "../../../constants/genres";
+import { AlbumFilter } from "../types";
 import Genre from "../../../types/genre";
+import genres from "../../../constants/genres";
 import styles from "../styles.module.css";
 
-const Filter: React.FC = () => {
-  const { filters, page, isFiltered } = useSelector((state: RootState) => state.songs);
+type Props = {
+  show: boolean;
+  onClose: () => void;
+};
+
+const FilterModal: React.FC<Props> = ({ show, onClose }) => {
+  const { filters, page, isFiltered } = useSelector((state: RootState) => state.albums);
   const dispatch = useDispatch<AppDispatch>();
-  const defaultFilters: SongFilter = {
+  const defaultFilters: AlbumFilter = {
     searchTerm: "",
     genre: Genre.All,
     rating: 0,
@@ -26,38 +30,43 @@ const Filter: React.FC = () => {
 
   const onSearch = () => {
     dispatch(goToPage(1));
-    dispatch(getSongs(filters));
+    dispatch(getAlbums(filters));
     dispatch(setIsFiltered(checkIfFiltered()));
+    dispatch(setShowFilterModal(false));
   };
 
   const onClearFilters = () => {
     dispatch(setIsFiltered(false));
     dispatch(goToPage(1));
     dispatch(setFilters(defaultFilters));
-    dispatch(getSongs(defaultFilters));
+    dispatch(getAlbums(defaultFilters));
+    dispatch(setShowFilterModal(false));
   };
 
   useEffect(() => {
-    dispatch(getSongs({ ...filters, page }));
+    dispatch(getAlbums({ ...filters, page }));
     dispatch(setIsFiltered(checkIfFiltered()));
     // eslint-disable-next-line
   }, [dispatch, page]);
 
   return (
-    <Form onFinish={onSearch} className={styles.formContainer}>
-      <div className={styles.formAreaContainer}>
-        <div>
-          <Label className={styles.labelLarge}> Search Term: </Label>
-        </div>
-        <Input
-          className={styles.input}
-          isControlled={true}
-          value={filters.searchTerm}
-          onChange={(e) => dispatch(setFilters({ searchTerm: e.target.value }))}
-        />
-        <div className={styles.filterContainer}>
-          <div className={styles.selectContainer}>
-            <Label className={styles.labelSmall}>Genre:</Label>
+    <Modal
+      show={show}
+      title="Filter"
+      suffix={isFiltered && (
+        <span 
+          className={styles.filterModalSuffix} 
+          onClick={onClearFilters}
+        >
+          Clear
+        </span>
+      )}
+      onClose={onClose}
+    >
+      <Form onFinish={onSearch}>
+        <div className={styles.filterModalContainer}>
+          <div className={styles.filterModalRow}>
+            <Label className={styles.labelMedium}>Genre:</Label>
             <Select
               value={filters.genre}
               options={genres.map((genre) => ({
@@ -73,8 +82,8 @@ const Filter: React.FC = () => {
               }}
             />
           </div>
-          <div className={styles.selectContainer}>
-            <Label className={styles.labelSmall}>Rating:</Label>
+          <div className={styles.filterModalRow}>
+            <Label className={styles.labelMedium}>Rating:</Label>
             <Select
               value={filters.rating}
               options={[
@@ -94,8 +103,8 @@ const Filter: React.FC = () => {
               }
             />
           </div>
-          <div className={styles.selectContainer}>
-            <Label className={styles.labelSmall}>Year:</Label>
+          <div className={styles.filterModalRow}>
+            <Label className={styles.labelMedium}>Year:</Label>
             <Select
               value={filters.year}
               options={[
@@ -113,8 +122,8 @@ const Filter: React.FC = () => {
               onChange={(e) => dispatch(setFilters({ year: e.target.value }))}
             />
           </div>
-          <div className={styles.selectContainer}>
-            <Label className={styles.labelSmall}>Order By:</Label>
+          <div className={styles.filterModalRow}>
+            <Label className={styles.labelMedium}>Order By:</Label>
             <Select
               value={filters.orderBy}
               options={[
@@ -129,19 +138,24 @@ const Filter: React.FC = () => {
               }
             />
           </div>
-          {isFiltered && (
-            <div className={styles.clearFiltersBtn} onClick={onClearFilters}>
-              <CloseOutlined className={styles.clearFilterIcon} />
-              <div className={styles.clearFilterText}>Clear filters</div>
-            </div>
-          )}
+          <div className={styles.filterModalRow}>
+            <Label className={styles.labelMedium}> Search Term: </Label>
+            <Input
+              className={styles.filterModalInput}
+              isControlled={true}
+              value={filters.searchTerm}
+              onChange={(e) =>
+                dispatch(setFilters({ searchTerm: e.target.value }))
+              }
+            />
+          </div>
         </div>
-      </div>
-      <div className={styles.buttonContainer}>
-        <Button className={styles.button}>Search</Button>
-      </div>
-    </Form>
+        <div className={styles.mobileSearchBtnContainer}>
+          <Button className={styles.mobileSearchBtn}>Search</Button>
+        </div>
+      </Form>
+    </Modal>
   );
-}
+};
 
-export default Filter;
+export default FilterModal;

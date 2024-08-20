@@ -1,17 +1,16 @@
-import { Button, Form, Input, Label, Select } from "../../../components";
-import genres from "../../../constants/genres";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilters, getAlbums, goToPage } from "../slice";
-import { useEffect, useState } from "react";
 import { CloseOutlined } from "@ant-design/icons";
-import styles from "../styles.module.css";
+import { Button, Form, Input, Label, Select } from "../../../components";
+import { setFilters, getAlbums, goToPage, setIsFiltered } from "../slice";
 import { AppDispatch, RootState } from "../../../store";
 import { AlbumFilter } from "../types";
+import genres from "../../../constants/genres";
 import Genre from "../../../types/genre";
+import styles from "../styles.module.css";
 
 const Filter: React.FC = () => {
-  const { filters, page } = useSelector((state: RootState) => state.albums);
-  const [isFiltered, setIsFiltered] = useState(false);
+  const { filters, page, isFiltered } = useSelector((state: RootState) => state.albums);
   const dispatch = useDispatch<AppDispatch>();
   const defaultFilters: AlbumFilter = {
     searchTerm: "",
@@ -21,14 +20,18 @@ const Filter: React.FC = () => {
     orderBy: "Latest",
   };
 
+  const checkIfFiltered = () => {
+    return JSON.stringify(defaultFilters) !== JSON.stringify(filters);
+  }
+
   const onSearch = () => {
     dispatch(goToPage(1));
     dispatch(getAlbums(filters));
-    setIsFiltered(JSON.stringify(defaultFilters) !== JSON.stringify(filters));
+    dispatch(setIsFiltered(checkIfFiltered()));
   };
 
   const onClearFilters = () => {
-    setIsFiltered(false);
+    dispatch(setIsFiltered(false));
     dispatch(goToPage(1));
     dispatch(setFilters(defaultFilters));
     dispatch(getAlbums(defaultFilters));
@@ -36,7 +39,7 @@ const Filter: React.FC = () => {
 
   useEffect(() => {
     dispatch(getAlbums({ ...filters, page }));
-    setIsFiltered(JSON.stringify(defaultFilters) !== JSON.stringify(filters));
+    dispatch(setIsFiltered(checkIfFiltered()));
     // eslint-disable-next-line
   }, [dispatch, page]);
 
