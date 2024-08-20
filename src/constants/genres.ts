@@ -76,7 +76,6 @@ const genres: Genre[] = [
   Genre.NagoyaKei,
   Genre.NeoPsychedelia,
   Genre.NeoclassicalMetal,
-  Genre.NeueDeutscheHärte,
   Genre.NewProg,
   Genre.NewWave,
   Genre.NoWave,

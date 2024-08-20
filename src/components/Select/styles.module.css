@@ -1,9 +1,10 @@
 .selectContainer {
   position: relative;
   display: inline-block;
+  text-overflow: ellipsis;
 }
 
-.selectContainer select {
+.select {
   height: 40px;
   color: #a0a0a0;
   background-color: #282828;
@@ -15,6 +16,10 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-right: 20px;
 }
 
 .arrowIcon {

@@ -16,6 +16,8 @@ export type AlbumsState = {
   pageCount: number;
   page: number;
   filters: AlbumFilter;
+  isFiltered: boolean;
+  showFilterModal: boolean;
   toastStatus: ToastStatus;
 };
 
@@ -34,6 +36,8 @@ const initialState: AlbumsState = {
     year: "All",
     orderBy: "Latest",
   },
+  isFiltered: false,
+  showFilterModal: false,
   toastStatus: { show: false },
 };
 
@@ -68,6 +72,12 @@ const albumsReducer = createSlice({
     goToPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
+    setShowFilterModal: (state, action: PayloadAction<boolean>) => {
+      state.showFilterModal = action.payload;
+    },
+    setIsFiltered: (state, action: PayloadAction<boolean>) => {
+      state.isFiltered = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -95,6 +105,6 @@ const albumsReducer = createSlice({
   },
 });
 
-export const { setFilters, goToPage } = albumsReducer.actions;
+export const { setFilters, goToPage, setShowFilterModal, setIsFiltered } = albumsReducer.actions;
 
 export default albumsReducer.reducer;

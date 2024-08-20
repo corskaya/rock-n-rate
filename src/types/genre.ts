@@ -74,7 +74,6 @@ enum Genre {
   NagoyaKei = 'Nagoya kei',
   NeoPsychedelia = 'Neo-psychedelia',
   NeoclassicalMetal = 'Neoclassical metal',
-  NeueDeutscheHärte = 'Neue Deutsche Härte',
   NewProg = 'New prog',
   NewWave = 'New wave',
   NoWave = 'No wave',

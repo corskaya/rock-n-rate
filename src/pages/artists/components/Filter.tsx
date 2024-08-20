@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Label, Select } from "../../../components";
-import { setFilters, getArtists, goToPage } from "../slice";
+import { setFilters, getArtists, goToPage, setIsFiltered } from "../slice";
 import { AppDispatch, RootState } from "../../../store";
 import { ArtistFilter } from "../types";
 import genres from "../../../constants/genres";
@@ -10,8 +10,7 @@ import Genre from "../../../types/genre";
 import styles from "../styles.module.css";
 
 const Filter: React.FC = () => {
-  const { filters, page } = useSelector((state: RootState) => state.artists);
-  const [isFiltered, setIsFiltered] = useState(false);
+  const { filters, page, isFiltered } = useSelector((state: RootState) => state.artists);
   const dispatch = useDispatch<AppDispatch>();
   const defaultFilters: ArtistFilter = {
     searchTerm: "",
@@ -21,14 +20,18 @@ const Filter: React.FC = () => {
     orderBy: "Latest",
   };
 
+  const checkIfFiltered = () => {
+    return JSON.stringify(defaultFilters) !== JSON.stringify(filters);
+  }
+
   const onSearch = () => {
     dispatch(goToPage(1));
     dispatch(getArtists(filters));
-    setIsFiltered(JSON.stringify(defaultFilters) !== JSON.stringify(filters));
+    dispatch(setIsFiltered(checkIfFiltered()));
   };
 
   const onClearFilters = () => {
-    setIsFiltered(false);
+    dispatch(setIsFiltered(false));
     dispatch(goToPage(1));
     dispatch(setFilters(defaultFilters));
     dispatch(getArtists(defaultFilters));
@@ -36,7 +39,7 @@ const Filter: React.FC = () => {
 
   useEffect(() => {
     dispatch(getArtists({ ...filters, page }));
-    setIsFiltered(JSON.stringify(defaultFilters) !== JSON.stringify(filters));
+    dispatch(setIsFiltered(checkIfFiltered()));
     // eslint-disable-next-line
   }, [dispatch, page]);
 

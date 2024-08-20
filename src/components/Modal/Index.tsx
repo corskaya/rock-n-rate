@@ -1,27 +1,52 @@
 import { CloseOutlined } from "@ant-design/icons";
 import styles from "./styles.module.css";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 
 type Props = {
   show: boolean;
   onClose: () => void;
   title: string;
-  titleSuffix?: string;
+  suffix?: ReactNode;
   centerBody?: boolean;
   children: ReactNode;
 };
 
-const Modal: React.FC<Props> = ({ show, onClose = () => {}, title, titleSuffix, centerBody = false, children }) => {
+const Modal: React.FC<Props> = ({ show, onClose = () => {}, title, suffix, centerBody = false, children }) => {
+
+  useEffect(() => {
+    if (show) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+
+    return () => {
+      document.body.classList.remove("modal-open");
+    }
+  }, [show]);
+
   return (
     show && (
       <div className={styles.modalContainer}>
         <div onClick={onClose} className={styles.overlay}></div>
         <div className={styles.modalContent}>
-          <div className={styles.modalTitleContainer}>
+          <div className={styles.modalHeaderWeb}>
             <h2 className={styles.modalTitle}>{title}</h2>
-            {titleSuffix && (
-              <h4 className={styles.modalTitleSuffix}>{titleSuffix}</h4>
-            )}
+            {suffix}
+          </div>
+          <div className={styles.modalHeaderMobile}>
+            <div className={styles.modalHeaderItemMobile}>
+              <CloseOutlined
+                className={styles.rateModalCloseIconMobile}
+                onClick={onClose}
+              />
+            </div>
+            <div className={styles.modalHeaderItemMobile}>
+              <h2 className={styles.modalTitle}>{title}</h2>
+            </div>
+            <div className={styles.modalHeaderItemMobile}>
+              {suffix}
+            </div>
           </div>
           <div
             className={`${styles.modalBodyContainer} ${
@@ -30,8 +55,8 @@ const Modal: React.FC<Props> = ({ show, onClose = () => {}, title, titleSuffix, 
           >
             <div>{children}</div>
           </div>
-          <div className={styles.rateModalCloseBtnContainer}>
-            <div className={styles.rateModalCloseBtn} onClick={onClose}>
+          <div className={styles.rateModalCloseBtnContainerWeb}>
+            <div className={styles.rateModalCloseBtnWeb} onClick={onClose}>
               <CloseOutlined className={styles.rateModalCloseIcon} />
             </div>
           </div>
@@ -39,6 +64,6 @@ const Modal: React.FC<Props> = ({ show, onClose = () => {}, title, titleSuffix, 
       </div>
     )
   );
-}
+};
 
 export default Modal;

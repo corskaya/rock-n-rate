@@ -29,7 +29,11 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
     <Modal
       show={show}
       title="Ratings"
-      titleSuffix={`${album.ratingCount} ratings`}
+      suffix={
+        <h2
+          className={styles.modalRatingSuffix}
+        >{`${album.ratingCount} ratings`}</h2>
+      }
       onClose={onClose}
       centerBody={
         ratingsPending ||
@@ -44,7 +48,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
             <Link
               key={i}
               className={styles.modalRatingLink}
-              to={rating.isPrivate ? '#' : `/user/${rating.username}`}
+              to={rating.isPrivate ? "#" : `/user/${rating.username}`}
               onClick={(e) => handleLinkClick(rating.isPrivate, e)}
             >
               <div className={styles.modalRatingContainer}>
@@ -57,7 +61,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
                     />
                   </div>
                   <div className={styles.modalRatingUsername}>
-                    {rating.isPrivate ? 'Private User' : rating.username}
+                    {rating.isPrivate ? "Private User" : rating.username}
                   </div>
                 </div>
                 <div className={styles.modalRatingRatingContainer}>
