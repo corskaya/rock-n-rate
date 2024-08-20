@@ -82,6 +82,18 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
     setStarTextSize(22 + selectedPoint * 1);
   }, [selectedPoint]);
 
+  useEffect(() => {
+    if (show) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+
+    return () => {
+      document.body.classList.remove("modal-open");
+    }
+  }, [show]);
+
   return (
     show && (
       <div className={styles.rateModalContainer}>

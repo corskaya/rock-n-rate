@@ -30,7 +30,11 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, artist }) => {
     <Modal
       show={show}
       title="Ratings"
-      titleSuffix={`${artist.ratingCount} ratings`}
+      suffix={
+        <h2
+          className={styles.modalRatingSuffix}
+        >{`${artist.ratingCount} ratings`}</h2>
+      }
       onClose={onClose}
       centerBody={
         ratingsPending ||

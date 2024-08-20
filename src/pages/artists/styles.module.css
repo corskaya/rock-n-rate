@@ -27,10 +27,21 @@
 }
 
 .listHeader {
+  width: calc(100% - 24px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listHeading {
   margin: 16px;
   font-size: 20px;
   font-weight: 500;
   color: #6ac045;
+}
+
+.mobileFilterBtn {
+  display: none;
 }
 
 .labelLarge {
@@ -192,6 +203,25 @@
 @media (max-width: 1020px) {
   .formContainer {
     display: none;
+  }
+
+  .mobileFilterBtnContainer {
+    width: 40px;
+  }
+
+  .mobileFilterBtn {
+    display: inline;
+    height: 40px;
+    width: 100%;
+    background-color: #1d1d1d;
+    border: 1px solid #363636;
+    border-radius: 4px;
+  }
+
+  .mobileFilterIcon {
+    font-size: 16px;
+    color: #fff;
+    padding: 2px 0 0 1px;
   }
 
   .cardsContainer {

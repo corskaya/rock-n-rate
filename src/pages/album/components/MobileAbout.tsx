@@ -23,7 +23,7 @@ const MobileAbout: React.FC<Props> = ({ album }) => {
         className={styles.mobileAboutContainer}
         onClick={() => handleShowAboutModal(true)}
       >
-        <h1 className={`${styles.albumName} ${styles.textShadow}`}>About</h1>
+        <h1 className={`${styles.aboutHeadingMobile} ${styles.textShadow}`}>About</h1>
         <p className={styles.aboutTextMobile}>{album.about}</p>
       </div>
       <AboutModal

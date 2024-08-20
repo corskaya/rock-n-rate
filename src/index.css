@@ -8,6 +8,10 @@ body {
   color: #f1ffff;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
