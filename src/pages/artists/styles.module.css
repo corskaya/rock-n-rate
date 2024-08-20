@@ -40,12 +40,50 @@
   color: #6ac045;
 }
 
+.filterModalSuffix {
+  font-size: 17px;
+  font-weight: 500;
+  color: #55a334;
+}
+
 .mobileFilterBtn {
   display: none;
 }
 
+.filterModalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px 0 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filterModalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterModalInput {
+  height: 40px;
+  width: calc(100% - 110px);
+}
+
+.mobileSearchBtnContainer {
+  padding: 18px 0 8px;
+}
+
+.mobileSearchBtn {
+  width: 100%;
+}
+
 .labelLarge {
   font-size: 22px;
+  color: #5a5a5a;
+}
+
+.labelMedium {
+  font-size: 16px;
   color: #5a5a5a;
 }
 
@@ -216,6 +254,10 @@
     background-color: #1d1d1d;
     border: 1px solid #363636;
     border-radius: 4px;
+  }
+
+  .mobileFilterBtn.filtered {
+    background-color: #55a334;
   }
 
   .mobileFilterIcon {

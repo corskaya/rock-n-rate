@@ -17,6 +17,7 @@ const Artists: React.FC = () => {
     artists,
     errorMessage,
     showFilterModal,
+    isFiltered,
   } = useSelector((state: RootState) => state.artists);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -33,7 +34,7 @@ const Artists: React.FC = () => {
           <h3 className={styles.listHeading}>Rock'n Rate Artists</h3>
           <div className={styles.mobileFilterBtnContainer}>
             <button 
-              className={styles.mobileFilterBtn}
+              className={`${styles.mobileFilterBtn} ${isFiltered ? styles.filtered : ""}`}
               onClick={() => handleShowFilterModal(true)}
             >
               <FilterOutlined className={styles.mobileFilterIcon} />
