@@ -123,6 +123,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
                       onMouseEnter={() => handlePointHover(point)}
                       onMouseLeave={handlePointLeave}
                       onClick={() => handleSelectPoint(point)}
+                      onTouchStart={() => handleSelectPoint(point)}
                     />
                   ) : (
                     <StarFilled
@@ -131,6 +132,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
                       onMouseEnter={() => handlePointHover(point)}
                       onMouseLeave={handlePointLeave}
                       onClick={() => handleSelectPoint(point)}
+                      onTouchStart={() => handleSelectPoint(point)}
                     />
                   )
                 )}
