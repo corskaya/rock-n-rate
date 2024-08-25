@@ -98,6 +98,7 @@ const genres: Genre[] = [
   Genre.Powerviolence,
   Genre.ProgressiveMetal,
   Genre.ProgressiveRock,
+  Genre.Psychedelia,
   Genre.PsychedelicRock,
   Genre.Psychobilly,
   Genre.PunkRock,

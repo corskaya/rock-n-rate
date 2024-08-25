@@ -96,6 +96,7 @@ enum Genre {
   Powerviolence = 'Powerviolence',
   ProgressiveMetal = 'Progressive metal',
   ProgressiveRock = 'Progressive rock',
+  Psychedelia = 'Psychedelia',
   PsychedelicRock = 'Psychedelic rock',
   Psychobilly = 'Psychobilly',
   PunkRock = 'Punk rock',
