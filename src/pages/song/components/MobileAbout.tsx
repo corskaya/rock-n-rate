@@ -10,7 +10,9 @@ type Props = {
 };
 
 const MobileAbout: React.FC<Props> = ({ song }) => {
-  const showAboutModal = useSelector((state: RootState) => state.song.showAboutModal);
+  const showAboutModal = useSelector(
+    (state: RootState) => state.song.showAboutModal
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const handleShowAboutModal = (show: boolean) => {
@@ -19,18 +21,24 @@ const MobileAbout: React.FC<Props> = ({ song }) => {
 
   return (
     <>
-      <div
-        className={styles.mobileAboutContainer}
-        onClick={() => handleShowAboutModal(true)}
-      >
-        <h1 className={`${styles.aboutHeadingMobile} ${styles.textShadow}`}>About</h1>
-        <p className={styles.aboutTextMobile}>{song.about}</p>
-      </div>
-      <AboutModal
-        show={showAboutModal}
-        onClose={() => handleShowAboutModal(false)}
-        text={song.about || ""}
-      />
+      {song.about && (
+        <>
+          <div
+            className={styles.mobileAboutContainer}
+            onClick={() => handleShowAboutModal(true)}
+          >
+            <h1 className={`${styles.aboutHeadingMobile} ${styles.textShadow}`}>
+              About
+            </h1>
+            <p className={styles.aboutTextMobile}>{song.about}</p>
+          </div>
+          <AboutModal
+            show={showAboutModal}
+            onClose={() => handleShowAboutModal(false)}
+            text={song.about || ""}
+          />
+        </>
+      )}
     </>
   );
 };
