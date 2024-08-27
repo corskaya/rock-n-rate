@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
 import { get, post, del, patch } from "../../utils/network";
-import { CommentRequest, CommentsResponse } from "./types";
+import { CommentRequest, CommentsResponse, SongOverview } from "./types";
 import Song from "../../types/song";
 import Rating from "../../types/rating";
 import ToastStatus from "../../types/toast";
@@ -18,6 +18,11 @@ export type SongState = {
   similarSongsRejected: boolean;
   similarSongs?: Song[];
   similarSongsErrorMessage?: string;
+  overviewPending: boolean;
+  overviewFulfilled: boolean;
+  overviewRejected: boolean;
+  overview?: SongOverview;
+  overviewErrorMessage?: string;
   ratingsPending: boolean;
   ratingsFulfilled: boolean;
   ratingsRejected: boolean;
@@ -55,6 +60,9 @@ const initialState: SongState = {
   similarSongsFulfilled: false,
   similarSongsRejected: false,
   similarSongs: [],
+  overviewPending: false,
+  overviewFulfilled: false,
+  overviewRejected: false,
   ratingsPending: false,
   ratingsFulfilled: false,
   ratingsRejected: false,
@@ -105,6 +113,27 @@ export const getSimilarSongs = createAsyncThunk(
   async (id: string, thunkAPI) => {
     try {
       const { data, status } = await get(`/song/similarSongs/${id}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const getOverview = createAsyncThunk(
+  "songs/getOverview",
+  async (id: string, thunkAPI) => {
+    try {
+      const { data, status } = await get(`/song/overview/${id}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -344,6 +373,23 @@ const songReducer = createSlice({
         state.similarSongsPending = false;
         state.similarSongsRejected = true;
         state.similarSongsErrorMessage = payload.message;
+      })
+      .addCase(getOverview.pending, (state) => {
+        state.overviewPending = true;
+        state.overviewRejected = false;
+        state.overview = undefined;
+      })
+      .addCase(getOverview.fulfilled, (state, { payload }) => {
+        state.overviewPending = false;
+        state.overviewRejected = false;
+        state.overviewFulfilled = true;
+        state.overview = payload.overview;
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(getOverview.rejected, (state, { payload }: { payload: any }) => {
+        state.overviewPending = false;
+        state.overviewRejected = true;
+        state.overviewErrorMessage = payload.message;
       })
       .addCase(getRatings.pending, (state) => {
         state.ratingsPending = true;

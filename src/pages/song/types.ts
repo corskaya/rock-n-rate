@@ -10,3 +10,20 @@ export type CommentRequest = {
   topicId: string;
   content: string;
 };
+
+export type SongOverview = {
+  artist: {
+    name: string;
+    _id: string;
+  };
+  album: {
+    name: string;
+    _id: string;
+  };
+  ratingCount: number;
+  releaseDate: string;
+  addedByUser: {
+    username: string;
+    avatar?: string;
+  };
+};

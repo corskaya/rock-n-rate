@@ -10,6 +10,7 @@ import MobileAbout from "./components/MobileAbout";
 import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
 import Comments from "./components/Comments";
+import Overview from "./components/Overview";
 import styles from "./styles.module.css";
 
 const Song: React.FC = () => {
@@ -38,6 +39,7 @@ const Song: React.FC = () => {
             <MobileAbout song={song} />
             <div className={styles.songWebReviewContainer}>
               <Comments />
+              <Overview />
             </div>
           </>
         )}

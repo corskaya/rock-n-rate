@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
 import { get, post, del, patch } from "../../utils/network";
-import { CommentRequest, CommentsResponse } from "./types";
+import { ArtistOverview, CommentRequest, CommentsResponse } from "./types";
 import Artist from "../../types/artist";
 import Rating from "../../types/rating";
 import ToastStatus from "../../types/toast";
@@ -18,6 +18,11 @@ export type ArtistState = {
   similarArtistsRejected: boolean;
   similarArtists?: Artist[];
   similarArtistsErrorMessage?: string;
+  overviewPending: boolean;
+  overviewFulfilled: boolean;
+  overviewRejected: boolean;
+  overview?: ArtistOverview;
+  overviewErrorMessage?: string;
   ratingsPending: boolean;
   ratingsFulfilled: boolean;
   ratingsRejected: boolean;
@@ -55,6 +60,9 @@ const initialState: ArtistState = {
   similarArtistsFulfilled: false,
   similarArtistsRejected: false,
   similarArtists: [],
+  overviewPending: false,
+  overviewFulfilled: false,
+  overviewRejected: false,
   ratingsPending: false,
   ratingsFulfilled: false,
   ratingsRejected: false,
@@ -105,6 +113,27 @@ export const getSimilarArtists = createAsyncThunk(
   async (id: string, thunkAPI) => {
     try {
       const { data, status } = await get(`/artist/similarArtists/${id}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const getOverview = createAsyncThunk(
+  "artists/getOverview",
+  async (id: string, thunkAPI) => {
+    try {
+      const { data, status } = await get(`/artist/overview/${id}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -344,6 +373,23 @@ const artistReducer = createSlice({
         state.similarArtistsPending = false;
         state.similarArtistsRejected = true;
         state.similarArtistsErrorMessage = payload.message;
+      })
+      .addCase(getOverview.pending, (state) => {
+        state.overviewPending = true;
+        state.overviewRejected = false;
+        state.overview = undefined;
+      })
+      .addCase(getOverview.fulfilled, (state, { payload }) => {
+        state.overviewPending = false;
+        state.overviewRejected = false;
+        state.overviewFulfilled = true;
+        state.overview = payload.overview;
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(getOverview.rejected, (state, { payload }: { payload: any }) => {
+        state.overviewPending = false;
+        state.overviewRejected = true;
+        state.overviewErrorMessage = payload.message;
       })
       .addCase(getRatings.pending, (state) => {
         state.ratingsPending = true;
