@@ -43,20 +43,20 @@ const Overview: React.FC = () => {
                   className={styles.overviewBoxLink}
                   to={`/artist/${overview.artist._id}`}
                 >
-                  <span className={styles.overviewBoxText}>
+                  <div className={styles.overviewBoxText}>
                     {overview.artist.name}
-                  </span>
+                  </div>
                 </Link>
               </div>
               <div className={styles.overviewInnerBox}>
                 <MusicNote className={styles.overviewBoxIcon} />
-                <span className={styles.overviewBoxText}>{`${overview.songCount} Songs`}</span>
+                <div className={styles.overviewBoxText}>{`${overview.songCount} Songs`}</div>
               </div>
             </div>
             <div className={styles.overviewOuterBox}>
               <div className={styles.overviewInnerBox}>
                 <CalendarMonth className={styles.overviewBoxIcon} />
-                <span className={styles.overviewBoxText}>{dayjs(overview.releaseDate).format("DD.MM.YYYY")}</span>
+                <div className={styles.overviewBoxText}>{dayjs(overview.releaseDate).format("DD.MM.YYYY")}</div>
               </div>
               <div className={styles.overviewInnerBox}>
                 <AddTask className={styles.overviewBoxIcon} />
@@ -64,16 +64,16 @@ const Overview: React.FC = () => {
                   className={styles.overviewBoxLink}
                   to={`/user/${overview.addedByUser.username}`}
                 >
-                  <span className={styles.overviewBoxText}>
+                  <div className={styles.overviewBoxText}>
                     {overview.addedByUser.username}
-                  </span>
+                  </div>
                 </Link>
               </div>
             </div>
             <div className={styles.overviewOuterBox}>
               <div className={styles.overviewInnerBox}>
                 <Star className={styles.overviewBoxIcon} />
-                <span className={styles.overviewBoxText}>{`${overview.ratingCount} Ratings`}</span>
+                <div className={styles.overviewBoxText}>{`${overview.ratingCount} Ratings`}</div>
               </div>
             </div>
           </div>

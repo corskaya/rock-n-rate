@@ -422,13 +422,14 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  min-width: 0;
 }
 
 .commentsHeader {
   display: flex;
   align-items: center;
   column-gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .commentIcon {
@@ -602,13 +603,14 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  min-width: 0;
 }
 
 .overviewHeader {
   display: flex;
   align-items: center;
   column-gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .overviewIcon {
@@ -656,14 +658,15 @@
 }
 
 .overviewBoxText {
-  display: block;
   font-size: 0.95em;
   letter-spacing: -0.02em;
   color: #919191;
-  max-width: calc(100% - 28px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: 24px;
+  width: 100%;
+  box-sizing: border-box;
   transition: 0.2s;
 }
 
@@ -835,10 +838,15 @@
 
   .overview {
     flex-wrap: wrap;
+    padding: 8px 28px;
   }
 
   .overviewOuterBox {
     flex: auto;
+  }
+
+  .overviewOuterBox:nth-child(1),
+  .overviewOuterBox:nth-child(2) {
     max-width: calc(50% - 12px);
   }
 
