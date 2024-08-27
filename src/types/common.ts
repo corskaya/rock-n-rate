@@ -15,3 +15,9 @@ export enum Topic {
   Album = "Album",
   Song = "Song"
 }
+
+export type Social = {
+  spotify?: string;
+  youtube?: string;
+  instagram?: string;
+};

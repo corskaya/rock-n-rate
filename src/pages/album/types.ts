@@ -10,3 +10,17 @@ export type CommentRequest = {
   topicId: string;
   content: string;
 };
+
+export type AlbumOverview = {
+  artist: {
+    name: string;
+    _id: string;
+  };
+  songCount: number;
+  ratingCount: number;
+  releaseDate: string;
+  addedByUser: {
+    username: string;
+    avatar?: string;
+  };
+};

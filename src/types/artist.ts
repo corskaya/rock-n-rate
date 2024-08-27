@@ -1,3 +1,4 @@
+import { Social } from "./common";
 import Genre from "./genre";
 
 type Artist = {
@@ -11,6 +12,8 @@ type Artist = {
   foundationYear: number;
   image: string;
   ratingOfRelevantUser?: number;
+  country: string;
+  social?: Social;
   createdAt: string;
   updatedAt: string;
 };
