@@ -10,7 +10,7 @@ import { getOverview } from "../slice";
 import styles from "../styles.module.css";
 
 const Overview: React.FC = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const {
     overviewPending,
     overviewFulfilled,
@@ -21,8 +21,8 @@ const Overview: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getOverview(id!));
-  }, [dispatch, id]);
+    dispatch(getOverview(slug!));
+  }, [dispatch, slug]);
 
   return (
     <div className={styles.overviewContainer}>
@@ -41,7 +41,7 @@ const Overview: React.FC = () => {
                 <RecordVoiceOver className={styles.overviewBoxIcon} />
                 <Link 
                   className={styles.overviewBoxLink}
-                  to={`/artist/${overview.artist._id}`}
+                  to={`/artist/${overview.artist.slug}`}
                 >
                   <div className={styles.overviewBoxText}>
                     {overview.artist.name}
@@ -52,7 +52,7 @@ const Overview: React.FC = () => {
                 <Album className={styles.overviewBoxIcon} />
                 <Link 
                   className={styles.overviewBoxLink}
-                  to={`/album/${overview.album._id}`}
+                  to={`/album/${overview.album.slug}`}
                 >
                   <div className={styles.overviewBoxText}>
                     {overview.album.name}

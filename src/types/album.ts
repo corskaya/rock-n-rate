@@ -2,12 +2,14 @@ import Genre from "./genre";
 
 type Album = {
   _id: string;
+  slug: string;
   name: string;
   rating: number;
   ratingCount: number;
   about?: string;
   genres: Genre[];
   artistRefObjectId: string;
+  artistRefSlug: string;
   artistRefName: string;
   isConfirmed: boolean;
   isComplete: boolean;

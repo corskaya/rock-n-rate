@@ -11,7 +11,7 @@ import ReactCountryFlag from "react-country-flag";
 import { Link } from "react-router-dom";
 
 const Overview: React.FC = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const {
     overviewPending,
     overviewFulfilled,
@@ -22,8 +22,8 @@ const Overview: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getOverview(id!));
-  }, [dispatch, id]);
+    dispatch(getOverview(slug!));
+  }, [dispatch, slug]);
 
   return (
     <div className={styles.overviewContainer}>

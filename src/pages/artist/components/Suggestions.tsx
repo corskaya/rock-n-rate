@@ -22,7 +22,10 @@ const Suggestions: React.FC = () => {
       {similarArtistsFulfilled && similarArtists && (
         <div className={styles.suggestions}>
           {similarArtists.map((artist) => (
-            <Link to={`/artist/${artist._id}`} key={artist._id}>
+            <Link 
+              to={`/artist/${artist.slug}`} 
+              key={artist._id}
+            >
               <Tooltip content={artist.name}>
                 <div className={styles.suggestionImageContainer}>
                   <img

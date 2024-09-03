@@ -26,7 +26,7 @@ import styles from "../styles.module.css";
 
 const Comments: React.FC = () => {
   const [commentValue, setCommentValue] = useState("");
-  const { id } = useParams();
+  const { slug } = useParams();
   const {
     commentsPending,
     commentsFulfilled,
@@ -60,7 +60,7 @@ const Comments: React.FC = () => {
     dispatch(
       commentArtist({
         topic: Topic.Artist,
-        topicId: id!,
+        topicSlug: slug!,
         content: commentValue,
       })
     );
@@ -120,8 +120,8 @@ const Comments: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getComments(id!));
-  }, [dispatch, id]);
+    dispatch(getComments(slug!));
+  }, [dispatch, slug]);
 
   useEffect(() => {
     if (commentArtistFulfilled) {

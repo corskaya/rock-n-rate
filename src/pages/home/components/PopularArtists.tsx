@@ -64,7 +64,7 @@ const PopularArtists: React.FC = () => {
                   key={artist._id}
                   className={styles.popularArtistsCardContainer}
                 >
-                  <Link to={`/artist/${artist._id}`}>
+                  <Link to={`/artist/${artist.slug}`}>
                     <Card
                       className={styles.artistCard}
                       imageUrl={artist.image}

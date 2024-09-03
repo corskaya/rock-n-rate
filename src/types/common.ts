@@ -3,7 +3,7 @@ export type ErrorPayload = {
 };
 
 export type CommonTopic = {
-  _id: string;
+  slug: string;
   name: string;
   image: string;
   year: number;

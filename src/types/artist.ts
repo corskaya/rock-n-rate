@@ -3,6 +3,7 @@ import Genre from "./genre";
 
 type Artist = {
   _id: string;
+  slug: string;
   name: string;
   rating: number;
   ratingCount: number;

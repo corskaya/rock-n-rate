@@ -14,7 +14,7 @@ import Overview from "./components/Overview";
 import styles from "./styles.module.css";
 
 const Artist: React.FC = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const {
     artistPending,
     artistRejected,
@@ -25,9 +25,9 @@ const Artist: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getArtist(id!));
-    dispatch(getSimilarArtists(id!));
-  }, [dispatch, id]);
+    dispatch(getArtist(slug!));
+    dispatch(getSimilarArtists(slug!));
+  }, [dispatch, slug]);
 
   return (
     <div className={styles.background}>
