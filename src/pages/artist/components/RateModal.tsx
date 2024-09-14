@@ -63,11 +63,11 @@ const RateModal: React.FC<Props> = ({ show, onClose, artist }) => {
       navigate("/login");
       return;
     }
-    dispatch(rateArtist({ id: artist._id, rating: selectedPoint }));
+    dispatch(rateArtist({ slug: artist.slug, rating: selectedPoint }));
   };
 
   const handleRemoveRating = () => {
-    dispatch(removeRating(artist._id));
+    dispatch(removeRating(artist.slug));
   };
 
   useEffect(() => {

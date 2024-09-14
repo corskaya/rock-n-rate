@@ -52,7 +52,7 @@ const PopularSongs: React.FC = () => {
                   className={styles.popularSongsCardContainer}
                 >
                   <Link
-                    to={`/song/${song._id}`}
+                    to={`/song/${song.slug}`}
                     className={styles.popularSongsCardLink}
                   >
                     <SongCard song={song} className={styles.songCard} />

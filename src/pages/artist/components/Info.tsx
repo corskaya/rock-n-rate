@@ -20,7 +20,7 @@ const Info: React.FC<Props> = ({ artist }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleShowRatingsModal = (show: boolean) => {
-    dispatch(getRatings(artist._id));
+    dispatch(getRatings(artist.slug));
     dispatch(setShowRatingsModal(show));
   };
 

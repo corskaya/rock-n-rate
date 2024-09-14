@@ -14,8 +14,8 @@ const Visuals: React.FC<Props> = ({ album }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const handleViewArtist = (artistId: string) => {
-    navigate(`/artist/${artistId}`);
+  const handleViewArtist = (artistSlug: string) => {
+    navigate(`/artist/${artistSlug}`);
   };
 
   const handleViewSongs = () => {
@@ -30,7 +30,7 @@ const Visuals: React.FC<Props> = ({ album }) => {
       </div>
       <Button
         className={styles.visualButton}
-        onClick={() => handleViewArtist(album.artistRefObjectId)}
+        onClick={() => handleViewArtist(album.artistRefSlug)}
       >
         View Artist
       </Button>

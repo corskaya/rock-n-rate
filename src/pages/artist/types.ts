@@ -8,7 +8,7 @@ export type CommentsResponse = {
 
 export type CommentRequest = {
   topic: Topic;
-  topicId: string;
+  topicSlug: string;
   content: string;
 };
 

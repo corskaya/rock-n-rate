@@ -52,7 +52,7 @@ const PopularAlbums: React.FC = () => {
                   key={album._id}
                   className={styles.popularAlbumsCardContainer}
                 >
-                  <Link to={`/album/${album._id}`}>
+                  <Link to={`/album/${album.slug}`}>
                     <Card
                       className={styles.albumCard}
                       imageUrl={album.image}
@@ -69,7 +69,7 @@ const PopularAlbums: React.FC = () => {
                     </div>
                   </Link>
                   <Link
-                    to={`/album/${album._id}`}
+                    to={`/album/${album.slug}`}
                     className={styles.popularAlbumsCardLabelLink}
                   >
                     <Label className={styles.popularAlbumsCardLabel}>

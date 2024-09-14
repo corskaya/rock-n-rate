@@ -14,15 +14,15 @@ import Overview from "./components/Overview";
 import styles from "./styles.module.css";
 
 const Song: React.FC = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const { songPending, songRejected, songFulfilled, song, songErrorMessage } =
     useSelector((state: RootState) => state.song);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getSong(id!));
-    dispatch(getSimilarSongs(id!));
-  }, [dispatch, id]);
+    dispatch(getSong(slug!));
+    dispatch(getSimilarSongs(slug!));
+  }, [dispatch, slug]);
 
   return (
     <div className={styles.background}>

@@ -14,7 +14,7 @@ import Overview from "./components/Overview";
 import styles from "./styles.module.css";
 
 const Album: React.FC = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const {
     albumPending,
     albumRejected,
@@ -25,9 +25,9 @@ const Album: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getAlbum(id!));
-    dispatch(getSimilarAlbums(id!));
-  }, [dispatch, id]);
+    dispatch(getAlbum(slug!));
+    dispatch(getSimilarAlbums(slug!));
+  }, [dispatch, slug]);
 
   return (
     <div className={styles.background}>

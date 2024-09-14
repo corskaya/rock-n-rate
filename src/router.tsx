@@ -51,9 +51,9 @@ const Router: React.FC = () => {
         <Route path="/search" element={renderPage(<Search />)} />
         <Route path="/about" element={renderPage(<About />)} />
         <Route path="/user/:username" element={renderPage(<User />)} />
-        <Route path="/artist/:id" element={renderPage(<Artist />)} />
-        <Route path="/album/:id" element={renderPage(<Album />)} />
-        <Route path="/song/:id" element={renderPage(<Song />)} />
+        <Route path="/artist/:slug" element={renderPage(<Artist />)} />
+        <Route path="/album/:slug" element={renderPage(<Album />)} />
+        <Route path="/song/:slug" element={renderPage(<Song />)} />
         <Route path="*" element={renderPage(<NotFound />)} />
       </Route>
     </Routes>

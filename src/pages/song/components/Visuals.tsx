@@ -10,12 +10,12 @@ type Props = {
 const Visuals: React.FC<Props> = ({ song }) => {
   const navigate = useNavigate();
 
-  const handleViewArtist = (artistId: string) => {
-    navigate(`/artist/${artistId}`);
+  const handleViewArtist = (artistSlug: string) => {
+    navigate(`/artist/${artistSlug}`);
   };
 
-  const handleViewAlbum = (albumId: string) => {
-    navigate(`/album/${albumId}`);
+  const handleViewAlbum = (albumSlug: string) => {
+    navigate(`/album/${albumSlug}`);
   };
 
   return (
@@ -25,14 +25,14 @@ const Visuals: React.FC<Props> = ({ song }) => {
       </div>
       <Button
         className={styles.visualButton}
-        onClick={() => handleViewArtist(song.artistRefObjectId)}
+        onClick={() => handleViewArtist(song.artistRefSlug)}
       >
         View Artist
       </Button>
       <Button
         className={styles.visualButton}
         color="info"
-        onClick={() => handleViewAlbum(song.albumRefObjectId)}
+        onClick={() => handleViewAlbum(song.albumRefSlug)}
       >
         View Album
       </Button>

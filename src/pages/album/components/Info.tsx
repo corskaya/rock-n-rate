@@ -21,7 +21,7 @@ const Info: React.FC<Props> = ({ album }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleShowRatingsModal = (show: boolean) => {
-    dispatch(getRatings(album._id));
+    dispatch(getRatings(album.slug));
     dispatch(setShowRatingsModal(show));
   };
 

@@ -23,7 +23,7 @@ const Suggestions: React.FC = () => {
         <div className={styles.suggestions}>
           {similarSongs.map((song) => (
             <Link 
-              to={`/song/${song._id}`} 
+              to={`/song/${song.slug}`} 
               key={song._id}
               className={styles.songCardLink}
             >

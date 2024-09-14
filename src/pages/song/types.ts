@@ -7,18 +7,18 @@ export type CommentsResponse = {
 
 export type CommentRequest = {
   topic: Topic;
-  topicId: string;
+  topicSlug: string;
   content: string;
 };
 
 export type SongOverview = {
   artist: {
     name: string;
-    _id: string;
+    slug: string;
   };
   album: {
     name: string;
-    _id: string;
+    slug: string;
   };
   ratingCount: number;
   releaseDate: string;

@@ -12,7 +12,7 @@ const List: React.FC<Props> = ({ artists }) => {
     <div className={styles.cardsContainer}>
       {artists.map((artist) => (
         <div key={artist._id} className={styles.cardContainer}>
-          <Link to={`/artist/${artist._id}`}>
+          <Link to={`/artist/${artist.slug}`}>
             <Card
               className={styles.card}
               imageUrl={artist.image}
@@ -27,7 +27,7 @@ const List: React.FC<Props> = ({ artists }) => {
               />
             </div>
           </Link>
-          <Link to={`/artist/${artist._id}`} className={styles.cardLabelLink}>
+          <Link to={`/artist/${artist.slug}`} className={styles.cardLabelLink}>
             <Label className={styles.cardLabel}>{artist.name}</Label>
           </Link>
           <Label className={styles.labelSmall}>{artist.foundationYear}</Label>

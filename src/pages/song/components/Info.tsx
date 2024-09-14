@@ -21,7 +21,7 @@ const Info: React.FC<Props> = ({ song }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleShowRatingsModal = (show: boolean) => {
-    dispatch(getRatings(song._id));
+    dispatch(getRatings(song.slug));
     dispatch(setShowRatingsModal(show));
   };
 

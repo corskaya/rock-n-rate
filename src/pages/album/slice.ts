@@ -89,9 +89,9 @@ const initialState: AlbumState = {
 
 export const getAlbum = createAsyncThunk(
   "albums/getAlbum",
-  async (id: string, thunkAPI) => {
+  async (slug: string, thunkAPI) => {
     try {
-      const { data, status } = await get(`/album/${id}`);
+      const { data, status } = await get(`/album/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -110,9 +110,9 @@ export const getAlbum = createAsyncThunk(
 
 export const getSimilarAlbums = createAsyncThunk(
   "albums/getSimilarAlbums",
-  async (id: string, thunkAPI) => {
+  async (slug: string, thunkAPI) => {
     try {
-      const { data, status } = await get(`/album/similarAlbums/${id}`);
+      const { data, status } = await get(`/album/similarAlbums/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -131,9 +131,9 @@ export const getSimilarAlbums = createAsyncThunk(
 
 export const getOverview = createAsyncThunk(
   "albums/getOverview",
-  async (id: string, thunkAPI) => {
+  async (slug: string, thunkAPI) => {
     try {
-      const { data, status } = await get(`/album/overview/${id}`);
+      const { data, status } = await get(`/album/overview/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -152,9 +152,9 @@ export const getOverview = createAsyncThunk(
 
 export const getRatings = createAsyncThunk(
   "albums/getRatings",
-  async (id: string, thunkAPI) => {
+  async (slug: string, thunkAPI) => {
     try {
-      const { data, status } = await get(`/album/ratings/${id}`);
+      const { data, status } = await get(`/album/ratings/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -173,9 +173,9 @@ export const getRatings = createAsyncThunk(
 
 export const rateAlbum = createAsyncThunk(
   "albums/rateAlbum",
-  async ({ id, rating }: { id: string, rating: number }, thunkAPI) => {
+  async ({ slug, rating }: { slug: string, rating: number }, thunkAPI) => {
     try {
-      const { data, status } = await post(`/album/rate/${id}`, { rating });
+      const { data, status } = await post(`/album/rate/${slug}`, { rating });
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -194,9 +194,9 @@ export const rateAlbum = createAsyncThunk(
 
 export const removeRating = createAsyncThunk(
   "albums/removeRating",
-  async (id: string, thunkAPI) => {
+  async (slug: string, thunkAPI) => {
     try {
-      const { data, status } = await del(`/album/removeRating/${id}`);
+      const { data, status } = await del(`/album/removeRating/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -215,9 +215,9 @@ export const removeRating = createAsyncThunk(
 
 export const getComments = createAsyncThunk(
   "albums/getComments",
-  async (id: string, thunkAPI) => {
+  async (topicSlug: string, thunkAPI) => {
     try {
-      const { data, status } = await get(`/comment/album/${id}`);
+      const { data, status } = await get(`/comment/album/${topicSlug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
