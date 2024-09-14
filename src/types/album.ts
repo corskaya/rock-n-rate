@@ -8,7 +8,6 @@ type Album = {
   ratingCount: number;
   about?: string;
   genres: Genre[];
-  artistRefObjectId: string;
   artistRefSlug: string;
   artistRefName: string;
   isConfirmed: boolean;

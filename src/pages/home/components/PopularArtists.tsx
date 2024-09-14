@@ -81,7 +81,7 @@ const PopularArtists: React.FC = () => {
                     </div>
                   </Link>
                   <Link
-                    to={`/artist/${artist._id}`}
+                    to={`/artist/${artist.slug}`}
                     className={styles.popularArtistsCardLabelLink}
                   >
                     <Label className={styles.popularArtistsCardLabel}>

@@ -13,7 +13,7 @@ const List: React.FC<Props> = ({ albums }) => {
     <div className={styles.cardsContainer}>
       {albums.map((album) => (
         <div key={album._id} className={styles.cardContainer}>
-          <Link to={`/album/${album._id}`}>
+          <Link to={`/album/${album.slug}`}>
             <Card
               className={styles.card}
               imageUrl={album.image}
@@ -29,7 +29,7 @@ const List: React.FC<Props> = ({ albums }) => {
               />
             </div>
           </Link>
-          <Link to={`/album/${album._id}`} className={styles.cardLabelLink}>
+          <Link to={`/album/${album.slug}`} className={styles.cardLabelLink}>
             <Label className={styles.cardLabel}>{album.name}</Label>
           </Link>
           <Label className={styles.labelSmall}>

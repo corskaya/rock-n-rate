@@ -8,10 +8,8 @@ type Song = {
   ratingCount: number;
   about?: string;
   genres: Genre[];
-  artistRefObjectId: string;
   artistRefSlug: string;
   artistRefName: string;
-  albumRefObjectId: string;
   albumRefSlug: string;
   albumRefName: string;
   isConfirmed: boolean;

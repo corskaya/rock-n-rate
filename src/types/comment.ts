@@ -5,7 +5,7 @@ type Comment = {
   username?: string;
   avatar?: string;
   topic: Topic;
-  topicId: string;
+  topicSlug: string;
   userId: string;
   content: string;
   likes: string[];
