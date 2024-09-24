@@ -66,8 +66,9 @@ const FilterModal: React.FC<Props> = ({ show, onClose }) => {
       <Form onFinish={onSearch}>
         <div className={styles.filterModalContainer}>
           <div className={styles.filterModalRow}>
-            <Label className={styles.labelMedium}>Genre:</Label>
+            <Label className={styles.labelSmall}>Genre:</Label>
             <Select
+              className={styles.filterModalSelect}
               value={filters.genre}
               options={genres.map((genre) => ({
                 label: genre,
@@ -83,8 +84,9 @@ const FilterModal: React.FC<Props> = ({ show, onClose }) => {
             />
           </div>
           <div className={styles.filterModalRow}>
-            <Label className={styles.labelMedium}>Rating:</Label>
+            <Label className={styles.labelSmall}>Rating:</Label>
             <Select
+              className={styles.filterModalSelect}
               value={filters.rating}
               options={[
                 { label: "All", value: 0 },
@@ -104,8 +106,9 @@ const FilterModal: React.FC<Props> = ({ show, onClose }) => {
             />
           </div>
           <div className={styles.filterModalRow}>
-            <Label className={styles.labelMedium}>Year:</Label>
+            <Label className={styles.labelSmall}>Year:</Label>
             <Select
+              className={styles.filterModalSelect}
               value={filters.year}
               options={[
                 { label: "All", value: "All" },
@@ -123,8 +126,9 @@ const FilterModal: React.FC<Props> = ({ show, onClose }) => {
             />
           </div>
           <div className={styles.filterModalRow}>
-            <Label className={styles.labelMedium}>Order By:</Label>
+            <Label className={styles.labelSmall}>Order By:</Label>
             <Select
+              className={styles.filterModalSelect}
               value={filters.orderBy}
               options={[
                 { label: "Latest", value: "Latest" },
@@ -139,7 +143,7 @@ const FilterModal: React.FC<Props> = ({ show, onClose }) => {
             />
           </div>
           <div className={styles.filterModalRow}>
-            <Label className={styles.labelMedium}> Search Term: </Label>
+            <Label className={styles.labelSmall}> Search Term: </Label>
             <Input
               className={styles.filterModalInput}
               isControlled={true}
