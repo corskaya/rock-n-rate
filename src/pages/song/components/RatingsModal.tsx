@@ -62,7 +62,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, song }) => {
                     />
                   </div>
                   <div className={styles.modalRatingUsername}>
-                    {rating.isPrivate ? 'Private User' : rating.username}
+                    {rating.isPrivate ? 'Private Rating' : rating.username}
                   </div>
                 </div>
                 <div className={styles.modalRatingRatingContainer}>

@@ -71,6 +71,7 @@
 .filterModalInput {
   height: 40px;
   width: calc(100% - 95px);
+  font-size: 14px;
 }
 
 .mobileSearchBtnContainer {
