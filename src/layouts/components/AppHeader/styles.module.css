@@ -132,8 +132,27 @@
   display: none;
 }
 
-.navIcon {
-  font-size: 28px;
+#searchIcon {
+  font-size: 38px !important;
+}
+
+#artistIcon {
+  font-size: 36px !important;
+  margin-right: 2px;
+}
+
+#albumIcon {
+  font-size: 34px !important;
+  margin-right: -4px;
+}
+
+#songIcon {
+  font-size: 36px !important;
+  margin-right: -8px;
+}
+
+#userIcon {
+  font-size: 40px !important;
 }
 
 .searchResults {
@@ -238,7 +257,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1vw;
+    gap: 4px;
+    margin-bottom: -2px;
   }
 }
 
@@ -251,7 +271,21 @@
   .logo {
     width: 150px;
   }
-  .navIcon {
-    font-size: 24px;
+  #searchIcon {
+    font-size: 30px !important;
+  }
+  #artistIcon {
+    font-size: 27px !important;
+  }
+  #albumIcon {
+    font-size: 26px !important;
+    margin-right: -2px;
+  }
+  #songIcon {
+    font-size: 26px !important;
+    margin-right: -6px;
+  }
+  #userIcon {
+    font-size: 30px !important;
   }
 }

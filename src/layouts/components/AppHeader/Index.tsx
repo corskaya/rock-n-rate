@@ -1,13 +1,8 @@
 import { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-  InboxOutlined,
-  SearchOutlined,
-  SoundOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
+import { Search as SearchIcon, RecordVoiceOver, Album, MusicNote, Person } from '@mui/icons-material';
 import logo from "../../../assets/logo.png";
 import { RootState } from "../../../store";
 import Search from "./partials/Search";
@@ -45,23 +40,23 @@ const secondaryNavLinks = [
 
 const navIcons = [
   {
-    icon: <SearchOutlined className={styles.navIcon} />,
+    icon: <SearchIcon id={styles.searchIcon} />,
     path: "/search",
   },
   {
-    icon: <TeamOutlined className={styles.navIcon} />,
+    icon: <RecordVoiceOver id={styles.artistIcon} />,
     path: "/artists",
   },
   {
-    icon: <InboxOutlined className={styles.navIcon} />,
+    icon: <Album id={styles.albumIcon} />,
     path: "/albums",
   },
   {
-    icon: <SoundOutlined className={styles.navIcon} />,
+    icon: <MusicNote id={styles.songIcon} />,
     path: "/songs",
   },
   {
-    icon: <UserOutlined className={styles.navIcon} />,
+    icon: <Person id={styles.userIcon} />,
     path: "/user",
   },
 ];
