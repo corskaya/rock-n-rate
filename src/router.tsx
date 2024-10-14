@@ -19,7 +19,7 @@ import {
   Album,
   Song,
 } from "./pages/index";
-import { Layout, AppContent } from "./layouts";
+import { Layout } from "./layouts";
 import { Loading } from "./components/index";
 import { RootState } from "./store";
 
@@ -28,7 +28,7 @@ const Router: React.FC = () => {
 
   const renderPage = (component: ReactNode) => (
     <Suspense fallback={<Loading />}>
-      <AppContent page={component} />
+      {component}
     </Suspense>
   );
 

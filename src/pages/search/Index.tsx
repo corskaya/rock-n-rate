@@ -36,6 +36,13 @@ const Search: React.FC = () => {
     };
   }, [searchTerm, debouncedSearch]);
 
+  useEffect(() => {
+    const inputElement = document.querySelector(".search-input-mobile") as HTMLInputElement;
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTerm(e.target.value));
   };

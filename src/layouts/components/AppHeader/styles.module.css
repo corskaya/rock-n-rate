@@ -1,3 +1,8 @@
+:root {
+  --header-height-web: 58px;
+  --header-height-mobile: 48px;
+}
+
 .headerFix {
   position: fixed;
   top: 0;
@@ -11,7 +16,7 @@
   justify-content: space-evenly;
   align-items: center;
   background-color: #1d1d1d;
-  height: 58px;
+  height: var(--header-height-web);
   border-bottom: 1px solid #2d3030;
   padding-top: 1px;
 }
@@ -257,7 +262,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4px;
     margin-bottom: -2px;
   }
 }
@@ -265,7 +269,7 @@
 @media (max-width: 760px) {
   .headerContainer {
     justify-content: space-between;
-    height: 38px;
+    height: var(--header-height-mobile);
     padding: 0 10px;
   }
   .logo {
