@@ -71,7 +71,7 @@
 .filterModalInput {
   height: 40px;
   width: calc(100% - 95px);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .mobileSearchBtnContainer {
@@ -302,6 +302,10 @@
 }
 
 @media (max-width: 760px) {
+  .container {
+    margin-top: 4px;
+  }
+
   .cardsContainer {
     width: 90%;
     justify-content: space-evenly;
