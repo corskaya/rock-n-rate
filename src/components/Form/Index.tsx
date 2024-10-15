@@ -1,13 +1,14 @@
-import React, { ReactNode, useState } from "react";
+import React, { LegacyRef, ReactNode, useState } from "react";
 
 type Props = {
   children: ReactNode;
   className?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFinish: (formValues: Record<string, any>) => void;
+  formRef?: LegacyRef<HTMLFormElement>;
 };
 
-const Form: React.FC<Props> = ({ children, className, onFinish, ...rest }) => {
+const Form: React.FC<Props> = ({ children, className, onFinish, formRef, ...rest }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [formValues, setFormValues] = useState<Record<string, any>>({});
 
@@ -48,7 +49,7 @@ const Form: React.FC<Props> = ({ children, className, onFinish, ...rest }) => {
   };
 
   return (
-    <form className={`${className}`} onSubmit={handleSubmit} {...rest}>
+    <form ref={formRef} className={`${className}`} onSubmit={handleSubmit} {...rest}>
       {traverseChildren(children)}
     </form>
   );

@@ -28,7 +28,7 @@ const Search: React.FC = () => {
       if (searchTerm.length >= 3) {
         dispatch(getTopics({ searchTerm, limit: RESULT_LIMIT }));
       }
-    }, 500),
+    }, 600),
     [searchTerm, dispatch]
   );
 

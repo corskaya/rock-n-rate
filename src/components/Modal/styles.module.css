@@ -79,6 +79,11 @@
   justify-content: center;
 }
 
+.modalFooter {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 18px 0 8px;
+}
+
 @media (max-width: 760px) {
   .modalContent {
     width: 86%;
@@ -88,11 +93,15 @@
     display: none;
   }
 
+  .modalBodyContainer {
+    padding-top: 8px;
+  }
+
   .modalHeaderMobile {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin: 8px 0 8px;
+    margin-top: 8px;
     padding: 0 0 12px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }

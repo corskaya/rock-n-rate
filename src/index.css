@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&display=swap");
 
+:root {
+  --header-height-web: 58px;
+  --header-height-mobile: 48px;
+  --footer-height-web: 58px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -19,4 +25,11 @@ body.modal-open {
 ::-webkit-scrollbar-thumb {
   background: #919191;
   border-radius: 4px;
+}
+
+#loading-icon-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  padding-top: var(--header-height-web);
 }
