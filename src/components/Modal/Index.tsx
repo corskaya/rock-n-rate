@@ -9,9 +9,10 @@ type Props = {
   suffix?: ReactNode;
   centerBody?: boolean;
   children: ReactNode;
+  footer?: ReactNode;
 };
 
-const Modal: React.FC<Props> = ({ show, onClose = () => {}, title, suffix, centerBody = false, children }) => {
+const Modal: React.FC<Props> = ({ show, onClose = () => {}, title, suffix, centerBody = false, children, footer }) => {
 
   useEffect(() => {
     if (show) {
@@ -55,6 +56,11 @@ const Modal: React.FC<Props> = ({ show, onClose = () => {}, title, suffix, cente
           >
             <div>{children}</div>
           </div>
+          {footer && (
+            <div className={styles.modalFooter}>
+              {footer}
+            </div>
+          )}
           <div className={styles.rateModalCloseBtnContainerWeb}>
             <div className={styles.rateModalCloseBtnWeb} onClick={onClose}>
               <CloseOutlined className={styles.rateModalCloseIcon} />

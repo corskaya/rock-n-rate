@@ -25,7 +25,7 @@ const Search: React.FC = () => {
       if (searchTerm.length >= 3) {
         dispatch(getTopics({ searchTerm }));
       }
-    }, 500),
+    }, 600),
     [searchTerm, dispatch]
   );
 

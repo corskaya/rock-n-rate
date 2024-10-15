@@ -27,7 +27,13 @@ const Router: React.FC = () => {
   const token = useSelector((state: RootState) => state.login.token);
 
   const renderPage = (component: ReactNode) => (
-    <Suspense fallback={<Loading />}>
+    <Suspense
+      fallback={
+        <div id="loading-icon-container">
+          <Loading />
+        </div>
+      }
+    >
       {component}
     </Suspense>
   );

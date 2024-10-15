@@ -55,7 +55,6 @@
   flex-direction: column;
   gap: 24px;
   padding: 8px 0 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .filterModalRow {
@@ -72,10 +71,6 @@
   height: 40px;
   width: calc(100% - 95px);
   font-size: 13px;
-}
-
-.mobileSearchBtnContainer {
-  padding: 18px 0 8px;
 }
 
 .mobileSearchBtn {

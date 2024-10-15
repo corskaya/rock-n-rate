@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbums, goToPage, setFilters, setIsFiltered, setShowFilterModal } from "../slice";
 import { Button, Form, Input, Label, Modal, Select } from "../../../components";
@@ -16,6 +16,7 @@ type Props = {
 const FilterModal: React.FC<Props> = ({ show, onClose }) => {
   const { filters, page, isFiltered } = useSelector((state: RootState) => state.albums);
   const dispatch = useDispatch<AppDispatch>();
+  const formRef = useRef<HTMLFormElement | null>(null);
   const defaultFilters: AlbumFilter = {
     searchTerm: "",
     genre: Genre.All,
@@ -62,8 +63,16 @@ const FilterModal: React.FC<Props> = ({ show, onClose }) => {
         </span>
       )}
       onClose={onClose}
+      footer={
+        <Button 
+          className={styles.mobileSearchBtn}
+          onClick={() => formRef.current?.requestSubmit()}
+        >
+          Search
+        </Button>
+      }
     >
-      <Form onFinish={onSearch}>
+      <Form formRef={formRef} onFinish={onSearch}>
         <div className={styles.filterModalContainer}>
           <div className={styles.filterModalRow}>
             <Label className={styles.labelSmall}>Genre:</Label>
@@ -153,9 +162,6 @@ const FilterModal: React.FC<Props> = ({ show, onClose }) => {
               }
             />
           </div>
-        </div>
-        <div className={styles.mobileSearchBtnContainer}>
-          <Button className={styles.mobileSearchBtn}>Search</Button>
         </div>
       </Form>
     </Modal>
