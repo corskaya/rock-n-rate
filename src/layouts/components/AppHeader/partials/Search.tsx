@@ -83,9 +83,9 @@ const Search: React.FC = () => {
           {!topicsPending && topicsFulfilled && topics.length === 0 && (
             <div className={styles.searchResultNotFound}>No results found.</div>
           )}
-          {!topicsPending && topicsFulfilled && topics.map((topic) => (
+          {!topicsPending && topicsFulfilled && topics.map((topic, i) => (
             <Link
-              key={topic.slug}
+              key={i}
               className={styles.searchResultLink}
               to={`/${topic.type.toLowerCase()}/${topic.slug}`}
               onClick={handleLinkClick}
