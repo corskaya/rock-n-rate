@@ -6,6 +6,7 @@ import Artist from "../../types/artist";
 import Rating from "../../types/rating";
 import ToastStatus from "../../types/toast";
 import Comment from "../../types/comment";
+import Album from "../../types/album";
 
 export type ArtistState = {
   artistPending: boolean;
@@ -28,6 +29,11 @@ export type ArtistState = {
   ratingsRejected: boolean;
   ratings: Rating[];
   ratingsErrorMessage?: string;
+  albumsPending: boolean;
+  albumsFulfilled: boolean;
+  albumsRejected: boolean;
+  albums: Album[];
+  albumsErrorMessage?: string;
   rateArtistPending: boolean;
   rateArtistFulfilled: boolean;
   rateArtistRejected: boolean;
@@ -48,6 +54,7 @@ export type ArtistState = {
   removeCommentPending: boolean;
   showRateModal: boolean;
   showRatingsModal: boolean;
+  showAlbumsModal: boolean;
   showAboutModal: boolean;
   toastStatus: ToastStatus;
 };
@@ -67,6 +74,10 @@ const initialState: ArtistState = {
   ratingsFulfilled: false,
   ratingsRejected: false,
   ratings: [],
+  albumsPending: false,
+  albumsFulfilled: false,
+  albumsRejected: false,
+  albums: [],
   rateArtistPending: false,
   rateArtistFulfilled: false,
   rateArtistRejected: false,
@@ -83,6 +94,7 @@ const initialState: ArtistState = {
   removeCommentPending: false,
   showRateModal: false,
   showRatingsModal: false,
+  showAlbumsModal: false,
   showAboutModal: false,
   toastStatus: { show: false },
 };
@@ -155,6 +167,27 @@ export const getRatings = createAsyncThunk(
   async (slug: string, thunkAPI) => {
     try {
       const { data, status } = await get(`/artist/ratings/${slug}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const getAlbums = createAsyncThunk(
+  "artists/getAlbums",
+  async (slug: string, thunkAPI) => {
+    try {
+      const { data, status } = await get(`/artist/albums/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -328,6 +361,9 @@ const artistReducer = createSlice({
     setShowRatingsModal: (state, action: PayloadAction<boolean>) => {
       state.showRatingsModal = action.payload;
     },
+    setShowAlbumsModal: (state, action: PayloadAction<boolean>) => {
+      state.showAlbumsModal = action.payload;
+    },
     setShowAboutModal: (state, action: PayloadAction<boolean>) => {
       state.showAboutModal = action.payload;
     },
@@ -407,6 +443,23 @@ const artistReducer = createSlice({
         state.ratingsPending = false;
         state.ratingsRejected = true;
         state.ratingsErrorMessage = payload.message;
+      })
+      .addCase(getAlbums.pending, (state) => {
+        state.albumsPending = true;
+        state.albumsRejected = false;
+        state.albums = [];
+      })
+      .addCase(getAlbums.fulfilled, (state, { payload }) => {
+        state.albumsPending = false;
+        state.albumsRejected = false;
+        state.albumsFulfilled = true;
+        state.albums = payload.albums;
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(getAlbums.rejected, (state, { payload }: { payload: any }) => {
+        state.albumsPending = false;
+        state.albumsRejected = true;
+        state.albumsErrorMessage = payload.message;
       })
       .addCase(rateArtist.pending, (state) => {
         state.rateArtistPending = true;
@@ -520,6 +573,7 @@ const artistReducer = createSlice({
 export const { 
   setShowRateModal, 
   setShowRatingsModal, 
+  setShowAlbumsModal, 
   setShowAboutModal,
   setToastStatus, 
   setComments,

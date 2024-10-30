@@ -70,7 +70,8 @@
 .modalBodyContainer {
   min-height: 120px;
   max-height: 60vh;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .modalBodyCenter {
