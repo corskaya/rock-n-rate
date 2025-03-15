@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
 import { get, post, del, patch } from "../../utils/network";
-import { ArtistOverview, CommentRequest, CommentsResponse } from "./types";
+import { AlbumWithSongs, ArtistOverview, CommentRequest, CommentsResponse } from "./types";
 import Artist from "../../types/artist";
 import Rating from "../../types/rating";
 import ToastStatus from "../../types/toast";
@@ -34,6 +34,11 @@ export type ArtistState = {
   albumsRejected: boolean;
   albums: Album[];
   albumsErrorMessage?: string;
+  albumsWithSongsPending: boolean;
+  albumsWithSongsFulfilled: boolean;
+  albumsWithSongsRejected: boolean;
+  albumsWithSongs: AlbumWithSongs[];
+  albumsWithSongsErrorMessage?: string;
   rateArtistPending: boolean;
   rateArtistFulfilled: boolean;
   rateArtistRejected: boolean;
@@ -55,6 +60,7 @@ export type ArtistState = {
   showRateModal: boolean;
   showRatingsModal: boolean;
   showAlbumsModal: boolean;
+  showSongsModal: boolean;
   showAboutModal: boolean;
   toastStatus: ToastStatus;
 };
@@ -78,6 +84,10 @@ const initialState: ArtistState = {
   albumsFulfilled: false,
   albumsRejected: false,
   albums: [],
+  albumsWithSongsPending: false,
+  albumsWithSongsFulfilled: false,
+  albumsWithSongsRejected: false,
+  albumsWithSongs: [],
   rateArtistPending: false,
   rateArtistFulfilled: false,
   rateArtistRejected: false,
@@ -95,6 +105,7 @@ const initialState: ArtistState = {
   showRateModal: false,
   showRatingsModal: false,
   showAlbumsModal: false,
+  showSongsModal: false,
   showAboutModal: false,
   toastStatus: { show: false },
 };
@@ -188,6 +199,27 @@ export const getAlbums = createAsyncThunk(
   async (slug: string, thunkAPI) => {
     try {
       const { data, status } = await get(`/artist/albums/${slug}`);
+
+      if (status !== 200) {
+        return thunkAPI.rejectWithValue(data);
+      }
+
+      return data;
+    } catch (e) {
+      if (isAxiosError(e)) {
+        return e.response
+          ? thunkAPI.rejectWithValue(e.response.data)
+          : thunkAPI.rejectWithValue(e);
+      }
+    }
+  }
+);
+
+export const getAlbumsWithSongs = createAsyncThunk(
+  "artists/getAlbumsWithSongs",
+  async (slug: string, thunkAPI) => {
+    try {
+      const { data, status } = await get(`/artist/albumsWithSongs/${slug}`);
 
       if (status !== 200) {
         return thunkAPI.rejectWithValue(data);
@@ -364,6 +396,9 @@ const artistReducer = createSlice({
     setShowAlbumsModal: (state, action: PayloadAction<boolean>) => {
       state.showAlbumsModal = action.payload;
     },
+    setShowSongsModal: (state, action: PayloadAction<boolean>) => {
+      state.showSongsModal = action.payload;
+    },
     setShowAboutModal: (state, action: PayloadAction<boolean>) => {
       state.showAboutModal = action.payload;
     },
@@ -460,6 +495,23 @@ const artistReducer = createSlice({
         state.albumsPending = false;
         state.albumsRejected = true;
         state.albumsErrorMessage = payload.message;
+      })
+      .addCase(getAlbumsWithSongs.pending, (state) => {
+        state.albumsWithSongsPending = true;
+        state.albumsWithSongsRejected = false;
+        state.albumsWithSongs = [];
+      })
+      .addCase(getAlbumsWithSongs.fulfilled, (state, { payload }) => {
+        state.albumsWithSongsPending = false;
+        state.albumsWithSongsRejected = false;
+        state.albumsWithSongsFulfilled = true;
+        state.albumsWithSongs = payload.albumsWithSongs;
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .addCase(getAlbumsWithSongs.rejected, (state, { payload }: { payload: any }) => {
+        state.albumsWithSongsPending = false;
+        state.albumsWithSongsRejected = true;
+        state.albumsWithSongsErrorMessage = payload.message;
       })
       .addCase(rateArtist.pending, (state) => {
         state.rateArtistPending = true;
@@ -574,6 +626,7 @@ export const {
   setShowRateModal, 
   setShowRatingsModal, 
   setShowAlbumsModal, 
+  setShowSongsModal, 
   setShowAboutModal,
   setToastStatus, 
   setComments,

@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../components";
-import { setFilters as setSongFilters } from "../../songs/slice";
-import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../../../store";
-import { getAlbums, setShowAlbumsModal } from "../slice";
+import { getAlbums, getAlbumsWithSongs, setShowAlbumsModal, setShowSongsModal } from "../slice";
 import Artist from "../../../types/artist";
-import styles from "../styles.module.css";
 import AlbumsModal from "./AlbumsModal";
+import SongsModal from "./SongsModal";
+import styles from "../styles.module.css";
 
 type Props = {
   artist: Artist;
@@ -14,17 +13,17 @@ type Props = {
 
 const Visuals: React.FC<Props> = ({ artist }) => {
   const showAlbumsModal = useSelector((state: RootState) => state.artist.showAlbumsModal);
+  const showSongsModal = useSelector((state: RootState) => state.artist.showSongsModal);
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
 
   const handleShowAlbumsModal = (show: boolean) => {
     dispatch(getAlbums(artist.slug));
     dispatch(setShowAlbumsModal(show));
   };
 
-  const handleViewSongs = () => {
-    dispatch(setSongFilters({ searchTerm: artist.name }));
-    navigate("/songs");
+  const handleShowSongsModal = (show: boolean) => {
+    dispatch(getAlbumsWithSongs(artist.slug));
+    dispatch(setShowSongsModal(show));
   };
 
   return (
@@ -41,13 +40,17 @@ const Visuals: React.FC<Props> = ({ artist }) => {
       <Button
         className={styles.visualButton}
         color="info"
-        onClick={handleViewSongs}
+        onClick={() => handleShowSongsModal(true)}
       >
         View Songs
       </Button>
       <AlbumsModal 
         show={showAlbumsModal}
         onClose={() => handleShowAlbumsModal(false)}
+      />
+      <SongsModal 
+        show={showSongsModal}
+        onClose={() => handleShowSongsModal(false)}
       />
     </div>
   );

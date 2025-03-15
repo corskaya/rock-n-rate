@@ -1,6 +1,8 @@
 import Comment from "../../types/comment";
 import { Topic } from "../../types/common";
 import Country from "../../types/country";
+import Album from "../../types/album";
+import Song from "../../types/song";
 
 export type CommentsResponse = {
   comments: Comment[];
@@ -27,4 +29,8 @@ export type ArtistOverview = {
     username: string;
     avatar?: string;
   };
+};
+
+export type AlbumWithSongs = Album & {
+  songs: Song[];
 };
