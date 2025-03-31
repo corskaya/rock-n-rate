@@ -1,0 +1,63 @@
+.modalRatingSuffix {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #919191;
+}
+
+.modalRatingLink {
+  text-decoration: none;
+}
+
+.modalRatingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.modalRatingContainer:hover {
+  background-color: #282a2d;
+}
+
+.modalRatingInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modalRatingAvatarContainer {
+  display: flex;
+  align-items: flex-end;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.modalRatingAvatar {
+  width: 100%;
+  height: 100%;
+}
+
+.modalRatingUsername {
+  color: #fff;
+}
+
+.modalRatingRatingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.modalRatingRating {
+  font-size: 16px;
+  color: #919191;
+}
+
+.modalRatingStar {
+  color: #919191;
+}

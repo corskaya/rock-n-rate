@@ -1,0 +1,167 @@
+.rateModalContainer,
+.rateModalOverlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 998;
+}
+
+.rateModalOverlay {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.rateModalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1f1f1f;
+  padding: 16px;
+  border-radius: 4px;
+  width: 520px;
+  z-index: 999;
+  cursor: auto;
+}
+
+.rateModalBodyContainer {
+  position: absolute;
+  top: -62px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.rateModalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rateModalRatingIconContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 120px;
+}
+
+.rateModalRatingIcon {
+  color: #0aad9e;
+  transition: 0.2s ease-out;
+}
+
+.rateModalRateThisText {
+  font-size: 12px;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.08em;
+  color: #deb318;
+  cursor: default;
+  user-select: none;
+}
+
+.rateModalArtistName {
+  margin: 0 0 20px 0;
+  font-weight: 500;
+}
+
+.rateModalStarsContainer {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.rateModalStar {
+  padding: 0 2.5px;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.rateModalStarActive {
+  color: #0aad9e;
+}
+
+.rateModalStarPassive {
+  color: #b8b8b8;
+}
+
+.rateModalRatingText {
+  position: absolute;
+  top: 17.8%;
+  left: 50%;
+  transform: translate(-50%, -140%);
+  font-weight: 500;
+  user-select: none;
+  transition: 0.2s ease-out;
+}
+
+.rateModalBtn {
+  width: 310px;
+  height: 36px;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.rateModalBtnActive {
+  color: #1f1f1f;
+  background-color: #f5c518;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.rateModalBtnActive:hover {
+  background-color: #d1a916;
+}
+
+.rateModalBtnPassive {
+  color: #959595;
+  background-color: #313131;
+}
+
+.rateModalRemoveBtn {
+  background: none;
+  color: #0aad9e;
+  width: 310px;
+  height: 36px;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.rateModalRemoveBtn:hover {
+  background-color: #242930;
+}
+
+.rateModalCloseBtnContainer {
+  position: absolute;
+  top: -44px;
+  right: 0;
+}
+
+.rateModalCloseBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.rateModalCloseBtn:hover {
+  background-color: rgba(255, 255, 2555, 0.1);
+}
+
+@media (max-width: 760px) {
+  .rateModalContent {
+    width: 86%;
+  }
+}

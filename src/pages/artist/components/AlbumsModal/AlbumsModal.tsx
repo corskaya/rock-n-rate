@@ -2,10 +2,10 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { StarFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { setShowAlbumsModal } from "../slice";
-import { Loading, Modal, Message, Label } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import styles from "../styles.module.css";
+import { setShowAlbumsModal } from "../../slice";
+import { Loading, Modal, Message, Label } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import styles from "./AlbumsModal.module.css";
 
 type Props = {
   show: boolean;

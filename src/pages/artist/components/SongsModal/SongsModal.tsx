@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setShowSongsModal } from "../slice";
-import { Loading, Modal, Message, Label } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
+import { setShowSongsModal } from "../../slice";
+import { Loading, Modal, Message, Label } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
 import styles from "./SongsModal.module.css";
 import { StarFilled } from "@ant-design/icons";
 

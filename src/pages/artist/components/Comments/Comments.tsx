@@ -8,9 +8,9 @@ import {
 } from "@ant-design/icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import { Loading, Message } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { Topic } from "../../../types/common";
+import { Loading, Message } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { Topic } from "../../../../types/common";
 import {
   commentArtist,
   getComments,
@@ -19,10 +19,10 @@ import {
   setComments,
   setToastStatus,
   unlikeComment,
-} from "../slice";
-import defaultProfilePicture from "../../../assets/default-profile-picture.png";
-import Comment from "../../../types/comment";
-import styles from "../styles.module.css";
+} from "../../slice";
+import defaultProfilePicture from "../../../../assets/default-profile-picture.png";
+import Comment from "../../../../types/comment";
+import styles from "./Comments.module.css";
 
 const Comments: React.FC = () => {
   const [commentValue, setCommentValue] = useState("");
@@ -209,7 +209,7 @@ const Comments: React.FC = () => {
             ))}
           </div>
           {commentArtistRejected && (
-            <Message className={styles.commentErrorMessage}>
+            <Message>
               {commentArtistErrorMessage}
             </Message>
           )}

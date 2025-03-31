@@ -1,5 +1,5 @@
-import Artist from "../../../types/artist";
-import styles from "../styles.module.css";
+import Artist from "../../../../types/artist";
+import styles from "./MobileMainInfo.module.css";
 
 type Props = {
   artist: Artist;

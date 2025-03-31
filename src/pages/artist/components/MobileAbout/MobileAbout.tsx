@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store";
-import { setShowAboutModal } from "../slice";
-import Artist from "../../../types/artist";
-import AboutModal from "./AboutModal";
-import styles from "../styles.module.css";
+import { AppDispatch, RootState } from "../../../../store";
+import { setShowAboutModal } from "../../slice";
+import Artist from "../../../../types/artist";
+import AboutModal from "../AboutModal/AboutModal";
+import styles from "./MobileAbout.module.css";
 
 type Props = {
   artist: Artist;

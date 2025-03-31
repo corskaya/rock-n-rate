@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { StarFilled } from "@ant-design/icons";
-import { Label } from "../../../components";
-import { getRatings, setShowAboutModal, setShowRateModal, setShowRatingsModal } from "../slice";
-import { AppDispatch, RootState } from "../../../store";
-import RateModal from "./RateModal";
-import RatingsModal from "./RatingsModal";
-import AboutModal from "./AboutModal";
-import Artist from "../../../types/artist";
-import styles from "../styles.module.css";
+import { Label } from "../../../../components";
+import { getRatings, setShowAboutModal, setShowRateModal, setShowRatingsModal } from "../../slice";
+import { AppDispatch, RootState } from "../../../../store";
+import RateModal from "../RateModal/RateModal";
+import RatingsModal from "../RatingsModal/RatingsModal";
+import AboutModal from "../AboutModal/AboutModal";
+import Artist from "../../../../types/artist";
+import styles from "./Info.module.css";
 
 type Props = {
   artist: Artist;

@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { getAlbums, getAlbumsWithSongs, setShowAlbumsModal, setShowSongsModal } from "../slice";
-import Artist from "../../../types/artist";
-import AlbumsModal from "./AlbumsModal";
-import SongsModal from "./SongsModal";
-import styles from "../styles.module.css";
+import { Button } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { getAlbums, getAlbumsWithSongs, setShowAlbumsModal, setShowSongsModal } from "../../slice";
+import Artist from "../../../../types/artist";
+import AlbumsModal from "../AlbumsModal/AlbumsModal";
+import SongsModal from "../SongsModal/SongsModal";
+import styles from "./Visuals.module.css";
 
 type Props = {
   artist: Artist;

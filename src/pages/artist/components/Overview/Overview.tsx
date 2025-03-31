@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { DashboardFilled } from "@ant-design/icons";
 import { Public, CalendarMonth, Album, MusicNote, Star, AddTask } from '@mui/icons-material';
 import { useParams } from "react-router-dom";
-import { Loading, Message } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { getOverview } from "../slice";
-import styles from "../styles.module.css";
+import { Loading, Message } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { getOverview } from "../../slice";
+import styles from "./Overview.module.css";
 import ReactCountryFlag from "react-country-flag";
 import { Link } from "react-router-dom";
 
