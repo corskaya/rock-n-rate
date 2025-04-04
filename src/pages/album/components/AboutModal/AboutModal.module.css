@@ -1,0 +1,9 @@
+.aboutModalText {
+  color: #dbdbdb;
+  font-size: 15px;
+  white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-height: 22px;
+  margin: 0;
+}

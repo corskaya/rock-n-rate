@@ -1,0 +1,44 @@
+.suggestionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggestionsText {
+  padding: 0;
+  margin: 0;
+}
+
+.textShadow {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.suggestionImageContainer {
+  width: 96px;
+  height: 96px;
+  border: 4px solid #fff;
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+.suggestionImageContainer:hover {
+  border-color: #6ac045;
+  cursor: pointer;
+}
+
+.suggestionImage {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1020px) {
+  .suggestionsContainer {
+    display: none;
+  }
+} 

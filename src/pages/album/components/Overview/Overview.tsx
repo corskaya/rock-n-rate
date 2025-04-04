@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { DashboardFilled } from "@ant-design/icons";
-import { RecordVoiceOver, CalendarMonth, Album, Star, AddTask } from '@mui/icons-material';
+import { RecordVoiceOver, CalendarMonth, MusicNote, Star, AddTask } from '@mui/icons-material';
 import dayjs from "dayjs";
-import { Loading, Message } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { getOverview, getRatings, setShowRatingsModal } from "../slice";
-import styles from "../styles.module.css";
+import { Loading, Message } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { getOverview, getRatings, getSongs, setShowRatingsModal, setShowSongsModal } from "../../slice";
+import styles from "./Overview.module.css";
 
 const Overview: React.FC = () => {
   const { slug } = useParams();
@@ -17,12 +17,17 @@ const Overview: React.FC = () => {
     overviewRejected,
     overview,
     overviewErrorMessage,
-  } = useSelector((state: RootState) => state.song);
+  } = useSelector((state: RootState) => state.album);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleShowRatingsModal = (show: boolean) => {
     dispatch(getRatings(slug!));
     dispatch(setShowRatingsModal(show));
+  };
+
+  const handleShowSongsModal = (show: boolean) => {
+    dispatch(getSongs(slug!));
+    dispatch(setShowSongsModal(show));
   };
 
   useEffect(() => {
@@ -54,15 +59,13 @@ const Overview: React.FC = () => {
                 </Link>
               </div>
               <div className={styles.overviewInnerBox}>
-                <Album className={styles.overviewBoxIcon} />
-                <Link 
-                  className={styles.overviewBoxLink}
-                  to={`/album/${overview.album.slug}`}
+                <MusicNote className={styles.overviewBoxIcon} />
+                <div 
+                  className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
+                  onClick={() => handleShowSongsModal(true)}
                 >
-                  <div className={styles.overviewBoxText}>
-                    {overview.album.name}
-                  </div>
-                </Link>
+                  {`${overview.songCount} Songs`}
+                </div>
               </div>
             </div>
             <div className={styles.overviewOuterBox}>

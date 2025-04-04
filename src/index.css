@@ -23,8 +23,13 @@ body.modal-open {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #919191;
+  background-color: #919191;
   border-radius: 4px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #777777;
 }
 
 #loading-icon-container {

@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
 import { DashboardFilled } from "@ant-design/icons";
-import { RecordVoiceOver, CalendarMonth, Album, Star, AddTask } from '@mui/icons-material';
-import dayjs from "dayjs";
-import { Loading, Message } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { getOverview, getRatings, setShowRatingsModal } from "../slice";
-import styles from "../styles.module.css";
+import { Public, CalendarMonth, Album, MusicNote, Star, AddTask } from '@mui/icons-material';
+import { useParams, Link } from "react-router-dom";
+import ReactCountryFlag from "react-country-flag";
+import { Loading, Message } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { getAlbums, getAlbumsWithSongs, getOverview, getRatings, setShowAlbumsModal, setShowRatingsModal, setShowSongsModal } from "../../slice";
+import styles from "./Overview.module.css";
 
 const Overview: React.FC = () => {
   const { slug } = useParams();
@@ -17,12 +17,22 @@ const Overview: React.FC = () => {
     overviewRejected,
     overview,
     overviewErrorMessage,
-  } = useSelector((state: RootState) => state.song);
+  } = useSelector((state: RootState) => state.artist);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleShowRatingsModal = (show: boolean) => {
     dispatch(getRatings(slug!));
     dispatch(setShowRatingsModal(show));
+  };
+
+  const handleShowAlbumsModal = (show: boolean) => {
+    dispatch(getAlbums(slug!));
+    dispatch(setShowAlbumsModal(show));
+  };
+
+  const handleShowSongsModal = (show: boolean) => {
+    dispatch(getAlbumsWithSongs(slug!));
+    dispatch(setShowSongsModal(show));
   };
 
   useEffect(() => {
@@ -43,43 +53,32 @@ const Overview: React.FC = () => {
           <div className={styles.overview}>
             <div className={styles.overviewOuterBox}>
               <div className={styles.overviewInnerBox}>
-                <RecordVoiceOver className={styles.overviewBoxIcon} />
-                <Link 
-                  className={styles.overviewBoxLink}
-                  to={`/artist/${overview.artist.slug}`}
-                >
-                  <div className={styles.overviewBoxText}>
-                    {overview.artist.name}
-                  </div>
-                </Link>
+                <Public className={styles.overviewBoxIcon} />
+                <ReactCountryFlag className={styles.overviewCountryFlag} countryCode={overview.country} svg />
               </div>
               <div className={styles.overviewInnerBox}>
                 <Album className={styles.overviewBoxIcon} />
-                <Link 
-                  className={styles.overviewBoxLink}
-                  to={`/album/${overview.album.slug}`}
+                <div 
+                  className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
+                  onClick={() => handleShowAlbumsModal(true)}
                 >
-                  <div className={styles.overviewBoxText}>
-                    {overview.album.name}
-                  </div>
-                </Link>
+                  {`${overview.albumCount} Albums`}
+                </div>
               </div>
             </div>
             <div className={styles.overviewOuterBox}>
               <div className={styles.overviewInnerBox}>
                 <CalendarMonth className={styles.overviewBoxIcon} />
-                <div className={styles.overviewBoxText}>{dayjs(overview.releaseDate).format("DD.MM.YYYY")}</div>
+                <div className={styles.overviewBoxText}>{overview.foundationYear}</div>
               </div>
               <div className={styles.overviewInnerBox}>
-                <AddTask className={styles.overviewBoxIcon} />
-                <Link 
-                  className={styles.overviewBoxLink}
-                  to={`/user/${overview.addedByUser.username}`}
+                <MusicNote className={styles.overviewBoxIcon} />
+                <div 
+                  className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
+                  onClick={() => handleShowSongsModal(true)}
                 >
-                  <div className={styles.overviewBoxText}>
-                    {overview.addedByUser.username}
-                  </div>
-                </Link>
+                  {`${overview.songCount} Songs`}
+                </div>
               </div>
             </div>
             <div className={styles.overviewOuterBox}>
@@ -91,6 +90,17 @@ const Overview: React.FC = () => {
                 >
                   {`${overview.ratingCount} Ratings`}
                 </div>
+              </div>
+              <div className={styles.overviewInnerBox}>
+                <AddTask className={styles.overviewBoxIcon} />
+                <Link 
+                  className={styles.overviewBoxLink}
+                  to={`/user/${overview.addedByUser.username}`}
+                >
+                <div className={styles.overviewBoxText}>
+                  {overview.addedByUser.username}
+                </div>
+                </Link>
               </div>
             </div>
           </div>
