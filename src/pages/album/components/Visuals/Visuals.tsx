@@ -1,16 +1,18 @@
-import { useDispatch } from "react-redux";
-import { Button } from "../../../../components";
-import { setFilters } from "../../../songs/slice";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../../../../store";
+import { Button } from "../../../../components";
+import { getSongs, setShowSongsModal } from "../../slice";
+import { AppDispatch, RootState } from "../../../../store";
 import Album from "../../../../types/album";
 import styles from "./Visuals.module.css";
+import SongsModal from "../SongsModal/SongsModal";
 
 type Props = {
   album: Album;
 };
 
 const Visuals: React.FC<Props> = ({ album }) => {
+  const showSongsModal = useSelector((state: RootState) => state.album.showSongsModal);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -18,9 +20,9 @@ const Visuals: React.FC<Props> = ({ album }) => {
     navigate(`/artist/${artistSlug}`);
   };
 
-  const handleViewSongs = () => {
-    dispatch(setFilters({ searchTerm: album.name }));
-    navigate(`/songs`);
+  const handleShowSongsModal = (show: boolean) => {
+    dispatch(getSongs(album.slug));
+    dispatch(setShowSongsModal(show));
   };
 
   return (
@@ -37,10 +39,14 @@ const Visuals: React.FC<Props> = ({ album }) => {
       <Button
         className={styles.visualButton}
         color="info"
-        onClick={handleViewSongs}
+        onClick={() => handleShowSongsModal(true)}
       >
         View Songs
       </Button>
+      <SongsModal 
+        show={showSongsModal}
+        onClose={() => handleShowSongsModal(false)}
+      />
     </div>
   );
 }

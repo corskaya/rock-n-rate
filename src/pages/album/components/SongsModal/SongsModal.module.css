@@ -1,0 +1,62 @@
+.songsSuffix {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #919191;
+}
+
+.songLink {
+  text-decoration: none;
+}
+
+.songContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.songContainer:hover {
+  background-color: #282a2d;
+}
+
+.songNameContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.songIndex {
+  width: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: end;
+  color: #919191;
+}
+
+.songName {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.songRatingContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  column-gap: 8px;
+  padding-right: 12px;
+}
+
+.songRatingIcon {
+  font-size: 18px;
+  color: #6ac045;
+}
+
+.songRating {
+  font-size: 16px;
+  color: #fff;
+}
