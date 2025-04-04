@@ -6,7 +6,7 @@ import { RecordVoiceOver, CalendarMonth, MusicNote, Star, AddTask } from '@mui/i
 import dayjs from "dayjs";
 import { Loading, Message } from "../../../../components";
 import { AppDispatch, RootState } from "../../../../store";
-import { getOverview } from "../../slice";
+import { getOverview, getRatings, getSongs, setShowRatingsModal, setShowSongsModal } from "../../slice";
 import styles from "./Overview.module.css";
 
 const Overview: React.FC = () => {
@@ -19,6 +19,16 @@ const Overview: React.FC = () => {
     overviewErrorMessage,
   } = useSelector((state: RootState) => state.album);
   const dispatch = useDispatch<AppDispatch>();
+
+  const handleShowRatingsModal = (show: boolean) => {
+    dispatch(getRatings(slug!));
+    dispatch(setShowRatingsModal(show));
+  };
+
+  const handleShowSongsModal = (show: boolean) => {
+    dispatch(getSongs(slug!));
+    dispatch(setShowSongsModal(show));
+  };
 
   useEffect(() => {
     dispatch(getOverview(slug!));
@@ -50,7 +60,12 @@ const Overview: React.FC = () => {
               </div>
               <div className={styles.overviewInnerBox}>
                 <MusicNote className={styles.overviewBoxIcon} />
-                <div className={styles.overviewBoxText}>{`${overview.songCount} Songs`}</div>
+                <div 
+                  className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
+                  onClick={() => handleShowSongsModal(true)}
+                >
+                  {`${overview.songCount} Songs`}
+                </div>
               </div>
             </div>
             <div className={styles.overviewOuterBox}>
@@ -73,7 +88,12 @@ const Overview: React.FC = () => {
             <div className={styles.overviewOuterBox}>
               <div className={styles.overviewInnerBox}>
                 <Star className={styles.overviewBoxIcon} />
-                <div className={styles.overviewBoxText}>{`${overview.ratingCount} Ratings`}</div>
+                <div 
+                  className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
+                  onClick={() => handleShowRatingsModal(true)}
+                >
+                  {`${overview.ratingCount} Ratings`}
+                </div>
               </div>
             </div>
           </div>

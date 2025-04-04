@@ -6,7 +6,7 @@ import { RecordVoiceOver, CalendarMonth, Album, Star, AddTask } from '@mui/icons
 import dayjs from "dayjs";
 import { Loading, Message } from "../../../components";
 import { AppDispatch, RootState } from "../../../store";
-import { getOverview } from "../slice";
+import { getOverview, getRatings, setShowRatingsModal } from "../slice";
 import styles from "../styles.module.css";
 
 const Overview: React.FC = () => {
@@ -19,6 +19,11 @@ const Overview: React.FC = () => {
     overviewErrorMessage,
   } = useSelector((state: RootState) => state.song);
   const dispatch = useDispatch<AppDispatch>();
+
+  const handleShowRatingsModal = (show: boolean) => {
+    dispatch(getRatings(slug!));
+    dispatch(setShowRatingsModal(show));
+  };
 
   useEffect(() => {
     dispatch(getOverview(slug!));
@@ -80,7 +85,12 @@ const Overview: React.FC = () => {
             <div className={styles.overviewOuterBox}>
               <div className={styles.overviewInnerBox}>
                 <Star className={styles.overviewBoxIcon} />
-                <div className={styles.overviewBoxText}>{`${overview.ratingCount} Ratings`}</div>
+                <div 
+                  className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
+                  onClick={() => handleShowRatingsModal(true)}
+                >
+                  {`${overview.ratingCount} Ratings`}
+                </div>
               </div>
             </div>
           </div>

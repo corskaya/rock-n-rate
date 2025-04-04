@@ -72,6 +72,12 @@
 .overviewBoxLink {
   text-decoration: none;
   width: 100%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.overviewBoxLink:hover {
+  color: #fff;
 }
 
 .overviewBoxLink .overviewBoxText:hover {
