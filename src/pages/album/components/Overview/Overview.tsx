@@ -4,10 +4,10 @@ import { useParams, Link } from "react-router-dom";
 import { DashboardFilled } from "@ant-design/icons";
 import { RecordVoiceOver, CalendarMonth, MusicNote, Star, AddTask } from '@mui/icons-material';
 import dayjs from "dayjs";
-import { Loading, Message } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { getOverview } from "../slice";
-import styles from "../styles.module.css";
+import { Loading, Message } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { getOverview } from "../../slice";
+import styles from "./Overview.module.css";
 
 const Overview: React.FC = () => {
   const { slug } = useParams();

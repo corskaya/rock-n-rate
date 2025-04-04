@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { Loading, Message, Tooltip } from "../../../components";
-import styles from "../styles.module.css";
+import { Loading, Message, Tooltip } from "../../../../components";
+import styles from "./Suggestions.module.css";
 import { Link } from "react-router-dom";
-import { RootState } from "../../../store";
+import { RootState } from "../../../../store";
 
 const Suggestions: React.FC = () => {
   const {

@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { Button } from "../../../components";
-import { setFilters } from "../../songs/slice";
+import { Button } from "../../../../components";
+import { setFilters } from "../../../songs/slice";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../../../store";
-import Album from "../../../types/album";
-import styles from "../styles.module.css";
+import { AppDispatch } from "../../../../store";
+import Album from "../../../../types/album";
+import styles from "./Visuals.module.css";
 
 type Props = {
   album: Album;

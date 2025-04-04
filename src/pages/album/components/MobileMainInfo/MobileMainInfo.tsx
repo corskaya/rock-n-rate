@@ -1,5 +1,5 @@
-import Album from "../../../types/album";
-import styles from "../styles.module.css";
+import Album from "../../../../types/album";
+import styles from "./MobileMainInfo.module.css";
 import dayjs from "dayjs";
 
 type Props = {

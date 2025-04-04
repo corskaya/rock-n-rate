@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CloseOutlined, StarFilled, StarOutlined } from "@ant-design/icons";
-import { rateAlbum, removeRating, setShowRateModal } from "../slice";
-import { setToastStatus } from "../../login/slice";
-import { Loading } from "../../../components";
+import { rateAlbum, removeRating, setShowRateModal } from "../../slice";
+import { setToastStatus } from "../../../login/slice";
+import { Loading } from "../../../../components";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch, RootState } from "../../../store";
-import Album from "../../../types/album";
-import styles from "../styles.module.css";
+import { AppDispatch, RootState } from "../../../../store";
+import Album from "../../../../types/album";
+import styles from "./RateModal.module.css";
 
 const points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

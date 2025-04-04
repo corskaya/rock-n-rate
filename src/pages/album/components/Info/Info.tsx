@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { StarFilled } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { Label } from "../../../components";
-import { getRatings, setShowAboutModal, setShowRateModal, setShowRatingsModal } from "../slice";
-import { AppDispatch, RootState } from "../../../store";
-import RateModal from "./RateModal";
-import RatingsModal from "./RatingsModal";
-import Album from "../../../types/album";
-import AboutModal from "./AboutModal";
-import styles from "../styles.module.css";
+import { Label } from "../../../../components";
+import { getRatings, setShowAboutModal, setShowRateModal, setShowRatingsModal } from "../../slice";
+import { AppDispatch, RootState } from "../../../../store";
+import RateModal from "../RateModal/RateModal";
+import RatingsModal from "../RatingsModal/RatingsModal";
+import Album from "../../../../types/album";
+import AboutModal from "../AboutModal/AboutModal";
+import styles from "./Info.module.css";
 
 type Props = {
   album: Album;
