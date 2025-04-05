@@ -18,6 +18,7 @@ import {
   Artist,
   Album,
   Song,
+  Language
 } from "./pages/index";
 import { Layout } from "./layouts";
 import { Loading } from "./components/index";
@@ -60,6 +61,7 @@ const Router: React.FC = () => {
         <Route path="/artist/:slug" element={renderPage(<Artist />)} />
         <Route path="/album/:slug" element={renderPage(<Album />)} />
         <Route path="/song/:slug" element={renderPage(<Song />)} />
+        <Route path="/language" element={renderPage(<Language />)} />
         <Route path="*" element={renderPage(<NotFound />)} />
       </Route>
     </Routes>

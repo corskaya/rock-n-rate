@@ -10,6 +10,10 @@ const AppFooter: React.FC = () => {
         <Link className={styles.footerLink} to='/about'>
           About
         </Link>
+        <div className={styles.separator}>-</div>
+        <Link className={styles.footerLink} to='/language'>
+          Language
+        </Link>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ const Layout: React.FC = () => {
     "register",
     "forgot-password",
     "reset-password",
+    "language",
   ];
 
   const routesWithBackgroundGradient = [

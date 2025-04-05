@@ -7,6 +7,11 @@ const _getToken = (): string | undefined => {
   return state.login.token;
 };
 
+const _getLang = (): string => {
+  const state: RootState = store.getState();
+  return state.lang.language || "en";
+};
+
 const instance = axios.create({
   baseURL: env.serverUrl,
 });
@@ -30,6 +35,8 @@ instance.interceptors.response.use(
 // request middleware
 instance.interceptors.request.use(
   (request) => {
+    request.headers["x-lang"] = _getLang();
+    request.headers["Authorization"] = `Bearer ${_getToken()}`;
     // console.log("--request", request);
     return request;
   },
@@ -41,44 +48,25 @@ instance.interceptors.request.use(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const get = (url: string, params?: Record<string, any>) => {
   return instance.get(url, {
-    headers: {
-      Authorization: `Bearer ${_getToken()}`,
-    },
     params,
   });
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const post = (url: string, params?: Record<string, any>) => {
-  return instance.post(url, params, {
-    headers: {
-      Authorization: `Bearer ${_getToken()}`,
-    },
-  });
+  return instance.post(url, params);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const put = (url: string, params?: Record<string, any>) => {
-  return instance.put(url, params, {
-    headers: {
-      Authorization: `Bearer ${_getToken()}`,
-    },
-  });
+  return instance.put(url, params);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const patch = (url: string, params?: Record<string, any>) => {
-  return instance.patch(url, params, {
-    headers: {
-      Authorization: `Bearer ${_getToken()}`,
-    },
-  });
+  return instance.patch(url, params);
 };
 
 export const del = (url: string) => {
-  return instance.delete(url, {
-    headers: {
-      Authorization: `Bearer ${_getToken()}`,
-    },
-  });
+  return instance.delete(url);
 };
