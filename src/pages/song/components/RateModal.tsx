@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../../../store";
 import Song from "../../../types/song";
 import styles from "../styles.module.css";
+import { useTranslation } from "react-i18next";
 
 const points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -29,6 +30,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handlePointHover = (point: number) => {
     setHoveredPoint(point);
@@ -54,8 +56,8 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
       dispatch(
         setToastStatus({
           show: true,
-          title: "Please login",
-          message: "To rate a song, please log in first.",
+          title: t("Please login"),
+          message: t("To rate a song, please log in first."),
           type: "info",
         })
       );
@@ -112,7 +114,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
                   style={{ fontSize: starSize }}
                 />
               </div>
-              <h3 className={styles.rateModalRateThisText}>RATE THIS</h3>
+              <h3 className={styles.rateModalRateThisText}>{t("RATE THIS")}</h3>
               <h3 className={styles.rateModalSongName}>{song.name}</h3>
               <div className={styles.rateModalStarsContainer}>
                 {points.map((point) =>
@@ -153,7 +155,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
                 }`}
                 onClick={handleRateSong}
               >
-                {rateSongPending ? <Loading size="small" /> : "Rate"}
+                {rateSongPending ? <Loading size="small" /> : t("Rate")}
               </button>
 
               <button
@@ -169,7 +171,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
                 }}
                 onClick={handleRemoveRating}
               >
-                {removeRatingPending ? <Loading size="small" /> : "Remove rating"}
+                {removeRatingPending ? <Loading size="small" /> : t("Remove rating")}
               </button>
             </div>
           </div>

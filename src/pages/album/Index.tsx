@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from "../../store";
 import Comments from "./components/Comments/Comments";
 import Overview from "./components/Overview/Overview";
 import styles from "./styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const Album: React.FC = () => {
   const { slug } = useParams();
@@ -23,6 +24,7 @@ const Album: React.FC = () => {
     albumErrorMessage,
   } = useSelector((state: RootState) => state.album);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getAlbum(slug!));
@@ -48,7 +50,7 @@ const Album: React.FC = () => {
             </div>
           </>
         )}
-        {albumRejected && <Message>{albumErrorMessage}</Message>}
+        {albumRejected && <Message>{t(albumErrorMessage ?? "An error occurred")}</Message>}
       </div>
     </div>
   );

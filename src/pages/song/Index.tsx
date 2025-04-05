@@ -12,12 +12,14 @@ import { AppDispatch, RootState } from "../../store";
 import Comments from "./components/Comments";
 import Overview from "./components/Overview";
 import styles from "./styles.module.css";
+import { useTranslation } from "react-i18next";
 
 const Song: React.FC = () => {
   const { slug } = useParams();
   const { songPending, songRejected, songFulfilled, song, songErrorMessage } =
     useSelector((state: RootState) => state.song);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getSong(slug!));
@@ -43,7 +45,7 @@ const Song: React.FC = () => {
             </div>
           </>
         )}
-        {songRejected && <Message>{songErrorMessage}</Message>}
+        {songRejected && <Message>{t(songErrorMessage ?? "An error occurred")}</Message>}
       </div>
     </div>
   );

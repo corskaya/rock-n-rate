@@ -7,6 +7,7 @@ import { getPopularAlbums } from "../slice";
 import { setFilters } from "../../albums/slice";
 import { AppDispatch, RootState } from "../../../store";
 import styles from "../styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const PopularAlbums: React.FC = () => {
   const {
@@ -18,6 +19,7 @@ const PopularAlbums: React.FC = () => {
   } = useSelector((state: RootState) => state.home);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const navigateToPopularAlbums = () => {
     dispatch(setFilters({ orderBy: "Popularity" }));
@@ -32,18 +34,18 @@ const PopularAlbums: React.FC = () => {
     <div className={styles.popularAlbumsBackground}>
       <div className={styles.popularAlbumsContainer}>
         <div className={styles.popularAlbumsHeader}>
-          <Label className={styles.popularAlbumsText}>Popular Albums</Label>
+          <Label className={styles.popularAlbumsText}>{t("Popular Albums")}</Label>
           <span
             className={styles.popularAlbumsBrowseAll}
             onClick={navigateToPopularAlbums}
           >
-            Browse All
+            {t("Browse All")}
           </span>
         </div>
         <div className={styles.popularAlbumsContentContainer}>
           {popularAlbumsPending && <Loading />}
           {popularAlbumsRejected && (
-            <Message>{popularAlbumsErrorMessage}</Message>
+            <Message>{t(popularAlbumsErrorMessage ?? "An error occurred")}</Message>
           )}
           {popularAlbumsFulfilled && (
             <div className={styles.popularAlbumsContent}>

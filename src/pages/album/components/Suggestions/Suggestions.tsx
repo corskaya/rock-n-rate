@@ -3,6 +3,7 @@ import { Loading, Message, Tooltip } from "../../../../components";
 import styles from "./Suggestions.module.css";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../../store";
+import { useTranslation } from 'react-i18next';
 
 const Suggestions: React.FC = () => {
   const {
@@ -13,10 +14,12 @@ const Suggestions: React.FC = () => {
     similarAlbumsErrorMessage,
   } = useSelector((state: RootState) => state.album);
 
+  const { t } = useTranslation();
+
   return (
     <div className={styles.suggestionsContainer}>
       <h4 className={`${styles.suggestionsText} ${styles.textShadow}`}>
-        Similar Albums
+        {t('Similar Albums')}
       </h4>
       {similarAlbumsPending && <Loading />}
       {similarAlbumsFulfilled && similarAlbums && (
@@ -39,7 +42,7 @@ const Suggestions: React.FC = () => {
           ))}
         </div>
       )}
-      {similarAlbumsRejected && <Message>{similarAlbumsErrorMessage}</Message>}
+      {similarAlbumsRejected && <Message>{t(similarAlbumsErrorMessage ?? 'An error occurred')}</Message>}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "../../../../store";
 import { Loading, Message } from "../../../../components";
 import { getTopics } from "../../../../pages/search/slice";
 import styles from "../styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const RESULT_LIMIT = 5;
 
@@ -21,6 +22,7 @@ const Search: React.FC = () => {
     errorMessage,
   } = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
@@ -65,7 +67,7 @@ const Search: React.FC = () => {
       <SearchOutlined className={styles.navInputIcon} />
       <input
         className={`${styles.navInput} search-input-web`}
-        placeholder="Quick search"
+        placeholder={t("Quick search")}
         value={searchTerm}
         onChange={handleChange}
         onFocus={handleFocus}
@@ -78,10 +80,10 @@ const Search: React.FC = () => {
           onMouseDown={(e) => e.preventDefault()}
         >
           {!topicsPending && topicsRejected && (
-            <Message className={styles.searchResultErrorMessage}>{errorMessage}</Message>
+            <Message className={styles.searchResultErrorMessage}>{t(errorMessage ?? "An error occurred")}</Message>
           )}
           {!topicsPending && topicsFulfilled && topics.length === 0 && (
-            <div className={styles.searchResultNotFound}>No results found.</div>
+            <div className={styles.searchResultNotFound}>{t("No results found.")}</div>
           )}
           {!topicsPending && topicsFulfilled && topics.map((topic, i) => (
             <Link

@@ -8,6 +8,7 @@ import { Loading, Message } from "../../../../components";
 import { AppDispatch, RootState } from "../../../../store";
 import { getOverview, getRatings, getSongs, setShowRatingsModal, setShowSongsModal } from "../../slice";
 import styles from "./Overview.module.css";
+import { useTranslation } from 'react-i18next';
 
 const Overview: React.FC = () => {
   const { slug } = useParams();
@@ -19,6 +20,7 @@ const Overview: React.FC = () => {
     overviewErrorMessage,
   } = useSelector((state: RootState) => state.album);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowRatingsModal = (show: boolean) => {
     dispatch(getRatings(slug!));
@@ -43,7 +45,7 @@ const Overview: React.FC = () => {
             <DashboardFilled className={styles.overviewIcon} />
             <h4
               className={styles.overviewHeading}
-            >Overview</h4>
+            >{t('Overview')}</h4>
           </div>
           <div className={styles.overview}>
             <div className={styles.overviewOuterBox}>
@@ -64,7 +66,7 @@ const Overview: React.FC = () => {
                   className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
                   onClick={() => handleShowSongsModal(true)}
                 >
-                  {`${overview.songCount} Songs`}
+                  {`${overview.songCount} ${t('Songs')}`}
                 </div>
               </div>
             </div>
@@ -92,14 +94,14 @@ const Overview: React.FC = () => {
                   className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
                   onClick={() => handleShowRatingsModal(true)}
                 >
-                  {`${overview.ratingCount} Ratings`}
+                  {`${overview.ratingCount} ${t('Ratings')}`}
                 </div>
               </div>
             </div>
           </div>
         </>
       )}
-      {overviewRejected && <Message>{overviewErrorMessage}</Message>}
+      {overviewRejected && <Message>{t(overviewErrorMessage || 'An error occured')}</Message>}
     </div>
   );
 };

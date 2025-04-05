@@ -8,6 +8,7 @@ import styles from "../styles.module.css";
 import React from "react";
 import Song from "../../../types/song";
 import { AppDispatch, RootState } from "../../../store";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   show: boolean;
@@ -18,6 +19,7 @@ type Props = {
 const RatingsModal: React.FC<Props> = ({ show, onClose, song }) => {
   const { ratingsPending, ratingsFulfilled, ratings, ratingsRejected, ratingsErrorMessage } = useSelector((state: RootState) => state.song);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleLinkClick = (isPrivate: boolean, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (isPrivate) {
@@ -29,11 +31,11 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, song }) => {
   return (
     <Modal
       show={show}
-      title="Ratings"
+      title={t("Ratings")}
       suffix={
         <h2
           className={styles.modalRatingSuffix}
-        >{`${song.ratingCount} ratings`}</h2>
+        >{`${song.ratingCount} ${t("ratings")}`}</h2>
       }
       onClose={onClose}
       centerBody={
@@ -62,7 +64,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, song }) => {
                     />
                   </div>
                   <div className={styles.modalRatingUsername}>
-                    {rating.isPrivate ? 'Private Rating' : rating.username}
+                    {rating.isPrivate ? t("Private Rating") : rating.username}
                   </div>
                 </div>
                 <div className={styles.modalRatingRatingContainer}>
@@ -77,7 +79,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, song }) => {
         </div>
       )}
       {ratingsFulfilled && ratings?.length === 0 && !ratingsPending && (
-        <Message>No rating found</Message>
+        <Message>{t("No rating found")}</Message>
       )}
       {ratingsRejected && <Message>{ratingsErrorMessage}</Message>}
     </Modal>

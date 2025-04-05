@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { useEffect } from "react";
 import { activate } from "./slice";
 import { Loading, Message } from "../../components";
+import { useTranslation } from 'react-i18next';
 
 const Activation: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -14,6 +15,7 @@ const Activation: React.FC = () => {
   const { activatePending, activateRejected, errorMessage } = useSelector((state: RootState) => state.activation);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!userId || !activationCode) {
@@ -26,7 +28,7 @@ const Activation: React.FC = () => {
   return (
     <div className={styles.container}>
       {activateRejected && (
-        <Message>{errorMessage}</Message>
+        <Message>{t(errorMessage ?? "An error occurred")}</Message>
       )}
       {activatePending && (
         <Loading size="large" />

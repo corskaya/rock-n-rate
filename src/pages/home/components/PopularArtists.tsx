@@ -8,6 +8,7 @@ import rssIcon from "../../../assets/rss-icon.png";
 import { setFilters } from "../../artists/slice";
 import { AppDispatch, RootState } from "../../../store";
 import styles from "../styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const PopularArtists: React.FC = () => {
   const {
@@ -19,6 +20,7 @@ const PopularArtists: React.FC = () => {
   } = useSelector((state: RootState) => state.home);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const navigateToPopularArtists = () => {
     dispatch(setFilters({ orderBy: "Popularity" }));
@@ -36,7 +38,7 @@ const PopularArtists: React.FC = () => {
           <div className={styles.emptyDiv}></div>
           <div className={styles.popularArtistsTextContainer}>
             <StarFilled className={styles.popularArtistsTextIcon} />
-            <Label className={styles.popularArtistsText}>Popular Artists</Label>
+            <Label className={styles.popularArtistsText}>{t("Popular Artists")}</Label>
           </div>
           <div className={styles.popularArtistsMoreContainer}>
             <img
@@ -48,14 +50,14 @@ const PopularArtists: React.FC = () => {
               className={styles.popularArtistsMore}
               onClick={navigateToPopularArtists}
             >
-              more featured...
+              {t("more featured...")}
             </div>
           </div>
         </div>
         <div className={styles.popularArtistsContentContainer}>
           {popularArtistsPending && <Loading />}
           {popularArtistsRejected && (
-            <Message>{popularArtistsErrorMessage}</Message>
+            <Message>{t(popularArtistsErrorMessage ?? "An error occurred")}</Message>
           )}
           {popularArtistsFulfilled && (
             <div className={styles.popularArtistsContent}>

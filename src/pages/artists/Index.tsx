@@ -8,6 +8,7 @@ import List from "./components/List";
 import Paginate from "./components/Paginate";
 import FilterModal from "./components/FilterModal";
 import styles from "./styles.module.css";
+import { useTranslation } from "react-i18next";
 
 const Artists: React.FC = () => {
   const {
@@ -20,6 +21,7 @@ const Artists: React.FC = () => {
     isFiltered,
   } = useSelector((state: RootState) => state.artists);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowFilterModal = (show: boolean) => {
     dispatch(setShowFilterModal(show));
@@ -31,7 +33,7 @@ const Artists: React.FC = () => {
       <div className={styles.listContainer}>
         <div className={styles.listHeader}>
           <div className={styles.mobileFilterBtnContainer}/>
-          <h3 className={styles.listHeading}>Rock'n Rate Artists</h3>
+          <h3 className={styles.listHeading}>{t("Rock'n Rate Artists")}</h3>
           <div className={styles.mobileFilterBtnContainer}>
             <button 
               className={`${styles.mobileFilterBtn} ${isFiltered ? styles.filtered : ""}`}
@@ -48,7 +50,7 @@ const Artists: React.FC = () => {
         )}
         {artistsFulfilled && <Paginate />}
         {artistsFulfilled && artists.length === 0 && !artistsPending && (
-          <Message>No artist found</Message>
+          <Message>{t("No artist found")}</Message>
         )}
         {artistsFulfilled && <List artists={artists} />}
         {artistsFulfilled && <Paginate />}

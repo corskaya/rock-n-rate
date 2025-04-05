@@ -1,5 +1,6 @@
 import { Modal } from "../../../../components";
 import styles from "./AboutModal.module.css";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   show: boolean;
@@ -8,10 +9,12 @@ type Props = {
 };
 
 const AboutModal: React.FC<Props> = ({ show, onClose, text }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal
       show={show}
-      title="About"
+      title={t("About")}
       onClose={onClose}
     >
       <p className={styles.aboutModalText}>

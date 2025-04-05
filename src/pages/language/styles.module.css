@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.innerContainer {
+  width: 1152px;
+}
+
+.header {
+  font-size: 1.65em;
+  font-weight: 500;
+  color: #6ac045;
+  margin-bottom: 8px;
+  padding: 0;
+}
+
+.explanation {
+  margin: 0 0 28px;
+  padding: 0;
+  font-size: 0.95em;
+  letter-spacing: -0.02em;
+  line-height: 21px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.countryFlags {
+  display: flex;
+  align-items: center;
+  column-gap: 60px;
+}
+
+.countryFlagContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.countryLabel {
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+  color: #fbfbfb;
+  transition: 0.4s ease;
+}
+
+.outerCountryFlag {
+  display: flex;
+  align-items: center;
+  width: 160px;
+  height: 120px;
+  border: 2px solid #fff;
+  overflow: hidden;
+}
+
+.selected {
+  color: #6ac045;
+  border-color: #6ac045;
+}
+
+.innerCountryFlag {
+  font-size: 160px;
+  transition: 0.4s ease;
+}
+
+.countryFlagContainer:hover .countryLabel {
+  color: #829191;
+}
+
+.countryFlagContainer:hover .innerCountryFlag {
+  opacity: 0.7;
+}
+
+@media (max-width: 1200px) {
+  .innerContainer {
+    padding-left: 126px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .innerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .header {
+    text-align: center;
+  }
+
+  .countryFlags {
+    justify-content: space-around;
+  }
+
+  .outerCountryFlag {
+    width: 120px;
+    height: 90px;
+  }
+
+  .innerCountryFlag {
+    font-size: 120px;
+  }
+}

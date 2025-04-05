@@ -6,6 +6,7 @@ import { setShowAlbumsModal } from "../../slice";
 import { Loading, Modal, Message, Label } from "../../../../components";
 import { AppDispatch, RootState } from "../../../../store";
 import styles from "./AlbumsModal.module.css";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   show: boolean;
@@ -15,6 +16,7 @@ type Props = {
 const AlbumsModal: React.FC<Props> = ({ show, onClose }) => {
   const { albumsPending, albumsFulfilled, albums, albumsRejected, albumsErrorMessage } = useSelector((state: RootState) => state.artist);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleLinkClick = () => {
     dispatch(setShowAlbumsModal(false));
@@ -23,11 +25,11 @@ const AlbumsModal: React.FC<Props> = ({ show, onClose }) => {
   return (
     <Modal
       show={show}
-      title="Albums"
+      title={t("Albums")}
       suffix={
         <h2
           className={styles.modalAlbumSuffix}
-        >{`${albums.length} albums`}</h2>
+        >{`${albums.length} ${t("albums")}`}</h2>
       }
       onClose={onClose}
       centerBody={
@@ -72,9 +74,9 @@ const AlbumsModal: React.FC<Props> = ({ show, onClose }) => {
         </div>
       )}
       {albumsFulfilled && albums?.length === 0 && !albumsPending && (
-        <Message>No album found</Message>
+        <Message>{t("No album found")}</Message>
       )}
-      {albumsRejected && <Message>{albumsErrorMessage}</Message>}
+      {albumsRejected && <Message>{t(albumsErrorMessage ?? "An error occurred")}</Message>}
     </Modal>
   );
 }

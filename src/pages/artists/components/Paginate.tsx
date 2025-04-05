@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { goToPage } from "../slice";
 import { RootState } from "../../../store";
 import styles from "../styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 type PaginateButtonProps = {
   text: string | number;
@@ -10,13 +11,6 @@ type PaginateButtonProps = {
   isClickable?: boolean;
   onClick?: () => void;
 };
-
-const MAX_VISIBLE_PAGES_WEB = 7;
-const VISIBLE_PAGE_INTERVAL_WEB = 3;
-const PREV_TEXT_WEB = "Previous";
-const MAX_VISIBLE_PAGES_MOBILE = 3;
-const VISIBLE_PAGE_INTERVAL_MOBILE = 1;
-const PREV_TEXT_MOBILE = "Prev";
 
 const PaginateButton: React.FC<PaginateButtonProps> = ({
   text,
@@ -37,6 +31,14 @@ const PaginateButton: React.FC<PaginateButtonProps> = ({
 }
 
 const Paginate: React.FC = () => {
+  const { t } = useTranslation();
+  const MAX_VISIBLE_PAGES_WEB = 7;
+  const VISIBLE_PAGE_INTERVAL_WEB = 3;
+  const PREV_TEXT_WEB = t("Previous");
+  const MAX_VISIBLE_PAGES_MOBILE = 3;
+  const VISIBLE_PAGE_INTERVAL_MOBILE = 1;
+  const PREV_TEXT_MOBILE = t("Prev");
+  
   const [maxVisiblePages, setMaxVisiblePages] = useState(MAX_VISIBLE_PAGES_WEB);
   const [visiblePageInterval, setVisiblePageInterval] = useState(VISIBLE_PAGE_INTERVAL_WEB);
   const [prevText, setPrevText] = useState(PREV_TEXT_WEB);
@@ -79,6 +81,7 @@ const Paginate: React.FC = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -107,7 +110,7 @@ const Paginate: React.FC = () => {
           )}
           {currentPage !== pageCount && (
             <PaginateButton
-              text={"Next »"}
+              text={t("Next »")}
               onClick={handleNextPage}
             />
           )}

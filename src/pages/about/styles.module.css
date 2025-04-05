@@ -1,14 +1,15 @@
 .background {
   display: flex;
   justify-content: center;
-  padding: 40px 0;
   background: linear-gradient(to bottom, transparent, #1d1d1d 85%, #1d1d1d);
+  min-height: calc(100vh - 120px);
 }
 
 .container {
   width: 1100px;
   display: flex;
   flex-direction: column;
+  padding: 40px 0;
 }
 
 .header {

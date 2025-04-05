@@ -5,6 +5,7 @@ import { Form, Label, Input, Button, Message, Loading } from "../../components";
 import { forgotPassword } from "./slice";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const ForgotPassword: React.FC = () => {
   const {
@@ -14,6 +15,7 @@ const ForgotPassword: React.FC = () => {
     errorMessage,
   } = useSelector((state: RootState) => state.forgotPassword);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleSubmit = ({ email }: { email: string }) => {
     dispatch(forgotPassword(email));
@@ -27,13 +29,12 @@ const ForgotPassword: React.FC = () => {
             className={styles.formContainer}
             onFinish={(values) => handleSubmit(values as { email: string })}
           >
-            <h2 className={styles.formLabel}>Reset your password</h2>
+            <h2 className={styles.formLabel}>{t('Reset your password')}</h2>
             <p className={styles.explanation}>
-              Enter your email address, and we'll send you a link to reset your
-              password.
+              {t("Enter your email address, and we'll send you a link to reset your password.")}
             </p>
             <div className={styles.formFieldContainer}>
-              <Label>Email:</Label>
+              <Label>{t('Email')}:</Label>
               <Input name="email" type="email" className={styles.formInput} />
             </div>
             {forgotPasswordRejected && (
@@ -44,14 +45,14 @@ const ForgotPassword: React.FC = () => {
             <div className={styles.formFooter}>
               <div className={styles.formFooterLinks}>
                 <Link className={styles.formFooterLink} to="/register">
-                  Create an Account
+                  {t('Create an Account')}
                 </Link>
               </div>
               <Button type="submit">
                 {forgotPasswordPending ? (
                   <Loading size="small" />
                 ) : (
-                  "Reset Password"
+                  t('Reset Password')
                 )}
               </Button>
             </div>
@@ -63,13 +64,11 @@ const ForgotPassword: React.FC = () => {
           <div className={styles.emailSentHeader}>
             <CheckCircleFilled className={styles.emailSentIcon} />
             <span className={styles.emailSentHeading}>
-              Password Reset Link Sent
+              {t('Password Reset Link Sent')}
             </span>
           </div>
           <p className={styles.emailSentText}>
-            A password reset link has been sent to your email. Please check your
-            inbox and click the link within 1 hour to reset your password. If
-            you don't see the email, please check your spam folder.
+            {t('A password reset link has been sent to your email. Please check your inbox and click the link within 1 hour to reset your password. If you do not see the email, please check your spam folder.')}
           </p>
         </div>
       )}

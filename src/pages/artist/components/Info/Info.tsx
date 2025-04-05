@@ -8,6 +8,7 @@ import RatingsModal from "../RatingsModal/RatingsModal";
 import AboutModal from "../AboutModal/AboutModal";
 import Artist from "../../../../types/artist";
 import styles from "./Info.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   artist: Artist;
@@ -18,6 +19,7 @@ const Info: React.FC<Props> = ({ artist }) => {
   const showRatingsModal = useSelector((state: RootState) => state.artist.showRatingsModal);
   const showAboutModal = useSelector((state: RootState) => state.artist.showAboutModal);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowRatingsModal = (show: boolean) => {
     dispatch(getRatings(artist.slug));
@@ -48,7 +50,7 @@ const Info: React.FC<Props> = ({ artist }) => {
       <div className={styles.ratingsContainer}>
         <div className={styles.ratingContainer}>
           <Label className={`${styles.ratingText} ${styles.textShadow}`}>
-            R'NR RATING
+            {t("RNR RATING")}
           </Label>
           <div>
             <div
@@ -65,7 +67,7 @@ const Info: React.FC<Props> = ({ artist }) => {
         </div>
         <div className={styles.ratingContainer}>
           <Label className={`${styles.ratingText} ${styles.textShadow}`}>
-            YOUR RATING
+            {t("YOUR RATING")}
           </Label>
           <div>
             <div

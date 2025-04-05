@@ -9,6 +9,7 @@ import RatingsModal from "./RatingsModal";
 import Song from "../../../types/song";
 import AboutModal from "./AboutModal";
 import styles from "../styles.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   song: Song;
@@ -19,6 +20,7 @@ const Info: React.FC<Props> = ({ song }) => {
   const showRatingsModal = useSelector((state: RootState) => state.song.showRatingsModal);
   const showAboutModal = useSelector((state: RootState) => state.artist.showAboutModal);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowRatingsModal = (show: boolean) => {
     dispatch(getRatings(song.slug));
@@ -49,7 +51,7 @@ const Info: React.FC<Props> = ({ song }) => {
       <div className={styles.ratingsContainer}>
         <div className={styles.ratingContainer}>
           <Label className={`${styles.ratingText} ${styles.textShadow}`}>
-            R'NR RATING
+            {t("RNR RATING")}
           </Label>
           <div>
             <div
@@ -66,7 +68,7 @@ const Info: React.FC<Props> = ({ song }) => {
         </div>
         <div className={styles.ratingContainer}>
           <Label className={`${styles.ratingText} ${styles.textShadow}`}>
-            YOUR RATING
+            {t("YOUR RATING")}
           </Label>
           <div>
             <div

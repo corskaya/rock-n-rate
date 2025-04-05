@@ -8,6 +8,7 @@ import { Loading, Message } from "../../../components";
 import { AppDispatch, RootState } from "../../../store";
 import { getOverview, getRatings, setShowRatingsModal } from "../slice";
 import styles from "../styles.module.css";
+import { useTranslation } from "react-i18next";
 
 const Overview: React.FC = () => {
   const { slug } = useParams();
@@ -19,6 +20,7 @@ const Overview: React.FC = () => {
     overviewErrorMessage,
   } = useSelector((state: RootState) => state.song);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowRatingsModal = (show: boolean) => {
     dispatch(getRatings(slug!));
@@ -38,7 +40,7 @@ const Overview: React.FC = () => {
             <DashboardFilled className={styles.overviewIcon} />
             <h4
               className={styles.overviewHeading}
-            >Overview</h4>
+            >{t("Overview")}</h4>
           </div>
           <div className={styles.overview}>
             <div className={styles.overviewOuterBox}>
@@ -89,7 +91,7 @@ const Overview: React.FC = () => {
                   className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
                   onClick={() => handleShowRatingsModal(true)}
                 >
-                  {`${overview.ratingCount} Ratings`}
+                  {`${overview.ratingCount} ${t("Ratings")}`}
                 </div>
               </div>
             </div>

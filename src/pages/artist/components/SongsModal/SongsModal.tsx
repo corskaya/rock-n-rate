@@ -6,6 +6,7 @@ import { Loading, Modal, Message, Label } from "../../../../components";
 import { AppDispatch, RootState } from "../../../../store";
 import styles from "./SongsModal.module.css";
 import { StarFilled } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   show: boolean;
@@ -21,6 +22,7 @@ const SongsModal: React.FC<Props> = ({ show, onClose }) => {
     albumsWithSongsErrorMessage,
   } = useSelector((state: RootState) => state.artist);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleLinkClick = () => {
     dispatch(setShowSongsModal(false));
@@ -29,12 +31,12 @@ const SongsModal: React.FC<Props> = ({ show, onClose }) => {
   return (
     <Modal
       show={show}
-      title="Songs"
+      title={t("Songs")}
       suffix={
         <h2 className={styles.songsSuffix}>{`${albumsWithSongs.reduce(
           (acc, album) => acc + album.songs.length,
           0
-        )} songs`}</h2>
+        )} ${t("songs")}`}</h2>
       }
       onClose={onClose}
       centerBody={
@@ -94,7 +96,7 @@ const SongsModal: React.FC<Props> = ({ show, onClose }) => {
       )}
       {albumsWithSongsFulfilled &&
         albumsWithSongs?.length === 0 &&
-        !albumsWithSongsPending && <Message>No song found</Message>}
+        !albumsWithSongsPending && <Message>{t("No song found")}</Message>}
       {albumsWithSongsRejected && (
         <Message>{albumsWithSongsErrorMessage}</Message>
       )}

@@ -5,6 +5,7 @@ import styles from "../styles.module.css";
 import React from "react";
 import User from "../../../types/user";
 import { RootState } from "../../../store";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   user: User;
@@ -12,6 +13,7 @@ type Props = {
 
 const Settings: React.FC<Props> = ({ user }) => {
   const { user: loginUser } = useSelector((state: RootState) => state.login);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.settingsContainer}>
@@ -24,7 +26,7 @@ const Settings: React.FC<Props> = ({ user }) => {
       </div>
       <h1 className={styles.username}>{user.username}</h1>
       {user._id === loginUser?._id && (
-        <Button className={styles.settingsBtn}>Profile Settings</Button>
+        <Button className={styles.settingsBtn}>{t('Profile Settings')}</Button>
       )}
     </div>
   );

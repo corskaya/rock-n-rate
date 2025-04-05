@@ -2,6 +2,7 @@ import { Button } from "../../../components";
 import { useNavigate } from "react-router-dom";
 import Song from "../../../types/song";
 import styles from "../styles.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   song: Song;
@@ -9,6 +10,7 @@ type Props = {
 
 const Visuals: React.FC<Props> = ({ song }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleViewArtist = (artistSlug: string) => {
     navigate(`/artist/${artistSlug}`);
@@ -27,14 +29,14 @@ const Visuals: React.FC<Props> = ({ song }) => {
         className={styles.visualButton}
         onClick={() => handleViewArtist(song.artistRefSlug)}
       >
-        View Artist
+        {t("View Artist")}
       </Button>
       <Button
         className={styles.visualButton}
         color="info"
         onClick={() => handleViewAlbum(song.albumRefSlug)}
       >
-        View Album
+        {t("View Album")}
       </Button>
     </div>
   );

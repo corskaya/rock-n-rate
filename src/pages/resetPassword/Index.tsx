@@ -5,6 +5,7 @@ import { ResetPasswordRequest } from "./types";
 import { AppDispatch, RootState } from "../../store";
 import styles from "./styles.module.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const ResetPassword: React.FC = () => {
   const { 
@@ -15,6 +16,7 @@ const ResetPassword: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { token } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = (values: ResetPasswordRequest) => {
     dispatch(
@@ -36,9 +38,9 @@ const ResetPassword: React.FC = () => {
           className={styles.formContainer}
           onFinish={(values) => handleSubmit(values as ResetPasswordRequest)}
         >
-          <h2 className={styles.formLabel}>Reset your password</h2>
+          <h2 className={styles.formLabel}>{t('Reset your password')}</h2>
           <div className={styles.formFieldContainer}>
-            <Label>New password:</Label>
+            <Label>{t('New password')}:</Label>
             <Input
               name="password"
               type="password"
@@ -46,7 +48,7 @@ const ResetPassword: React.FC = () => {
             />
           </div>
           <div className={styles.formFieldContainer}>
-            <Label>Confirm password:</Label>
+            <Label>{t('Confirm password')}:</Label>
             <Input
               name="confirmPassword"
               type="password"
@@ -55,12 +57,12 @@ const ResetPassword: React.FC = () => {
           </div>
           {resetPasswordRejected && (
             <div className={styles.errorMessageContainer}>
-              <Message>{errorMessage}</Message>
+              <Message>{t(errorMessage ?? 'An error occurred')}</Message>
             </div>
           )}
           <div className={styles.formFooter}>
             <Button type="submit">
-              {resetPasswordPending ? <Loading size="small" /> : "Reset"}
+              {resetPasswordPending ? <Loading size="small" /> : t('Reset')}
             </Button>
           </div>
         </Form>

@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import langReducer, { setLanguage } from "./pages/language/slice";
 import loginReducer, { setLoginStatus } from "./pages/login/slice";
 import registerReducer from "./pages/register/slice";
 import activationReducer from "./pages/activation/slice";
@@ -31,6 +32,7 @@ const store = configureStore({
     songs: songsReducer,
     song: songReducer,
     search: searchReducer,
+    lang: langReducer,
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware({
@@ -40,9 +42,14 @@ const store = configureStore({
     }),
 });
 
+const lang = localStorage.getItem("lang");
 const token = localStorage.getItem("token");
 const userString = localStorage.getItem("user");
 let user: User | null = null;
+
+if (lang) {
+  store.dispatch(setLanguage(lang));
+}
 
 if (userString) {
   user = JSON.parse(userString) as User;

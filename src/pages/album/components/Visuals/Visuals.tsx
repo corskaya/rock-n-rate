@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from "../../../../store";
 import Album from "../../../../types/album";
 import styles from "./Visuals.module.css";
 import SongsModal from "../SongsModal/SongsModal";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   album: Album;
@@ -15,6 +16,7 @@ const Visuals: React.FC<Props> = ({ album }) => {
   const showSongsModal = useSelector((state: RootState) => state.album.showSongsModal);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleViewArtist = (artistSlug: string) => {
     navigate(`/artist/${artistSlug}`);
@@ -34,14 +36,14 @@ const Visuals: React.FC<Props> = ({ album }) => {
         className={styles.visualButton}
         onClick={() => handleViewArtist(album.artistRefSlug)}
       >
-        View Artist
+        {t('View Artist')}
       </Button>
       <Button
         className={styles.visualButton}
         color="info"
         onClick={() => handleShowSongsModal(true)}
       >
-        View Songs
+        {t('View Songs')}
       </Button>
       <SongsModal 
         show={showSongsModal}

@@ -2,6 +2,7 @@ import Genre from "../../types/genre";
 import Button from "../Button/Index";
 import styles from "./styles.module.css";
 import { StarFilled } from "@ant-design/icons";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   className?: string;
@@ -20,6 +21,7 @@ const Card: React.FC<Props> = ({
   shape = "rectangle",
   size = "medium",
 }) => {
+  const { t } = useTranslation();
   const labelLimit = shape === "rectangle" ? 12 : 14;
   const shortenLabel = (label = "") => {
     return label.length > labelLimit
@@ -48,7 +50,7 @@ const Card: React.FC<Props> = ({
               <div className={styles.genre}>{shortenLabel(genres[1])}</div>
             )}
           </div>
-          <Button className={styles.detailsBtn}>View Details</Button>
+          <Button className={styles.detailsBtn}>{t('View Details')}</Button>
         </div>
       </div>
     </div>

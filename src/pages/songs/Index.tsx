@@ -8,6 +8,7 @@ import List from "./components/List";
 import Paginate from "./components/Paginate";
 import FilterModal from "./components/FilterModal";
 import styles from "./styles.module.css";
+import { useTranslation } from "react-i18next";
 
 const Songs: React.FC = () => {
   const { 
@@ -20,6 +21,7 @@ const Songs: React.FC = () => {
     isFiltered,
   } = useSelector((state: RootState) => state.songs);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowFilterModal = (show: boolean) => {
     dispatch(setShowFilterModal(show));
@@ -31,7 +33,7 @@ const Songs: React.FC = () => {
       <div className={styles.listContainer}>
         <div className={styles.listHeader}>
           <div className={styles.mobileFilterBtnContainer}/>
-          <h3 className={styles.listHeading}>Rock'n Rate Songs</h3>
+          <h3 className={styles.listHeading}>{t("Rock'n Rate Songs")}</h3>
           <div className={styles.mobileFilterBtnContainer}>
             <button 
               className={`${styles.mobileFilterBtn} ${isFiltered ? styles.filtered : ""}`}
@@ -48,7 +50,7 @@ const Songs: React.FC = () => {
         )}
         {songsFulfilled && <Paginate />}
         {songsFulfilled && songs.length === 0 && !songsPending && (
-          <Message>No song found</Message>
+          <Message>{t("No song found")}</Message>
         )}
         {songsFulfilled && <List songs={songs} />}
         {songsFulfilled && <Paginate />}
