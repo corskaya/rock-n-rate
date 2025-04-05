@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "../../../../store";
 import defaultProfilePicture from "../../../../assets/default-profile-picture.png";
 import Album from "../../../../types/album";
 import styles from "./RatingsModal.module.css";
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   show: boolean;
@@ -17,6 +18,7 @@ type Props = {
 const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
   const { ratingsPending, ratingsFulfilled, ratings, ratingsRejected, ratingsErrorMessage } = useSelector((state: RootState) => state.album);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleLinkClick = (isPrivate: boolean, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (isPrivate) {
@@ -28,11 +30,11 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
   return (
     <Modal
       show={show}
-      title="Ratings"
+      title={t('Ratings')}
       suffix={
         <h2
           className={styles.modalRatingSuffix}
-        >{`${album.ratingCount} ratings`}</h2>
+        >{`${album.ratingCount} ${t('ratings')}`}</h2>
       }
       onClose={onClose}
       centerBody={
@@ -61,7 +63,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
                     />
                   </div>
                   <div className={styles.modalRatingUsername}>
-                    {rating.isPrivate ? "Private Rating" : rating.username}
+                    {rating.isPrivate ? t('Private Rating') : rating.username}
                   </div>
                 </div>
                 <div className={styles.modalRatingRatingContainer}>
@@ -76,9 +78,9 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
         </div>
       )}
       {ratingsFulfilled && ratings?.length === 0 && !ratingsPending && (
-        <Message>No rating found</Message>
+        <Message>{t('No rating found')}</Message>
       )}
-      {ratingsRejected && <Message>{ratingsErrorMessage}</Message>}
+      {ratingsRejected && <Message>{t(ratingsErrorMessage ?? 'An error occurred')}</Message>}
     </Modal>
   );
 }

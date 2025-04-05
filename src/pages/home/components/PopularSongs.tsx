@@ -6,6 +6,7 @@ import { getPopularSongs } from "../slice";
 import { setFilters } from "../../songs/slice";
 import { AppDispatch, RootState } from "../../../store";
 import styles from "../styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const PopularSongs: React.FC = () => {
   const {
@@ -17,6 +18,7 @@ const PopularSongs: React.FC = () => {
   } = useSelector((state: RootState) => state.home);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const navigateToPopularSongs = () => {
     dispatch(setFilters({ orderBy: "Popularity" }));
@@ -31,18 +33,18 @@ const PopularSongs: React.FC = () => {
     <div className={styles.popularSongsBackground}>
       <div className={styles.popularSongsContainer}>
         <div className={styles.popularSongsHeader}>
-          <Label className={styles.popularSongsText}>Popular Songs</Label>
+          <Label className={styles.popularSongsText}>{t("Popular Songs")}</Label>
           <span
             className={styles.popularSongsBrowseAll}
             onClick={navigateToPopularSongs}
           >
-            Browse All
+            {t("Browse All")}
           </span>
         </div>
         <div className={styles.popularSongsContentContainer}>
           {popularSongsPending && <Loading />}
           {popularSongsRejected && (
-            <Message>{popularSongsErrorMessage}</Message>
+            <Message>{t(popularSongsErrorMessage ?? "An error occurred")}</Message>
           )}
           {popularSongsFulfilled && (
             <div className={styles.popularSongsContent}>

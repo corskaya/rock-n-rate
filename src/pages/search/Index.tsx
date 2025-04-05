@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "../../store";
 import { getTopics, setSearchTerm } from "./slice";
 import { Loading, Message } from "../../components";
 import styles from "./styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const Search: React.FC = () => {
   const {
@@ -18,6 +19,7 @@ const Search: React.FC = () => {
     errorMessage,
   } = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
@@ -66,7 +68,7 @@ const Search: React.FC = () => {
           <SearchOutlined className={styles.inputIcon} />
           <input
             className={`${styles.input} search-input-mobile`}
-            placeholder="Search"
+            placeholder={t('Search')}
             value={searchTerm}
             onChange={handleChange}
           />
@@ -84,10 +86,10 @@ const Search: React.FC = () => {
       {searchTerm.length >= 3 && (
         <div className={styles.searchResults}>
           {!topicsPending && topicsRejected && (
-            <Message className={styles.searchResultErrorMessage}>{errorMessage}</Message>
+            <Message className={styles.searchResultErrorMessage}>{t(errorMessage ?? 'An error occurred')}</Message>
           )}
           {!topicsPending && topicsFulfilled && topics.length === 0 && (
-            <div className={styles.searchResultNotFound}>No results found.</div>
+            <div className={styles.searchResultNotFound}>{t('No results found.')}</div>
           )}
           {!topicsPending &&
             topicsFulfilled &&

@@ -23,6 +23,7 @@ import {
 import defaultProfilePicture from "../../../../assets/default-profile-picture.png";
 import Comment from "../../../../types/comment";
 import styles from "./Comments.module.css";
+import { useTranslation } from "react-i18next";
 
 const Comments: React.FC = () => {
   const [commentValue, setCommentValue] = useState("");
@@ -42,14 +43,15 @@ const Comments: React.FC = () => {
   const user = useSelector((state: RootState) => state.login.user);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = () => {
     if (!user) {
       dispatch(
         setToastStatus({
           show: true,
-          title: "Please login",
-          message: "To leave a comment, please log in first.",
+          title: t("Please login"),
+          message: t("To leave a comment, please log in first."),
           type: "info",
         })
       );
@@ -71,8 +73,8 @@ const Comments: React.FC = () => {
       dispatch(
         setToastStatus({
           show: true,
-          title: "Please login",
-          message: "To like a comment, please log in first.",
+          title: t("Please login"),
+          message: t("To like a comment, please log in first."),
           type: "info",
         })
       );
@@ -138,7 +140,7 @@ const Comments: React.FC = () => {
             <MessageFilled className={styles.commentIcon} />
             <h4
               className={styles.commentsHeading}
-            >{`${comments.length} Comments`}</h4>
+            >{`${comments.length} ${t("Comments")}`}</h4>
           </div>
           <div className={styles.comments}>
             {comments.map((comment) => (
@@ -216,7 +218,7 @@ const Comments: React.FC = () => {
           <div className={styles.leaveCommentContainer}>
             <textarea
               className={styles.leaveCommentInput}
-              placeholder="Leave a comment"
+              placeholder={t("Leave a comment")}
               value={commentValue}
               onChange={(e) => setCommentValue(e.target.value)}
             />
@@ -224,7 +226,7 @@ const Comments: React.FC = () => {
               className={styles.leaveCommentButton}
               onClick={handleSubmit}
             >
-              {commentArtistPending ? <Loading size="small" /> : "Submit"}
+              {commentArtistPending ? <Loading size="small" /> : t("Submit")}
             </button>
           </div>
         </>

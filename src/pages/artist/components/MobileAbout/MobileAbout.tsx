@@ -4,6 +4,7 @@ import { setShowAboutModal } from "../../slice";
 import Artist from "../../../../types/artist";
 import AboutModal from "../AboutModal/AboutModal";
 import styles from "./MobileAbout.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   artist: Artist;
@@ -14,6 +15,7 @@ const MobileAbout: React.FC<Props> = ({ artist }) => {
     (state: RootState) => state.artist.showAboutModal
   );
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowAboutModal = (show: boolean) => {
     dispatch(setShowAboutModal(show));
@@ -28,7 +30,7 @@ const MobileAbout: React.FC<Props> = ({ artist }) => {
             onClick={() => handleShowAboutModal(true)}
           >
             <h1 className={`${styles.aboutHeadingMobile} ${styles.textShadow}`}>
-              About
+              {t("About")}
             </h1>
             <p className={styles.aboutTextMobile}>{artist.about}</p>
           </div>

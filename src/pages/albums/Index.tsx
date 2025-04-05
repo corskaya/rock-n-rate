@@ -8,6 +8,7 @@ import List from "./components/List";
 import Paginate from "./components/Paginate";
 import FilterModal from "./components/FilterModal";
 import styles from "./styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 const Albums: React.FC = () => {
   const {
@@ -20,6 +21,7 @@ const Albums: React.FC = () => {
     isFiltered,
   } = useSelector((state: RootState) => state.albums);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowFilterModal = (show: boolean) => {
     dispatch(setShowFilterModal(show));
@@ -31,7 +33,7 @@ const Albums: React.FC = () => {
       <div className={styles.listContainer}>
         <div className={styles.listHeader}>
           <div className={styles.mobileFilterBtnContainer}/>
-          <h3 className={styles.listHeading}>Rock'n Rate Albums</h3>
+          <h3 className={styles.listHeading}>{t("Rock'n Rate Albums")}</h3>
           <div className={styles.mobileFilterBtnContainer}>
             <button 
               className={`${styles.mobileFilterBtn} ${isFiltered ? styles.filtered : ""}`}
@@ -48,11 +50,11 @@ const Albums: React.FC = () => {
         )}
         {albumsFulfilled && <Paginate />}
         {albumsFulfilled && albums.length === 0 && !albumsPending && (
-          <Message>No album found</Message>
+          <Message>{t('No album found')}</Message>
         )}
         {albumsFulfilled && <List albums={albums} />}
         {albumsFulfilled && <Paginate />}
-        {albumsRejected && <Message>{errorMessage}</Message>}
+        {albumsRejected && <Message>{t(errorMessage ?? 'An error occurred')}</Message>}
       </div>
       <FilterModal
         show={showFilterModal}

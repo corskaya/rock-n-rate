@@ -6,6 +6,7 @@ import Artist from "../../../../types/artist";
 import AlbumsModal from "../AlbumsModal/AlbumsModal";
 import SongsModal from "../SongsModal/SongsModal";
 import styles from "./Visuals.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   artist: Artist;
@@ -15,6 +16,7 @@ const Visuals: React.FC<Props> = ({ artist }) => {
   const showAlbumsModal = useSelector((state: RootState) => state.artist.showAlbumsModal);
   const showSongsModal = useSelector((state: RootState) => state.artist.showSongsModal);
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowAlbumsModal = (show: boolean) => {
     dispatch(getAlbums(artist.slug));
@@ -35,14 +37,14 @@ const Visuals: React.FC<Props> = ({ artist }) => {
         className={styles.visualButton} 
         onClick={() => handleShowAlbumsModal(true)}
       >
-        View Albums
+        {t("View Albums")}
       </Button>
       <Button
         className={styles.visualButton}
         color="info"
         onClick={() => handleShowSongsModal(true)}
       >
-        View Songs
+        {t("View Songs")}
       </Button>
       <AlbumsModal 
         show={showAlbumsModal}

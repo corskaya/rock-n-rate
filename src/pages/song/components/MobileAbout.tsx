@@ -4,6 +4,7 @@ import { setShowAboutModal } from "../slice";
 import Song from "../../../types/song";
 import AboutModal from "./AboutModal";
 import styles from "../styles.module.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   song: Song;
@@ -14,6 +15,7 @@ const MobileAbout: React.FC<Props> = ({ song }) => {
     (state: RootState) => state.song.showAboutModal
   );
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   const handleShowAboutModal = (show: boolean) => {
     dispatch(setShowAboutModal(show));
@@ -28,7 +30,7 @@ const MobileAbout: React.FC<Props> = ({ song }) => {
             onClick={() => handleShowAboutModal(true)}
           >
             <h1 className={`${styles.aboutHeadingMobile} ${styles.textShadow}`}>
-              About
+              {t("About")}
             </h1>
             <p className={styles.aboutTextMobile}>{song.about}</p>
           </div>

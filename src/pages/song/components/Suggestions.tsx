@@ -3,6 +3,7 @@ import { Loading, Message, SongCard } from "../../../components";
 import styles from "../styles.module.css";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../store";
+import { useTranslation } from "react-i18next";
 
 const Suggestions: React.FC = () => {
   const {
@@ -13,10 +14,12 @@ const Suggestions: React.FC = () => {
     similarSongsErrorMessage,
   } = useSelector((state: RootState) => state.song);
 
+  const { t } = useTranslation();
+
   return (
     <div className={styles.suggestionsContainer}>
       <h4 className={`${styles.suggestionsText} ${styles.textShadow}`}>
-        Similar Songs
+        {t("Similar Songs")}
       </h4>
       {similarSongsPending && <Loading />}
       {similarSongsFulfilled && similarSongs && (

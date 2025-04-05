@@ -3,6 +3,7 @@ import { Loading, Message, Tooltip } from "../../../../components";
 import styles from "./Suggestions.module.css";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../../store";
+import { useTranslation } from "react-i18next";
 
 const Suggestions: React.FC = () => {
   const {
@@ -13,10 +14,12 @@ const Suggestions: React.FC = () => {
     similarArtistsErrorMessage,
   } = useSelector((state: RootState) => state.artist);
 
+  const { t } = useTranslation();
+
   return (
     <div className={styles.suggestionsContainer}>
       <h4 className={`${styles.suggestionsText} ${styles.textShadow}`}>
-        Similar Artists
+        {t("Similar Artists")}
       </h4>
       {similarArtistsPending && <Loading />}
       {similarArtistsFulfilled && similarArtists && (
