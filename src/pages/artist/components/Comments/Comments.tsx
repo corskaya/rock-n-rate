@@ -138,9 +138,9 @@ const Comments: React.FC = () => {
         <>
           <div className={styles.commentsHeader}>
             <MessageFilled className={styles.commentIcon} />
-            <h4
-              className={styles.commentsHeading}
-            >{`${comments.length} ${t("Comments")}`}</h4>
+            <h4 className={styles.commentsHeading}>
+              {t("{{count}} Comments", { count: comments.length })}
+            </h4>
           </div>
           <div className={styles.comments}>
             {comments.map((comment) => (

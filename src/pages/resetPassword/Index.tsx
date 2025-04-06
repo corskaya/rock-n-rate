@@ -57,7 +57,7 @@ const ResetPassword: React.FC = () => {
           </div>
           {resetPasswordRejected && (
             <div className={styles.errorMessageContainer}>
-              <Message>{t(errorMessage ?? 'An error occurred')}</Message>
+              <Message>{t(errorMessage ?? "An error occurred")}</Message>
             </div>
           )}
           <div className={styles.formFooter}>

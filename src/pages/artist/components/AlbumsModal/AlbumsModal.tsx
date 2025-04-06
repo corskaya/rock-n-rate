@@ -27,9 +27,9 @@ const AlbumsModal: React.FC<Props> = ({ show, onClose }) => {
       show={show}
       title={t("Albums")}
       suffix={
-        <h2
-          className={styles.modalAlbumSuffix}
-        >{`${albums.length} ${t("albums")}`}</h2>
+        <h2 className={styles.modalAlbumSuffix}>
+          {t("{{count}} albums", { count: albums.length })}
+        </h2>
       }
       onClose={onClose}
       centerBody={

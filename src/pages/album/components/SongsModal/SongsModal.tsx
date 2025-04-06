@@ -31,7 +31,11 @@ const SongsModal: React.FC<Props> = ({ show, onClose }) => {
     <Modal
       show={show}
       title={t('Songs')}
-      suffix={<h2 className={styles.songsSuffix}>{`${songs.length} ${t('songs')}`}</h2>}
+      suffix={
+        <h2 className={styles.songsSuffix}>
+          {t("{{count}} songs", { count: songs.length })}
+        </h2>
+      }
       onClose={onClose}
       centerBody={
         songsPending || songsRejected || (songsFulfilled && songs?.length === 0)

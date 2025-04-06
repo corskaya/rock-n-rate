@@ -112,7 +112,7 @@ const Search: React.FC = () => {
                         {topic.name}
                       </div>
                       <div className={styles.searchResultType}>
-                        {topic.type}
+                        {t(topic.type)}
                       </div>
                     </div>
                     <div className={styles.searchResultYear}>{topic.year}</div>

@@ -44,7 +44,7 @@ const Login: React.FC = () => {
           </div>
           {loginRejected && (
             <div className={styles.errorMessageContainer}>
-              <Message>{errorMessage}</Message>
+              <Message>{t(errorMessage ?? 'An error occured')}</Message>
             </div>
           )}
           <div className={styles.formFooter}>
