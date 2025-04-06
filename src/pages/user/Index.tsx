@@ -9,6 +9,7 @@ import Statistics from "./components/Statistics";
 import About from "./components/About";
 import Logout from "./components/Logout";
 import styles from "./styles.module.css";
+import { useTranslation } from 'react-i18next';
 
 function User() {
   const { 
@@ -20,6 +21,7 @@ function User() {
   } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
   const { username } = useParams();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getUser(username!));
@@ -28,7 +30,7 @@ function User() {
   return (
     <div className={styles.container}>
       {userPending && <Loading />}
-      {userRejected && <Message>{userErrorMessage}</Message>}
+      {userRejected && <Message>{t(userErrorMessage ?? "An error occured")}</Message>}
       {userFulfilled && user && (
         <div className={styles.profileContainer}>
           <Settings user={user} />
