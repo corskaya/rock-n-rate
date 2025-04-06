@@ -33,10 +33,9 @@ const SongsModal: React.FC<Props> = ({ show, onClose }) => {
       show={show}
       title={t("Songs")}
       suffix={
-        <h2 className={styles.songsSuffix}>{`${albumsWithSongs.reduce(
-          (acc, album) => acc + album.songs.length,
-          0
-        )} ${t("songs")}`}</h2>
+        <h2 className={styles.songsSuffix}>
+          {t("{{count}} songs", { count: albumsWithSongs.reduce((acc, album) => acc + album.songs.length, 0) })}
+        </h2>
       }
       onClose={onClose}
       centerBody={

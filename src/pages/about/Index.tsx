@@ -2,7 +2,7 @@ import styles from "./styles.module.css";
 import { useTranslation } from 'react-i18next';
 
 const About: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <div className={styles.background}>
@@ -36,26 +36,19 @@ const About: React.FC = () => {
         </ul>
         <div className={styles.heading}>{t("The Story Behind Rock'n Rate")}</div>
         <p className={styles.explanation}>
-          {t("I'm Çağrı, and I built Rock'n Rate entirely on my own as a passion project. I wanted to create a platform dedicated solely to rock music, where fans could connect and share their love for the genre. This project was developed with no financial gain in mind—just a genuine passion for rock music and web development.")}
+          {t("I'm Çağrı, and I built Rock'n Rate entirely on my own as a passion project. I wanted to create a platform dedicated solely to rock music, where fans could connect and share their love for the genre. This project was developed with no financial gain in mind, just a genuine passion for rock music and web development.")}
         </p>
         <div className={styles.heading}>{t("Connect with Me")}</div>
-        <p className={styles.explanation}>
-          {t("I'm always open to feedback and suggestions. Feel free to connect with me on")}
-          <span
-            className={styles.link}
-            onClick={() => window.open("https://www.linkedin.com/in/cagriorskaya")}
-          >
-            LinkedIn
-          </span>
-          {t("or check out the code on")}
-          <span
-            className={styles.link}
-            onClick={() => window.open("https://github.com/corskaya")}
-          >
-            GitHub
-          </span>
-          .
-        </p>
+        {i18n.language === "en" && (
+          <p className={styles.explanation}>
+            I'm always open to feedback and suggestions. Feel free to connect with me on <LinkedIn /> or check out the code on <Github />.
+          </p>
+        )}
+        {i18n.language === "tr" && (
+          <p className={styles.explanation}>
+            Geri bildirimlerinizi ve önerilerinizi duymaktan her zaman memnuniyet duyarım. Benimle <LinkedIn /> üzerinden iletişime geçebilir veya projeye göz atmak için <Github /> hesabımı ziyaret edebilirsiniz.
+          </p>
+        )}
         <div className={styles.heading}>{t("License")}</div>
         <p className={styles.explanation}>
           {t("Rock'n Rate is an open-source project licensed under the MIT License. Contributions are welcome!")}
@@ -66,3 +59,25 @@ const About: React.FC = () => {
 };
 
 export default About;
+
+const LinkedIn: React.FC = () => {
+  return (
+    <span
+      className={styles.link}
+      onClick={() => window.open("https://www.linkedin.com/in/cagriorskaya")}
+    >
+      LinkedIn
+    </span>
+  );
+}
+
+const Github: React.FC = () => {
+  return (
+    <span
+      className={styles.link}
+      onClick={() => window.open("https://github.com/corskaya")}
+    >
+      GitHub
+    </span>
+  );
+}

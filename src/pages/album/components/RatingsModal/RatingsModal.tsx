@@ -32,9 +32,9 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
       show={show}
       title={t('Ratings')}
       suffix={
-        <h2
-          className={styles.modalRatingSuffix}
-        >{`${album.ratingCount} ${t('ratings')}`}</h2>
+        <h2 className={styles.modalRatingSuffix}>
+          {t("{{count}} ratings", { count: album.ratingCount })}
+        </h2>
       }
       onClose={onClose}
       centerBody={
@@ -63,7 +63,7 @@ const RatingsModal: React.FC<Props> = ({ show, onClose, album }) => {
                     />
                   </div>
                   <div className={styles.modalRatingUsername}>
-                    {rating.isPrivate ? t('Private Rating') : rating.username}
+                    {rating.isPrivate ? t('Private') : rating.username}
                   </div>
                 </div>
                 <div className={styles.modalRatingRatingContainer}>

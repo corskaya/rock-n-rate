@@ -64,7 +64,7 @@ const Overview: React.FC = () => {
                   className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
                   onClick={() => handleShowAlbumsModal(true)}
                 >
-                  {`${overview.albumCount} ${t("Albums")}`}
+                  {t("{{count}} Albums", { count: overview.albumCount })}
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ const Overview: React.FC = () => {
                   className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
                   onClick={() => handleShowSongsModal(true)}
                 >
-                  {`${overview.songCount} ${t("Songs")}`}
+                  {t("{{count}} Songs", { count: overview.songCount })}
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@ const Overview: React.FC = () => {
                   className={`${styles.overviewBoxText} ${styles.overviewBoxLink}`}
                   onClick={() => handleShowRatingsModal(true)}
                 >
-                  {`${overview.ratingCount} ${t("Ratings")}`}
+                  {t("{{count}} Ratings", { count: overview.ratingCount })}
                 </div>
               </div>
               <div className={styles.overviewInnerBox}>
