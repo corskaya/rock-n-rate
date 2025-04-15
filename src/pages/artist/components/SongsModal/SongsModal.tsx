@@ -56,9 +56,15 @@ const SongsModal: React.FC<Props> = ({ show, onClose }) => {
                   className={styles.albumImage}
                 />
                 <div className={styles.albumInfoContainer}>
-                  <Label className={styles.albumName}>
-                    {album.name}
-                  </Label>
+                  <Link 
+                    className={styles.songLink}
+                    to={`/album/${album.slug}`}
+                    onClick={handleLinkClick}
+                  >
+                    <Label className={styles.albumName}>
+                      {album.name}
+                    </Label>
+                  </Link>
                   <div className={styles.albumBottomInfoContainer}>
                     <div className={styles.albumYear}>
                       {dayjs(album.releaseDate).format("YYYY")}
