@@ -246,7 +246,7 @@
 
 @media (max-width: 1550px) {
   .leftPart {
-    min-width: 20%;
+    min-width: 24%;
   }
   .description {
     display: none;
@@ -264,6 +264,7 @@
 
 @media (max-width: 1020px) {
   .leftPart {
+    min-width: 40%;
     padding-left: 7vw;
   }
   .rightPart {
@@ -290,6 +291,7 @@
     padding: 0;
   }
   .leftPart {
+    min-width: 160px;
     padding-left: 10px;
   }
   .rightPart {
