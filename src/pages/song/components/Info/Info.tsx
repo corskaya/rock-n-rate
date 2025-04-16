@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { StarFilled } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { Label } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { getRatings, setShowAboutModal, setShowRateModal, setShowRatingsModal } from "../slice";
-import RateModal from "./RateModal";
-import RatingsModal from "./RatingsModal";
-import Song from "../../../types/song";
-import AboutModal from "./AboutModal";
-import styles from "../styles.module.css";
+import { Label } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { getRatings, setShowAboutModal, setShowRateModal, setShowRatingsModal } from "../../slice";
+import RateModal from "../RateModal/RateModal";
+import RatingsModal from "../RatingsModal/RatingsModal";
+import Song from "../../../../types/song";
+import AboutModal from "../AboutModal/AboutModal";
+import styles from "./Info.module.css";
 import { useTranslation } from "react-i18next";
 
 type Props = {

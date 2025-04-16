@@ -1,5 +1,5 @@
-import { Modal } from "../../../components";
-import styles from "../styles.module.css";
+import { Modal } from "../../../../components";
+import styles from "./AboutModal.module.css";
 import { useTranslation } from "react-i18next";
 
 type Props = {

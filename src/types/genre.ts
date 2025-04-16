@@ -39,6 +39,7 @@ enum Genre {
   Electronicore = 'Electronicore',
   Emo = 'Emo',
   ExperimentalRock = 'Experimental rock',
+  ExperimentalMetal = 'Experimental metal',
   ExtremeMetal = 'Extreme metal',
   FolkMetal = 'Folk metal',
   FolkPunk = 'Folk punk',

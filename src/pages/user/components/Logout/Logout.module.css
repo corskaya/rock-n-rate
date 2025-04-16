@@ -1,0 +1,20 @@
+.logoutContainer {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 24px 4px 24px;
+}
+
+.logoutContainer .logoutBtn {
+  width: 120px;
+}
+
+@media (max-width: 760px) {
+  .logoutContainer {
+    padding: 16px 0;
+  }
+
+  .logoutContainer .logoutBtn {
+    width: 100%;
+  }
+}

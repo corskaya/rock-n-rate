@@ -1,0 +1,38 @@
+.mobileAboutContainer {
+  display: none;
+}
+
+.textShadow {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 760px) {
+  .mobileAboutContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 32px;
+    margin-bottom: -24px;
+  }
+
+  .aboutHeadingMobile {
+    padding: 0;
+    margin: 0;    
+    font-size: 19px;
+    margin-bottom: 6px;
+  }
+
+  .aboutTextMobile {
+    color: #919191;
+    font-size: 15px;
+    white-space: pre-wrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    line-height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+}

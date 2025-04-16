@@ -40,6 +40,12 @@
   text-overflow: ellipsis;
   overflow: hidden;
   padding-bottom: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.albumName:hover {
+  color: #bebebe;
 }
 
 .albumBottomInfoContainer {

@@ -1,0 +1,39 @@
+.suggestionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggestionsText {
+  padding: 0;
+  margin: 0;
+}
+
+.textShadow {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.songCardLink {
+  text-decoration: none;
+}
+
+.songCard {
+  width: 240px;
+  border: none;
+}
+
+@media (max-width: 1020px) {
+  .infoContainer {
+    padding: 0 28px;
+  }
+
+  .suggestionsContainer {
+    display: none;
+  }
+}

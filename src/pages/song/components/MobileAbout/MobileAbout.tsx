@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store";
-import { setShowAboutModal } from "../slice";
-import Song from "../../../types/song";
-import AboutModal from "./AboutModal";
-import styles from "../styles.module.css";
+import { AppDispatch, RootState } from "../../../../store";
+import { setShowAboutModal } from "../../slice";
+import Song from "../../../../types/song";
+import AboutModal from "../AboutModal/AboutModal";
+import styles from "./MobileAbout.module.css";
 import { useTranslation } from "react-i18next";
 
 type Props = {

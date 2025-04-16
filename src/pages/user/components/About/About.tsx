@@ -1,6 +1,6 @@
-import { Label } from "../../../components";
-import styles from "../styles.module.css";
-import User from "../../../types/user";
+import { Label } from "../../../../components";
+import styles from "./About.module.css";
+import User from "../../../../types/user";
 import { useTranslation } from 'react-i18next';
 
 type Props = {

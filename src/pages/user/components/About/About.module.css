@@ -1,0 +1,16 @@
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 4px 40px;
+}
+
+.headerText {
+  font-size: 26px;
+  font-weight: 500;
+  color: #6ac045;
+  margin-bottom: 32px;
+}
+
+.data {
+  font-weight: lighter;
+}

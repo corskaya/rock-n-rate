@@ -17,14 +17,14 @@ const NotFound: React.FC = () => {
         <ul>
           <li>{t("Double-check the URL for typos.")}</li>
           <li>
-            {t("Return to the")}
+            {t("Return to the ")}
             <Link className={styles.link} to="">
               {t("homepage")}
             </Link>
             .
           </li>
           <li>
-            {t("If you believe this is an error, please")}
+            {t("If you believe this is an error, please ")}
             <Link className={styles.link} to="#">
               {t("contact us")}
             </Link>

@@ -54,7 +54,7 @@ const Artists: React.FC = () => {
         )}
         {artistsFulfilled && <List artists={artists} />}
         {artistsFulfilled && <Paginate />}
-        {artistsRejected && <Message>{errorMessage}</Message>}
+        {artistsRejected && <Message>{t(errorMessage ?? 'An error occurred')}</Message>}
       </div>
       <FilterModal
         show={showFilterModal}

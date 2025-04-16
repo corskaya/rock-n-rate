@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
-import { Label } from "../../../components";
-import defaultProfilePicture from "../../../assets/default-profile-picture.png";
-import styles from "../styles.module.css";
-import User from "../../../types/user";
+import { Label } from "../../../../components";
+import defaultProfilePicture from "../../../../assets/default-profile-picture.png";
+import styles from "./Statistics.module.css";
+import User from "../../../../types/user";
 import { useTranslation } from 'react-i18next';
 
 type Props = {

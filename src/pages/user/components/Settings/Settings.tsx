@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { Button } from "../../../components";
-import defaultProfilePicture from "../../../assets/default-profile-picture.png";
-import styles from "../styles.module.css";
+import { Button } from "../../../../components";
+import defaultProfilePicture from "../../../../assets/default-profile-picture.png";
+import styles from "./Settings.module.css";
 import React from "react";
-import User from "../../../types/user";
-import { RootState } from "../../../store";
+import User from "../../../../types/user";
+import { RootState } from "../../../../store";
 import { useTranslation } from 'react-i18next';
 
 type Props = {
