@@ -1,5 +1,5 @@
-import Song from "../../../types/song";
-import styles from "../styles.module.css";
+import Song from "../../../../types/song";
+import styles from "./MobileMainInfo.module.css";
 import dayjs from "dayjs";
 
 type Props = {

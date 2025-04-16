@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { StarFilled } from "@ant-design/icons";
-import { setShowRatingsModal } from "../slice";
-import { Loading, Modal, Message } from "../../../components";
+import { setShowRatingsModal } from "../../slice";
+import { Loading, Modal, Message } from "../../../../components";
 import { Link } from "react-router-dom";
-import defaultProfilePicture from "../../../assets/default-profile-picture.png";
-import styles from "../styles.module.css";
+import defaultProfilePicture from "../../../../assets/default-profile-picture.png";
+import styles from "./RatingsModal.module.css";
 import React from "react";
-import Song from "../../../types/song";
-import { AppDispatch, RootState } from "../../../store";
+import Song from "../../../../types/song";
+import { AppDispatch, RootState } from "../../../../store";
 import { useTranslation } from "react-i18next";
 
 type Props = {

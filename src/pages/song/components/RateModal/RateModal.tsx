@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CloseOutlined, StarFilled, StarOutlined } from "@ant-design/icons";
-import { rateSong, removeRating, setShowRateModal } from "../slice";
-import { setToastStatus } from "../../login/slice";
-import { Loading } from "../../../components";
+import { rateSong, removeRating, setShowRateModal } from "../../slice";
+import { setToastStatus } from "../../../login/slice";
+import { Loading } from "../../../../components";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch, RootState } from "../../../store";
-import Song from "../../../types/song";
-import styles from "../styles.module.css";
+import { AppDispatch, RootState } from "../../../../store";
+import Song from "../../../../types/song";
+import styles from "./RateModal.module.css";
 import { useTranslation } from "react-i18next";
 
 const points = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -159,11 +159,7 @@ const RateModal: React.FC<Props> = ({ show, onClose, song }) => {
               </button>
 
               <button
-                className={`${styles.rateModalRemoveBtn} ${
-                  selectedPoint !== song.ratingOfRelevantUser
-                    ? styles.rateModalRemoveBtnActive
-                    : styles.rateModalRemoveBtnPassive
-                }`}
+                className={styles.rateModalRemoveBtn}
                 style={{
                   visibility: `${
                     song.ratingOfRelevantUser ? "visible" : "hidden"

@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./slice";
 import { Loading, Message } from "../../components";
 import { AppDispatch, RootState } from "../../store";
-import Settings from "./components/Settings";
-import Statistics from "./components/Statistics";
-import About from "./components/About";
-import Logout from "./components/Logout";
+import Settings from "./components/Settings/Settings";
+import Statistics from "./components/Statistics/Statistics";
+import About from "./components/About/About";
+import Logout from "./components/Logout/Logout";
 import styles from "./styles.module.css";
 import { useTranslation } from 'react-i18next';
 

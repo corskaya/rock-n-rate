@@ -1,0 +1,160 @@
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 48px;
+}
+
+.songName {
+  padding: 0;
+  margin: 0;
+  font-size: 40px;
+  margin-bottom: 24px;
+}
+
+.textShadow {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.foundationYear {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.genres {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.ratingsContainer {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.ratingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.ratingText {
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  color: #e9e9e9;
+  letter-spacing: 0.02em;
+}
+
+.ratingPointContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.ratingPointContainer:hover {
+  cursor: pointer;
+  background-color: #636363;
+}
+
+.ratingIcon {
+  font-size: 24px;
+  color: #6ac045;
+}
+
+.ratingPoint {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.ratingMax {
+  font-size: 16px;
+  padding-top: 2px;
+}
+
+.userRatingIcon {
+  font-size: 24px;
+  color: #0aad9e;
+}
+
+.aboutTextWeb {
+  color: #dbdbdb;
+  font-size: 15px;
+  white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .infoContainer {
+    padding: 0 28px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .infoContainer {
+    padding: 0 48px 0 20px;
+  }
+
+  .songName {
+    font-size: 26px;
+    margin-bottom: 6px;
+  }
+
+  .foundationYear {
+    font-size: 17px;
+    margin-bottom: 14px;
+  }
+
+  .aboutTextWeb {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
+}
+
+@media (max-width: 760px) {
+  .infoContainer {
+    padding: 0 0 0 20px;
+  }
+
+  .mainInfoContainer {
+    display: none;
+  }
+
+  .songName {
+    font-size: 21px;
+  }
+
+  .foundationYear {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .genres {
+    font-size: 16px;
+  }
+
+  .ratingsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 36px;
+  }
+
+  .aboutTextWeb {
+    display: none;
+  }
+}

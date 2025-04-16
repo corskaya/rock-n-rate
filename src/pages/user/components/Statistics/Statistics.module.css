@@ -1,0 +1,66 @@
+.statisticsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 4px 24px;
+}
+
+.statisticsInfoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerText {
+  font-size: 26px;
+  font-weight: 500;
+  color: #6ac045;
+  margin-bottom: 32px;
+}
+
+.statistics {
+  display: flex;
+  flex-direction: column;
+}
+
+.statisticsPair {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.statisticsPair .label {
+  width: 150px;
+}
+
+.data {
+  font-weight: lighter;
+}
+
+.statisticsImageContainer {
+  display: flex;
+  align-items: flex-end;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.statisticsImage {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1020px) {
+  .statisticsPair .label {
+    width: 120px;
+  }
+}
+
+@media (max-width: 760px) {
+  .statisticsImageContainer {
+    display: none;
+  }
+}

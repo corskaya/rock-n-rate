@@ -4,10 +4,10 @@ import { useParams, Link } from "react-router-dom";
 import { DashboardFilled } from "@ant-design/icons";
 import { RecordVoiceOver, CalendarMonth, Album, Star, AddTask } from '@mui/icons-material';
 import dayjs from "dayjs";
-import { Loading, Message } from "../../../components";
-import { AppDispatch, RootState } from "../../../store";
-import { getOverview, getRatings, setShowRatingsModal } from "../slice";
-import styles from "../styles.module.css";
+import { Loading, Message } from "../../../../components";
+import { AppDispatch, RootState } from "../../../../store";
+import { getOverview, getRatings, setShowRatingsModal } from "../../slice";
+import styles from "./Overview.module.css";
 import { useTranslation } from "react-i18next";
 
 const Overview: React.FC = () => {

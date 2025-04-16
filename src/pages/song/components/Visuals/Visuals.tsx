@@ -1,7 +1,7 @@
-import { Button } from "../../../components";
+import { Button } from "../../../../components";
 import { useNavigate } from "react-router-dom";
-import Song from "../../../types/song";
-import styles from "../styles.module.css";
+import Song from "../../../../types/song";
+import styles from "./Visuals.module.css";
 import { useTranslation } from "react-i18next";
 
 type Props = {

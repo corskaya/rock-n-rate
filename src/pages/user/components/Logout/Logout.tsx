@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../components";
-import { logout } from "../../login/slice";
-import { AppDispatch, RootState } from "../../../store";
-import User from "../../../types/user";
-import styles from "../styles.module.css";
+import { Button } from "../../../../components";
+import { logout } from "../../../login/slice";
+import { AppDispatch, RootState } from "../../../../store";
+import User from "../../../../types/user";
+import styles from "./Logout.module.css";
 import { useTranslation } from 'react-i18next';
 
 type Props = {
