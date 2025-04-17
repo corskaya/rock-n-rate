@@ -13,6 +13,7 @@
   background-color: #1d1d1d;
   height: var(--header-height-web);
   border-bottom: 1px solid #2d3030;
+  box-sizing: border-box;
   padding-top: 1px;
   width: 100%;
 }
