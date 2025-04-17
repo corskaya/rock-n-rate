@@ -212,7 +212,7 @@ const Comments: React.FC = () => {
           </div>
           {commentArtistRejected && (
             <Message>
-              {commentArtistErrorMessage}
+              {t(commentArtistErrorMessage ?? "An error occured")}
             </Message>
           )}
           <div className={styles.leaveCommentContainer}>
