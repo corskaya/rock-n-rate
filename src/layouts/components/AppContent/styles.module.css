@@ -5,6 +5,8 @@
 
 @media (max-width: 760px) {
   .contentContainer {
-    padding: var(--header-height-mobile) 0;
+    padding: var(--header-height-mobile) 0 var(--footer-height-mobile);
+    min-height: calc(100vh - var(--header-height-mobile));
+    box-sizing: border-box;
   }
 }

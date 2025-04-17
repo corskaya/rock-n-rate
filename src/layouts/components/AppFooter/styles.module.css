@@ -9,10 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   background-color: #171717;
   height: var(--footer-height-web);
-  gap: 8px;
   border-top: 1px solid #2d3030;
+  box-sizing: border-box;
   padding-bottom: 1px;
 }
 
@@ -36,8 +37,11 @@
 }
 
 @media (max-width: 760px) {
+  .footerFix {
+    position: static;
+  }
+
   .footerContainer {
-    /* height: 38px; */
-    display: none;
+    height: var(--footer-height-mobile);
   }
 }
