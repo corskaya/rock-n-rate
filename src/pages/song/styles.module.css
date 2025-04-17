@@ -1,6 +1,17 @@
 .background {
+  position: relative;
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: calc(100vh - 120px);
   background: linear-gradient(to bottom, transparent, #1d1d1d 85%, #1d1d1d);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .container {
@@ -8,8 +19,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0 120px;
+  padding: 40px 0 60px;
   background: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 .songWebContainer {
@@ -55,7 +68,7 @@
 
 @media (max-width: 760px) {
   .container {
-    padding-bottom: 40px;
+    padding-bottom: 0;
   }
 
   .songWebContainer {
